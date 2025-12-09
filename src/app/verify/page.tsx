@@ -5,7 +5,7 @@ const VerifyLoginPage = () => {
   return (
     <AuthLayout
       title="Verify Login"
-      description="Please enter otp sent to your email."
+      description="Please enter OTP sent to your email."
     >
       <VerifyWrapper />
     </AuthLayout>
