@@ -1,5 +1,7 @@
+import DashboardLayout from "@/components/templates/DashboardLayout/DashboardLayout";
+
 const OverviewPage = () => {
-  return <div>OverviewPage</div>;
+  return <DashboardLayout title="Overview">OverviewPage</DashboardLayout>;
 };
 
 export default OverviewPage;

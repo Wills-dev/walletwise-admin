@@ -69,7 +69,7 @@ export const resetPassword = async ({
 
 export const getCurrentUser = async () => {
   try {
-    const { data } = await axiosInstance.get("/auth/current-user");
+    const { data } = await axiosInstance.get("/admins/me");
     return data;
   } catch (error) {
     throw error;
