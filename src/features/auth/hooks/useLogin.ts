@@ -25,7 +25,7 @@ export const useLogin = () => {
     onSuccess: (data) => {
       resetForm();
       toast.success("Please enter OTP to continue");
-      router.push(`/verify?=${data?.adminId}`);
+      router.push(`/verify?adminId=${data?.adminId}`);
     },
     onError: (error: ApiErrorResponse) => {
       console.log("error logging in", error);

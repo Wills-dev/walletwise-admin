@@ -18,6 +18,26 @@ export const login = async ({
   }
 };
 
+export const verifyLogin = async ({
+  otp,
+  adminId,
+}: {
+  otp: string;
+  adminId: string;
+}) => {
+  try {
+    const { data } = await axiosInstance.post(
+      `/auth/verify-otp?adminId=${adminId}`,
+      {
+        otp,
+      }
+    );
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const forgotPassword = async ({ email }: { email: string }) => {
   try {
     const { data } = await axiosInstance.post("/auth/forgot-password", {
@@ -49,7 +69,7 @@ export const resetPassword = async ({
 
 export const getCurrentUser = async () => {
   try {
-    const { data } = await axiosInstance.get("/auth/current-user");
+    const { data } = await axiosInstance.get("/admins/me");
     return data;
   } catch (error) {
     throw error;
@@ -58,7 +78,7 @@ export const getCurrentUser = async () => {
 
 export const logout = async () => {
   try {
-    await axiosInstance.get("/auth/log-out");
+    await axiosInstance.get("/auth/logout");
   } catch (error) {
     throw error;
   }
