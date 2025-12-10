@@ -1,13 +1,10 @@
-import Link from "next/link";
-
 import { ArrowUpDown } from "lucide-react";
 import { CellContext, createColumnHelper, Table } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
-import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
+import AdminActionCell from "../AdminActionCell/AdminActionCell";
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
 import { AdminType } from "../../types";
@@ -154,34 +151,7 @@ export const Column = [
       const admin = row.original;
       const status = row.getValue("status");
 
-      return (
-        <>
-          <ColumnActionDropdown>
-            <DropdownMenuItem>
-              <Link href={`/manage-admin/info/${admin.id}`}>View info</Link>
-            </DropdownMenuItem>
-            {status === "suspended" ? (
-              <DropdownMenuItem className="text-green-500">
-                <button
-                //   onClick={() => {
-                //     activateAdminUser(ticket.id);
-                //   }}
-                >
-                  Activate
-                </button>
-              </DropdownMenuItem>
-            ) : (
-              <DropdownMenuItem className="text-red-500">
-                <button
-                // onClick={onToggle}
-                >
-                  Suspend
-                </button>
-              </DropdownMenuItem>
-            )}
-          </ColumnActionDropdown>
-        </>
-      );
+      return <AdminActionCell adminId={admin.id} status={status} />;
     },
     enableSorting: false,
     enableHiding: false,

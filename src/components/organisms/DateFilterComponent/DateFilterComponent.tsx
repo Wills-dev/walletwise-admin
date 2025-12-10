@@ -10,6 +10,7 @@ import { DateFilterValue, DateRange, FilterOption } from "@/lib/types";
 
 import DropdownMenu from "@/components/molecules/DropdownMenu/DropdownMenu";
 import DoubleCalendarPanel from "@/components/molecules/DoubleCalendarPanel/DoubleCalendarPanel";
+import { toast } from "sonner";
 
 interface DateFilterProps {
   onDateChange?: (value: DateFilterValue) => void;
@@ -96,7 +97,7 @@ const DateFilterComponent = ({
           (date.getTime() - customStart.getTime()) / (1000 * 60 * 60 * 24)
         );
         if (daysDiff > 30) {
-          alert("You can only select a maximum of 30 days");
+          toast.error("You can only select a maximum of 30 days");
           return;
         }
         setCustomEnd(date);

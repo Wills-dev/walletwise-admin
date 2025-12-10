@@ -17,3 +17,30 @@ export const getAdmins = async ({
     throw error;
   }
 };
+
+export const suspendAdmin = async ({ adminId }: { adminId: string }) => {
+  try {
+    const { data } = await axiosInstance.patch(`/admins/${adminId}/suspend`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const activateAdmin = async ({ adminId }: { adminId: string }) => {
+  try {
+    const { data } = await axiosInstance.patch(`/admins/${adminId}/unsuspend`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteAdmin = async ({ adminId }: { adminId: string }) => {
+  try {
+    const { data } = await axiosInstance.delete(`/admins/${adminId}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
