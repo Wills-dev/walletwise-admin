@@ -1,12 +1,10 @@
 import { services } from "@/lib/constants";
 import { TabType } from "@/lib/types";
 
+import Container from "@/components/atoms/Container/Container";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ServiceNavLink from "@/components/atoms/ServiceNavLink/ServiceNavLink";
 import DynamicTabs from "@/components/molecules/DynamicTabs/DynamicTabs";
-import Container from "@/components/atoms/Container/Container";
-import { Suspense } from "react";
-import MainLoader from "@/components/atoms/MainLoader/MainLoader";
 
 const ServiceLayout = ({
   tabs,
@@ -40,9 +38,7 @@ const ServiceLayout = ({
           {title}
         </h2>
       </div>
-      <Suspense fallback={<MainLoader />}>
-        <DynamicTabs tabs={tabs} defaultTab={defaultTab} onClick={onClick} />
-      </Suspense>
+      <DynamicTabs tabs={tabs} defaultTab={defaultTab} onClick={onClick} />
     </DashboardLayout>
   );
 };
