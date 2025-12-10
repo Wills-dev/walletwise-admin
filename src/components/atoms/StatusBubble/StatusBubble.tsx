@@ -1,7 +1,7 @@
 const StatusBubble = ({ status }: { status: string }) => {
   const statusStyles: Record<string, string> = {
     pending: "text-yellow-400 bg-yellow-50",
-    active: "text-blue-400 bg-blue-50",
+    active: "text-green-400 bg-green-50",
     in_transit: "text-blue-400 bg-blue-50",
     replied: "text-blue-400 bg-blue-50",
     reversed: "text-blue-400 bg-blue-50",

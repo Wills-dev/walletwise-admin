@@ -19,7 +19,9 @@ const ColumnActionDropdown = ({ children }: ColumnActionDropdownProps) => {
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">{children}</DropdownMenuContent>
+      <DropdownMenuContent align="end" className="dark:bg-gray-900">
+        {children}
+      </DropdownMenuContent>
     </DropdownMenu>
   );
 };
