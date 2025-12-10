@@ -11,8 +11,8 @@ const ServiceNavLink = ({ name, link }: { name: string; link: string }) => {
       href={link}
       className={`uppercase text-sm h-full flex items-center transition-all duration-300 whitespace-nowrap ${
         isActive
-          ? "border-b-2 border-purple-700 text-gray-800 dark:text-gray-400 font-medium"
-          : "hover:scale-105 text-gray-700 dark:text-gray-500"
+          ? "border-b-2 border-purple-700 text-gray-800 dark:text-gray-50 font-medium"
+          : "hover:scale-105 text-gray-700 dark:text-gray-300"
       }`}
     >
       {name}

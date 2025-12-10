@@ -3,10 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getServiceTransaction } from "../api";
 import { useTableState } from "@/lib/hooks/useTableState";
 
-export const useGetServiceTransactions = (
-  service: string,
-  transferType?: string
-) => {
+export const useGetServiceTransactions = (service: string) => {
   const {
     currentPage,
     limit,
@@ -30,6 +27,8 @@ export const useGetServiceTransactions = (
     selectedDateFilterValue,
     setSelectedDateFilterValue,
     handleSortChange,
+    transferType,
+    handleSwitchTransferType,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -84,5 +83,7 @@ export const useGetServiceTransactions = (
     tab,
     handleSortChange,
     setSelectedDateFilterValue,
+    handleSwitchTransferType,
+    transferType,
   };
 };

@@ -36,7 +36,7 @@ const StatisticCard = ({
       onClick={onClick}
     >
       <div className="flex justify-between">
-        <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
+        <h4 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
           {title}
         </h4>
         {Icon !== undefined && (
@@ -45,7 +45,7 @@ const StatisticCard = ({
           </div>
         )}
       </div>
-      <h1 className="text-2xl font-bold dark:text-gray-500">
+      <h1 className="text-2xl font-bold dark:text-gray-200">
         {currency && currency}
         {value && numberWithCommas(value)}
       </h1>

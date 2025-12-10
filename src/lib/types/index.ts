@@ -121,6 +121,8 @@ export interface HistoryProps<TData = unknown> {
   onSubmit?: (e: FormEvent) => void;
   sortOptions?: SortOption[];
   service: string;
+  handleSwitchTransferType?: (value: string) => void;
+  transferType?: string;
 }
 
 export interface TransactionType {
