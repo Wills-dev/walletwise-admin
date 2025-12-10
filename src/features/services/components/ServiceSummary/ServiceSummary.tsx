@@ -6,7 +6,7 @@ import { SummaryProps } from "@/lib/types";
 
 import ServiceCardWrapper from "../ServiceCardWrapper/ServiceCardWrapper";
 
-const AirtimeSummary = ({
+const ServiceSummary = ({
   statusCount,
   totalRevenue,
   totalTransactions,
@@ -39,4 +39,4 @@ const AirtimeSummary = ({
   );
 };
 
-export default AirtimeSummary;
+export default ServiceSummary;

@@ -120,6 +120,7 @@ export interface HistoryProps<TData = unknown> {
   handleClear?: () => void;
   onSubmit?: (e: FormEvent) => void;
   sortOptions?: SortOption[];
+  service: string;
 }
 
 export interface TransactionType {

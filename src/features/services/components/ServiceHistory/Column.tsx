@@ -19,7 +19,7 @@ interface ColumnProps<TData = unknown> {
   table: Table<TData>;
 }
 
-export const Column = (hasPermission: boolean) => [
+export const Column = (hasPermission: boolean, service: string) => [
   {
     id: "select",
     header: ({ table }: ColumnProps) => (
@@ -174,7 +174,7 @@ export const Column = (hasPermission: boolean) => [
         <>
           <ColumnActionDropdown>
             <DropdownMenuItem>
-              <Link href={`/services/airtime/info/${transaction.id}`}>
+              <Link href={`/services/${service}/info/${transaction.id}`}>
                 View info
               </Link>
             </DropdownMenuItem>
