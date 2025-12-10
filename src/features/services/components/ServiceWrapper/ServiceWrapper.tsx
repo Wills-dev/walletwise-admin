@@ -6,11 +6,11 @@ import { sortOptions } from "@/lib/constants/dateFilter";
 import { useAdminPermission } from "@/lib/hooks/useAdminPermission";
 import { useGetServiceTransactions } from "../../hooks/useGetServiceTransactions";
 
-import AirtimeSummary from "../AirtimeSummary/AirtimeSummary";
-import AirtimeHistory from "../AirtimeHistory/AirtimeHistory";
+import ServiceSummary from "../ServiceSummary/ServiceSummary";
 import ServiceLayout from "@/components/templates/ServiceLayout/ServiceLayout";
+import ServiceHistory from "../ServiceHistory/ServiceHistory";
 
-const AirtimeWrapper = () => {
+const ServiceWrapper = ({ service }: { service: string }) => {
   const {
     setLimit,
     nextPage,
@@ -33,7 +33,7 @@ const AirtimeWrapper = () => {
     handleSwithTab,
     tab,
     setSelectedDateFilterValue,
-  } = useGetServiceTransactions("airtime");
+  } = useGetServiceTransactions(service);
 
   const { hasPermission } = useAdminPermission();
 
@@ -47,7 +47,7 @@ const AirtimeWrapper = () => {
       label: "Summary",
       content: (
         <AnimatePresence>
-          <AirtimeSummary
+          <ServiceSummary
             statusCount={data?.status_counts}
             totalRevenue={data?.total_amount}
             totalTransactions={data?.total_count}
@@ -64,7 +64,7 @@ const AirtimeWrapper = () => {
       label: "History",
       content: (
         <AnimatePresence>
-          <AirtimeHistory
+          <ServiceHistory
             setSelectedDateFilterValue={setSelectedDateFilterValue}
             statusCount={data?.status_counts}
             totalRevenue={data?.total_amount}
@@ -91,6 +91,7 @@ const AirtimeWrapper = () => {
             handleClear={handleClear}
             onSubmit={handleSearch}
             sortOptions={sortOptions}
+            service={service}
           />
         </AnimatePresence>
       ),
@@ -103,7 +104,7 @@ const AirtimeWrapper = () => {
       label: "History",
       content: (
         <AnimatePresence>
-          <AirtimeHistory
+          <ServiceHistory
             setSelectedDateFilterValue={setSelectedDateFilterValue}
             statusCount={data?.status_counts}
             totalRevenue={data?.total_amount}
@@ -130,6 +131,7 @@ const AirtimeWrapper = () => {
             handleClear={handleClear}
             onSubmit={handleSearch}
             sortOptions={sortOptions}
+            service="aritime"
           />
         </AnimatePresence>
       ),
@@ -138,7 +140,7 @@ const AirtimeWrapper = () => {
 
   return (
     <ServiceLayout
-      title="Airtime Transaction"
+      title={`${service} Transactions`}
       tabs={hasPermission ? tabs : tab2}
       defaultTab={
         hasPermission && tab ? tab : !hasPermission ? "history" : "summary"
@@ -148,4 +150,4 @@ const AirtimeWrapper = () => {
   );
 };
 
-export default AirtimeWrapper;
+export default ServiceWrapper;

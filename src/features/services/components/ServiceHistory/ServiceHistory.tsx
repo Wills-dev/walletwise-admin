@@ -11,7 +11,7 @@ import ServiceCardWrapper from "../ServiceCardWrapper/ServiceCardWrapper";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 import TableLoader from "@/components/atoms/skeleton/TableLoader";
 
-const AirtimeHistory = ({
+const ServiceHistory = ({
   statusCount,
   totalRevenue,
   totalCompanyCommission,
@@ -38,10 +38,11 @@ const AirtimeHistory = ({
   handleClear,
   onSubmit,
   sortOptions,
+  service,
 }: HistoryProps) => {
   const { hasPermission } = useAdminPermission();
 
-  const typedColumns = Column(hasPermission) as ColumnDef<unknown>[];
+  const typedColumns = Column(hasPermission, service) as ColumnDef<unknown>[];
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -96,4 +97,4 @@ const AirtimeHistory = ({
   );
 };
 
-export default AirtimeHistory;
+export default ServiceHistory;
