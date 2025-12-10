@@ -9,9 +9,11 @@ import Sidebar from "@/components/organisms/Sidebar/Sidebar";
 const DashboardLayout = ({
   children,
   title,
+  className = "py-20",
 }: {
   children: React.ReactNode;
   title: string;
+  className?: string;
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -20,13 +22,16 @@ const DashboardLayout = ({
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 w-full">
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="lg:ml-24">
-        <Navbar
-          title={title}
-          toggleSidebar={toggleSidebar}
-          isSidebarOpen={isSidebarOpen}
-        />
-        <main className="py-20">
+      <Navbar
+        title={title}
+        toggleSidebar={toggleSidebar}
+        isSidebarOpen={isSidebarOpen}
+      />
+      <div className="flex">
+        <div className="w-24 min-w-24 max-lg:hidden"></div>
+        <main
+          className={`flex-1 w-full max-w-full overflow-x-auto ${className}`}
+        >
           <Container className="xl:px-6">{children}</Container>
         </main>
       </div>

@@ -57,7 +57,7 @@ export const links = [
       },
       {
         name: "services",
-        link: "/services/transfer",
+        link: "/services/airtime",
         icon: <Database className="w-4 h-4" />,
       },
     ],
@@ -115,45 +115,33 @@ export const links = [
   },
 ];
 
-// export const services = [
-//   {
-//     name: "/services/transfers",
-//     icon: <BiTransfer />,
-//   },
-//   {
-//     name: "/services/airtime",
-//     icon: <IoPhonePortraitOutline />,
-//   },
-//   {
-//     name: "/services/cable",
-//     icon: <PiTelevisionSimple />,
-//   },
-//   {
-//     name: "/services/data",
-//     icon: <GoDatabase />,
-//   },
-//   {
-//     name: "/services/betting",
-//     icon: <IoIosFootball />,
-//   },
-//   {
-//     name: "/services/electricity",
-//     icon: <FaRegLightbulb />,
-//   },
-//   {
-//     name: "/services/giftcards",
-//     icon: <GoGift />,
-//   },
-//   {
-//     name: "/services/book-flight",
-//     icon: <BiSolidPlaneAlt />,
-//   },
-//   {
-//     name: "/services/virtual-card",
-//     icon: <CiCreditCard1 />,
-//   },
-//   {
-//     name: "/services/hotel-reservations",
-//     icon: <IoHomeOutline />,
-//   },
-// ];
+export const services = [
+  {
+    name: "airtime",
+    link: "/services/airtime",
+  },
+  { name: "betting", link: "/services/betting" },
+  {
+    name: "cable",
+    link: "/services/cable",
+  },
+  {
+    name: "data",
+    link: "/services/data",
+  },
+
+  {
+    name: "electricity",
+    link: "/services/electricity",
+  },
+  {
+    name: "giftcards",
+    link: "/services/giftcards",
+  },
+  { name: "transfer", link: "/services/transfer" },
+  { name: "book flight", link: "/services/book-flight" },
+  {
+    name: "hotel reservation",
+    link: "/services/hotel-reservations",
+  },
+];
