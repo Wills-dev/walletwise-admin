@@ -48,11 +48,13 @@ const Navbar = ({
           <div className="flex gap-4 items-center justify-end h-full w-full">
             <ThemeToggle />
             <NotificationIcon />
-            {isLoading ? (
-              <UserBadgeLoader />
-            ) : (
-              <UserBadge name={user?.first_name || "W"} />
-            )}
+            <div className="max-sm:hidden">
+              {isLoading ? (
+                <UserBadgeLoader />
+              ) : (
+                <UserBadge name={user?.first_name || "W"} />
+              )}
+            </div>
           </div>
         </div>
       </div>

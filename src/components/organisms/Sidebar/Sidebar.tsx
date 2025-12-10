@@ -15,7 +15,7 @@ const Sidebar = ({ isSidebarOpen }: DashboardSidebarProps) => {
       } lg:translate-x-0`}
     >
       <div className="h-full space-y-8 flex flex-col items-center pt-14">
-        <div className="flex-1 h-full overflow-y-auto space-y-8">
+        <div className="flex-1 h-full overflow-y-auto no-scrollbar space-y-8">
           {links?.map((tab) => (
             <div
               className="w-full flex flex-col justify-center items-center"

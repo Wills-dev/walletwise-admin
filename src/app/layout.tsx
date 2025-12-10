@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${exo2.variable}`} suppressHydrationWarning>
-      <body>
+      <body suppressHydrationWarning>
         <QueryProvider>
           <Providers>
             <ThemeProvider>

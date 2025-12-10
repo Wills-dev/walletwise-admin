@@ -1,11 +1,40 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { createAuthCookie, readAuthCookie } from "../helpers/cookie";
+import { DateFilterValue } from "../types";
 
 export const useTableState = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("daily");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const savedLimit = readAuthCookie("limit");
+  const savedPage = readAuthCookie("page");
+
+  const initialPage =
+    Number(searchParams.get("page")) || Number(savedPage) || 1;
+  const initialLimit =
+    Number(searchParams.get("limit")) || Number(savedLimit) || 10;
+  const initialSearch = searchParams.get("search") || "";
+  const initialStatus = searchParams.get("status") || "";
+  const initialTab = searchParams.get("tab") || "";
+
+  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [limit, setLimit] = useState(initialLimit);
+  const [search, setSearch] = useState(initialSearch);
+  const [filter, setFilter] = useState<{ [key: number]: string }>({});
+  const [status, setStatus] = useState(initialStatus);
+  const [tab, setTab] = useState(initialTab);
   const [submittedQuery, setSubmittedQuery] = useState<string | null>(null);
+  const [selectedDateFilterValue, setSelectedDateFilterValue] =
+    useState<DateFilterValue | null>(null);
+
+  const handleSwithTab = (tab: string) => {
+    setTab(tab);
+  };
+
+  const handleSortChange = (values: { [key: number]: string }): void => {
+    setFilter(values);
+  };
 
   const nextPage = (totalPages: number) => {
     if (currentPage < totalPages) {
@@ -53,6 +82,25 @@ export const useTableState = () => {
     setSubmittedQuery(search);
   };
 
+  const updateUrl = useCallback(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (tab) params.set("tab", tab);
+    else if (!tab) params.delete("tab");
+    params.set("page", String(currentPage));
+    params.set("limit", String(limit));
+    createAuthCookie("limit", limit.toString());
+    createAuthCookie("page", currentPage.toString());
+    if (search) params.set("search", search);
+    else if (!search) params.delete("search");
+    if (status) params.set("status", status);
+    else if (!status) params.delete("status");
+    router.replace(`?${params.toString()}`);
+  }, [router, search, searchParams, limit, currentPage, status, tab]);
+
+  useEffect(() => {
+    updateUrl();
+  }, [updateUrl]);
+
   return {
     currentPage,
     limit,
@@ -70,5 +118,12 @@ export const useTableState = () => {
     handleSearch,
     setFilter,
     filter,
+    status,
+    setStatus,
+    handleSwithTab,
+    tab,
+    selectedDateFilterValue,
+    setSelectedDateFilterValue,
+    handleSortChange,
   };
 };
