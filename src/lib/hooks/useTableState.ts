@@ -17,6 +17,7 @@ export const useTableState = () => {
   const initialSearch = searchParams.get("search") || "";
   const initialStatus = searchParams.get("status") || "";
   const initialTab = searchParams.get("tab") || "";
+  const initialTransferType = searchParams.get("transferType") || "";
 
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [limit, setLimit] = useState(initialLimit);
@@ -27,6 +28,11 @@ export const useTableState = () => {
   const [submittedQuery, setSubmittedQuery] = useState<string | null>(null);
   const [selectedDateFilterValue, setSelectedDateFilterValue] =
     useState<DateFilterValue | null>(null);
+  const [transferType, setTransferType] = useState(initialTransferType);
+
+  const handleSwitchTransferType = (value: string) => {
+    setTransferType(value);
+  };
 
   const handleSwithTab = (tab: string) => {
     setTab(tab);
@@ -94,8 +100,19 @@ export const useTableState = () => {
     else if (!search) params.delete("search");
     if (status) params.set("status", status);
     else if (!status) params.delete("status");
+    if (transferType) params.set("transferType", transferType);
+    else if (!transferType) params.delete("transferType");
     router.replace(`?${params.toString()}`);
-  }, [router, search, searchParams, limit, currentPage, status, tab]);
+  }, [
+    router,
+    search,
+    searchParams,
+    limit,
+    currentPage,
+    status,
+    tab,
+    transferType,
+  ]);
 
   useEffect(() => {
     updateUrl();
@@ -125,5 +142,7 @@ export const useTableState = () => {
     selectedDateFilterValue,
     setSelectedDateFilterValue,
     handleSortChange,
+    transferType,
+    handleSwitchTransferType,
   };
 };

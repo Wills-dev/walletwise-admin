@@ -32,3 +32,21 @@ export const sortOptions = [
   { label: "Order", values: ["newest", "oldest"] },
   { label: "Sort by", values: ["highest", "lowest"] },
 ];
+
+export const transferTab = [
+  {
+    value: "",
+    label: "All",
+    content: <></>,
+  },
+  {
+    value: "inbound",
+    label: "Inbound",
+    content: <></>,
+  },
+  {
+    value: "outbound",
+    label: "Outbound",
+    content: <></>,
+  },
+];

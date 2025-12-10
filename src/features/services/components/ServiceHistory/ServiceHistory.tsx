@@ -10,6 +10,8 @@ import { useAdminPermission } from "@/lib/hooks/useAdminPermission";
 import ServiceCardWrapper from "../ServiceCardWrapper/ServiceCardWrapper";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 import TableLoader from "@/components/atoms/skeleton/TableLoader";
+import DynamicTabs from "@/components/molecules/DynamicTabs/DynamicTabs";
+import { transferTab } from "@/lib/constants/dateFilter";
 
 const ServiceHistory = ({
   statusCount,
@@ -39,8 +41,12 @@ const ServiceHistory = ({
   onSubmit,
   sortOptions,
   service,
+  handleSwitchTransferType,
+  transferType,
 }: HistoryProps) => {
   const { hasPermission } = useAdminPermission();
+  const showTransferTab =
+    transferType !== undefined && handleSwitchTransferType !== undefined;
 
   const typedColumns = Column(hasPermission, service) as ColumnDef<unknown>[];
   return (
@@ -65,7 +71,14 @@ const ServiceHistory = ({
           onClick={onClick}
         />
       </div>
-      <div className="">
+      <div className="space-y-2 pt-6">
+        {showTransferTab && (
+          <DynamicTabs
+            tabs={transferTab}
+            defaultTab={transferType}
+            onClick={handleSwitchTransferType}
+          />
+        )}
         {isLoading ? (
           <TableLoader />
         ) : (
