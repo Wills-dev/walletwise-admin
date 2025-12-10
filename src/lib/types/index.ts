@@ -48,8 +48,8 @@ export interface TableWrapperProps<TData = unknown> {
   limit: number;
   setLimit: (limit: number) => void;
   setSelectedDateFilterValue?: (value: DateFilterValue) => void;
-  refetch: () => void;
-  handleSortChange: (values: { [key: number]: string }) => void;
+  refetch?: () => void;
+  handleSortChange?: (values: { [key: number]: string }) => void;
   search?: string | number;
   handleChange?: (search: string) => void;
   handleClear?: () => void;
@@ -86,9 +86,9 @@ export interface StatusCount {
 export interface SummaryProps {
   statusCount: StatusCount;
   totalRevenue: number;
-  totalCompanyCommission: 139737.76;
-  totalTransactions: 4677;
-  totalUserCommission: 6804.03;
+  totalCompanyCommission: number;
+  totalTransactions: number;
+  totalUserCommission: number;
   isLoading: boolean;
   onClick: (value: string) => void;
 }
@@ -96,9 +96,9 @@ export interface SummaryProps {
 export interface HistoryProps<TData = unknown> {
   statusCount: StatusCount;
   totalRevenue: number;
-  totalCompanyCommission: 139737.76;
-  totalTransactions: 4677;
-  totalUserCommission: 6804.03;
+  totalCompanyCommission: number;
+  totalTransactions: number;
+  totalUserCommission: number;
   isLoading: boolean;
   onClick: (value: string) => void;
   data: TData[];

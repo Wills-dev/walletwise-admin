@@ -43,7 +43,7 @@ const Navbar = ({
                 <Menu className="w-5 h-5" />
               )}
             </button>
-            <h6 className="sm:text-lg">{title}</h6>
+            <h6 className="sm:text-lg whitespace-nowrap">{title}</h6>
           </div>
           <div className="flex gap-4 items-center justify-end h-full w-full">
             <ThemeToggle />

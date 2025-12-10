@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getServiceTransaction } from "../api";
+import { getAdmins } from "../api";
 import { useTableState } from "@/lib/hooks/useTableState";
 
-export const useGetServiceTransactions = (service: string) => {
+export const useGetAdmins = () => {
   const {
     currentPage,
     limit,
@@ -19,37 +19,15 @@ export const useGetServiceTransactions = (service: string) => {
     handleClear,
     submittedQuery,
     handleSearch,
-    setStatus,
-    status,
-    filter,
-    handleSwithTab,
-    tab,
-    selectedDateFilterValue,
-    setSelectedDateFilterValue,
-    handleSortChange,
-    transferType,
-    handleSwitchTransferType,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: [
-      service,
-      submittedQuery,
-      limit,
-      currentPage,
-      status,
-      transferType,
-    ],
+    queryKey: ["admins", submittedQuery, limit, currentPage],
     queryFn: () =>
-      getServiceTransaction({
+      getAdmins({
         currentPage,
         limit,
         search: submittedQuery,
-        service,
-        status,
-        transferType,
-        filter,
-        selectedDateFilterValue,
       }),
     enabled: true,
     staleTime: 5 * 60 * 1000,
@@ -76,13 +54,5 @@ export const useGetServiceTransactions = (service: string) => {
     currentPage,
     limit,
     refetch,
-    setStatus,
-    filter,
-    handleSwithTab,
-    tab,
-    handleSortChange,
-    setSelectedDateFilterValue,
-    handleSwitchTransferType,
-    transferType,
   };
 };
