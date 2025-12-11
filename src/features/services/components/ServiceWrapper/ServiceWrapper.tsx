@@ -28,7 +28,7 @@ const ServiceWrapper = ({ service }: { service: string }) => {
     currentPage,
     limit,
     refetch,
-    setStatus,
+    handleStatusChange,
     handleSortChange,
     handleSwithTab,
     tab,
@@ -36,10 +36,6 @@ const ServiceWrapper = ({ service }: { service: string }) => {
   } = useGetServiceTransactions(service);
 
   const { hasPermission } = useAdminPermission();
-
-  const handleStatusChange = (status: string) => {
-    setStatus(status);
-  };
 
   const tabs = [
     {

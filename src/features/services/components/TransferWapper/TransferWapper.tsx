@@ -28,20 +28,16 @@ const TransferWapper = () => {
     currentPage,
     limit,
     refetch,
-    setStatus,
     handleSortChange,
     handleSwithTab,
     tab,
     setSelectedDateFilterValue,
     handleSwitchTransferType,
     transferType,
+    handleStatusChange,
   } = useGetServiceTransactions("transfer");
 
   const { hasPermission } = useAdminPermission();
-
-  const handleStatusChange = (status: string) => {
-    setStatus(status);
-  };
 
   const tabs = [
     {

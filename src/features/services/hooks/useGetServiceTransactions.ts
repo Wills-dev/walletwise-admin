@@ -19,7 +19,6 @@ export const useGetServiceTransactions = (service: string) => {
     handleClear,
     submittedQuery,
     handleSearch,
-    setStatus,
     status,
     filter,
     handleSwithTab,
@@ -29,6 +28,7 @@ export const useGetServiceTransactions = (service: string) => {
     handleSortChange,
     transferType,
     handleSwitchTransferType,
+    handleStatusChange,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -76,7 +76,6 @@ export const useGetServiceTransactions = (service: string) => {
     currentPage,
     limit,
     refetch,
-    setStatus,
     filter,
     handleSwithTab,
     tab,
@@ -84,5 +83,6 @@ export const useGetServiceTransactions = (service: string) => {
     setSelectedDateFilterValue,
     handleSwitchTransferType,
     transferType,
+    handleStatusChange,
   };
 };
