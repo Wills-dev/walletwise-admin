@@ -32,7 +32,7 @@ const ManageUserWrapper = () => {
     <div className="space-y-6">
       <PageTitle
         title="User Management"
-        description="Manage walletwise user here"
+        description="Manage user information and activity"
       />
       <UserSummary
         isLoading={isLoading}

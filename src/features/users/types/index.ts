@@ -18,3 +18,52 @@ export interface AdminFormType {
   password: string;
   gender: string;
 }
+
+export interface UserType {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  user_tag: string;
+  created_at: string;
+  account_status: "active" | "unknown" | "inactive";
+}
+
+export interface WalletType {
+  balance: string;
+  previous_wallet_balance: string;
+  daily_spend_limit: string;
+  last_spend_date: string | null;
+  max_balance: number;
+  safehaven_total_spent: string;
+}
+
+export interface SessionType {
+  userID: string;
+  tokenID: string;
+  deviceID: string;
+  device_type: string;
+  device_name: string;
+  device_os: string;
+  ip: string;
+  expires_at: string;
+  last_login: string;
+}
+
+export interface UserLogType {
+  id: string;
+  user_id: string;
+  admin_id: string;
+  action_type: string;
+  details: string;
+  created_at: string;
+  admin_first_name: string;
+  admin_last_name: string;
+  admin_email: string;
+}
+
+export interface SecurityQuestionType {
+  answer: string;
+  question: string;
+}
