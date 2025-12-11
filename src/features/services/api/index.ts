@@ -12,7 +12,6 @@ export const getServiceTransaction = async ({
   selectedDateFilterValue,
 }: fetchDataProps) => {
   try {
-    console.log("filter", filter);
     const params = new URLSearchParams();
 
     params.set("page", currentPage.toString());

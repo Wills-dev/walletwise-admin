@@ -14,7 +14,7 @@ const Select = ({
   ...props
 }: SelectProps) => {
   return (
-    <div className="relative flex items-center backdrop-blur-2xl bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 dark:text-gray-500 transition-all focus-within:border-[#5c24cc] dark:focus-within:border-purple-700 duration-300 sm:h-11 h-10">
+    <div className="relative flex items-center backdrop-blur-2xl bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 dark:text-gray-500 transition-all focus-within:border-[#5c24cc] dark:focus-within:border-purple-700 duration-300 sm:h-11 h-10 p-1">
       <select
         style={{ fontSize: "16px" }}
         className={`w-full bg-inherit h-full placeholder-gray-400 dark:placeholder-gray-600 outline-none ${className}`}

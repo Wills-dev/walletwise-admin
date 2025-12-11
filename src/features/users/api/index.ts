@@ -1,5 +1,6 @@
 import { axiosInstance } from "@/lib/axiosInstance";
 import { fetchDataProps } from "@/lib/types";
+import { AdminFormType } from "../types";
 
 export const getAdmins = async ({
   currentPage,
@@ -48,6 +49,62 @@ export const deleteAdmin = async ({ adminId }: { adminId: string }) => {
 export const getAdminInfo = async ({ adminId }: { adminId: string }) => {
   try {
     const { data } = await axiosInstance.get(`/admins/${adminId}/details`);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createAdmin = async (adminDetails: AdminFormType) => {
+  try {
+    const { firstName, lastName, role, email, phoneNumber, password, gender } =
+      adminDetails;
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      password,
+      roleId: Number(role),
+      phoneNumber,
+      status: "active",
+      gender,
+    };
+    const { data } = await axiosInstance.post(`/admins/create`, payload);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getRolePermissions = async () => {
+  try {
+    const { data } = await axiosInstance.get(`/role-permissions/roles`);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUsers = async ({
+  currentPage,
+  limit,
+  search,
+  status,
+  filter,
+}: fetchDataProps) => {
+  try {
+    const params = new URLSearchParams();
+
+    params.set("page", currentPage.toString());
+    params.set("limit", limit.toString());
+
+    if (search) params.set("search", search);
+    if (filter?.[0]) params.set("sortOrder", filter[0]);
+    if (status) params.set("status", status);
+
+    const url = `/users?${params.toString()}`;
+
+    const { data } = await axiosInstance.get(url);
     return data?.data;
   } catch (error) {
     throw error;
