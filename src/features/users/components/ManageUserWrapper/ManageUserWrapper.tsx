@@ -1,13 +1,12 @@
 "use client";
 
-import { useGetAdmins } from "../../hooks/useGetAdmins";
+import { useGetUsers } from "../../hooks/useGetUsers";
 
 import PageTitle from "@/components/atoms/PageTitle/PageTitle";
-import AdminSummary from "../AdminSummary/AdminSummary";
-import ManageAdminTable from "../ManageAdminTable/ManageAdminTable";
-import CreateAdminActionPanel from "@/components/molecules/CreateAdminActionPanel/CreateAdminActionPanel";
+import UserSummary from "../UserSummary/UserSummary";
+import ManageUserTable from "../ManageUserTable/ManageUserTable";
 
-const ManageAdminWrapper = () => {
+const ManageUserWrapper = () => {
   const {
     setLimit,
     nextPage,
@@ -24,24 +23,26 @@ const ManageAdminWrapper = () => {
     handleClear,
     currentPage,
     limit,
-  } = useGetAdmins();
+    refetch,
+    handleStatusChange,
+    handleSortChange,
+  } = useGetUsers();
 
   return (
     <div className="space-y-6">
-      <div className="flex md:items-center justify-between flex-wrap gap-4">
-        <PageTitle
-          title="Admin Management"
-          description="Manage administrator information and permissions"
-        />
-        <CreateAdminActionPanel />
-      </div>
-
-      <AdminSummary
-        isLoading={isLoading}
-        totalAdmin={data?.totalCount}
-        adminStat={data?.adminStats}
+      <PageTitle
+        title="User Management"
+        description="Manage walletwise user here"
       />
-      <ManageAdminTable
+      <UserSummary
+        isLoading={isLoading}
+        handleStatusChange={handleStatusChange}
+        activeUsers={data?.userStats?.activeUsers}
+        totalUsers={data?.userStats?.totalUsers}
+        unknownUsers={data?.userStats?.unknownUsers}
+        inactiveUsers={data?.userStats?.inactiveUsers}
+      />
+      <ManageUserTable
         prevPage={prevPage}
         nextPage={nextPage}
         goToFirstPage={goToFirstPage}
@@ -50,7 +51,7 @@ const ManageAdminWrapper = () => {
         isLastPage={isLastPage}
         limit={limit}
         setLimit={setLimit}
-        data={data?.admins || []}
+        data={data?.users || []}
         totalPages={data?.totalPages}
         currentPage={currentPage}
         isLoading={isLoading}
@@ -58,9 +59,11 @@ const ManageAdminWrapper = () => {
         handleChange={handleSearchChange}
         handleClear={handleClear}
         onSubmit={handleSearch}
+        handleSortChange={handleSortChange}
+        refetch={refetch}
       />
     </div>
   );
 };
 
-export default ManageAdminWrapper;
+export default ManageUserWrapper;

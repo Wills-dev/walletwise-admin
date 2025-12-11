@@ -8,3 +8,7 @@ export const genderRole = [
   { label: "Female", value: "female" },
   { label: "Others", value: "others" },
 ];
+
+export const userSortOptions = [
+  { label: "Order", values: ["newest", "oldest"] },
+];

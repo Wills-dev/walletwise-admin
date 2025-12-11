@@ -84,3 +84,29 @@ export const getRolePermissions = async () => {
     throw error;
   }
 };
+
+export const getUsers = async ({
+  currentPage,
+  limit,
+  search,
+  status,
+  filter,
+}: fetchDataProps) => {
+  try {
+    const params = new URLSearchParams();
+
+    params.set("page", currentPage.toString());
+    params.set("limit", limit.toString());
+
+    if (search) params.set("search", search);
+    if (filter?.[0]) params.set("sortOrder", filter[0]);
+    if (status) params.set("status", status);
+
+    const url = `/users?${params.toString()}`;
+
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
