@@ -42,6 +42,11 @@ export const useTableState = () => {
     setFilter(values);
   };
 
+  const handleStatusChange = (status: string) => {
+    setStatus(status);
+    setCurrentPage(1);
+  };
+
   const nextPage = (totalPages: number) => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
@@ -136,13 +141,13 @@ export const useTableState = () => {
     setFilter,
     filter,
     status,
-    setStatus,
     handleSwithTab,
     tab,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
     handleSortChange,
     transferType,
+    handleStatusChange,
     handleSwitchTransferType,
   };
 };

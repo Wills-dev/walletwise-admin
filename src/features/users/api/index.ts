@@ -44,3 +44,12 @@ export const deleteAdmin = async ({ adminId }: { adminId: string }) => {
     throw error;
   }
 };
+
+export const getAdminInfo = async ({ adminId }: { adminId: string }) => {
+  try {
+    const { data } = await axiosInstance.get(`/admins/${adminId}/details`);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
