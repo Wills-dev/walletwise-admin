@@ -8,3 +8,13 @@ export interface AdminType {
   role_name: string;
   status: string;
 }
+
+export interface AdminFormType {
+  firstName: string;
+  lastName: string;
+  role: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+  gender: string;
+}

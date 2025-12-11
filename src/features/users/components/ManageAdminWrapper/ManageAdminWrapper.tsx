@@ -1,8 +1,10 @@
 "use client";
 
+import PageTitle from "@/components/atoms/PageTitle/PageTitle";
 import { useGetAdmins } from "../../hooks/useGetAdmins";
 import AdminSummary from "../AdminSummary/AdminSummary";
 import ManageAdminTable from "../ManageAdminTable/ManageAdminTable";
+import CreateAdminActionPanel from "@/components/molecules/CreateAdminActionPanel/CreateAdminActionPanel";
 
 const ManageAdminWrapper = () => {
   const {
@@ -25,6 +27,14 @@ const ManageAdminWrapper = () => {
 
   return (
     <div className="space-y-6">
+      <div className="flex md:items-center justify-between flex-wrap gap-4">
+        <PageTitle
+          title="Admin Management"
+          description="Manage administrator information and permissions"
+        />
+        <CreateAdminActionPanel />
+      </div>
+
       <AdminSummary
         isLoading={isLoading}
         totalAdmin={data?.totalCount}
