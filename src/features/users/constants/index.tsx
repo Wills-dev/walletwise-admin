@@ -3,6 +3,11 @@ export const adminBreadcrumb = [
   { label: "Admin Info" },
 ];
 
+export const userBreadcrumb = [
+  { label: "User management", href: "/manage-user" },
+  { label: "User Info" },
+];
+
 export const genderRole = [
   { label: "Male", value: "male" },
   { label: "Female", value: "female" },

@@ -3,7 +3,7 @@ import { numberWithCommas } from "@/lib/helpers";
 
 interface StatisticCardProps {
   icon: React.ReactElement;
-  color: "green" | "yellow" | "red" | "blue" | "orange";
+  color: "green" | "yellow" | "red" | "blue" | "orange" | "purple";
   title: string;
   value: number;
   currency?: string;
@@ -24,6 +24,8 @@ const StatisticCard = ({
     red: "bg-red-50 text-red-600 border-red-100",
     blue: "bg-blue-50 text-blue-600 border-blue-100",
     orange: "bg-orange-50 text-orange-600 border-orange-100",
+    purple:
+      "text-purple-500 dark:text-purple-400 border-purple-100 bg-purple-50",
   };
 
   return (

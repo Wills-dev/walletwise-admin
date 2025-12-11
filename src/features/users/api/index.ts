@@ -110,3 +110,23 @@ export const getUsers = async ({
     throw error;
   }
 };
+
+export const getUserInfo = async ({
+  userId,
+  limit,
+  currentPage,
+}: {
+  userId: string;
+  limit: number;
+  currentPage: number;
+}) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `/users/${userId}/details?page=${currentPage}&limit=${limit}&sessionPage=1&sessionLimit=${limit}
+        `
+    );
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};

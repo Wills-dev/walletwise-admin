@@ -1,3 +1,4 @@
+import { services } from "../constants";
 import { SelectedValues, SortOption } from "../types";
 
 export function numberWithCommas(x: number) {
@@ -33,4 +34,12 @@ export const hasAnySelectedValues = (
   selectedValues: SelectedValues
 ): boolean => {
   return Object.values(selectedValues).some((value) => value);
+};
+
+export const findServiceName = (searchString: string) => {
+  const match = services.find((service) =>
+    service.name.toLowerCase().includes(searchString.toLowerCase())
+  );
+
+  return match ? match.name : "";
 };

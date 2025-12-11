@@ -136,6 +136,7 @@ export interface TransactionType {
   full_name: string;
   id: string;
   userID: string;
+  category: string;
 }
 
 export type FilterOption =

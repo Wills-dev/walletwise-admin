@@ -4,7 +4,7 @@ import { getAdminInfo } from "../api";
 
 export const useGetAdminInfo = (adminId: string) => {
   const { data, isLoading } = useQuery({
-    queryKey: ["admins info", adminId],
+    queryKey: ["admin info", adminId],
     queryFn: () =>
       getAdminInfo({
         adminId,
