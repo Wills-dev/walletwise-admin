@@ -10,7 +10,7 @@ const StatusBadge = ({
       case "inactive":
         return "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20";
       case "unknown":
-        return "bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20";
+        return "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20";
     }
   };
 

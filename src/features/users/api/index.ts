@@ -130,3 +130,39 @@ export const getUserInfo = async ({
     throw error;
   }
 };
+
+export const suspendUser = async ({
+  email,
+  messageContent,
+}: {
+  email: string;
+  messageContent: string;
+}) => {
+  try {
+    const { data } = await axiosInstance.post(`/users/suspend`, {
+      email,
+      messageContent,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const reactivateUser = async ({
+  email,
+  messageContent,
+}: {
+  email: string;
+  messageContent: string;
+}) => {
+  try {
+    const { data } = await axiosInstance.post(`/users/unsuspend`, {
+      email,
+      messageContent,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

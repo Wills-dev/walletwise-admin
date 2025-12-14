@@ -70,6 +70,11 @@ export const isSameDay = (date1: Date, date2: Date): boolean => {
   return date1.toDateString() === date2.toDateString();
 };
 
+export const formatCreatedAt = (dateString: Date) => {
+  const date = new Date(dateString);
+  return date.toISOString().split("T")[0];
+};
+
 export const getDateRange = (
   filterType: FilterOption,
   today: Date = new Date()

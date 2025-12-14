@@ -5,6 +5,7 @@ import { convertDateFormat } from "@/lib/helpers/dateFormats";
 
 import InfoItem from "@/components/atoms/InfoItem/InfoItem";
 import StatusBadge from "@/components/atoms/StatusBadge/StatusBadge";
+import UserActionButton from "../UserActionButton/UserActionButton";
 
 const UserProfileCard = ({ user }: { user: UserType }) => {
   return (
@@ -39,6 +40,11 @@ const UserProfileCard = ({ user }: { user: UserType }) => {
           </div>
         </div>
       </div>
+      <UserActionButton
+        email={user?.email}
+        userId={user?.id}
+        status={user?.account_status}
+      />
     </div>
   );
 };
