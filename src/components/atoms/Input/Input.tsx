@@ -48,7 +48,7 @@ const Input = ({
         <button
           type="button"
           onClick={onTogglePassword}
-          className="absolute right-2 text-gray-600 hover:text-gray-800 transition-colors caret-[#5c24cc]"
+          className="absolute right-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors caret-[#5c24cc]"
         >
           {showPassword === "text" ? (
             <EyeOff className="w-5 h-5" />

@@ -8,10 +8,8 @@ export const useTableState = () => {
   const searchParams = useSearchParams();
 
   const savedLimit = readAuthCookie("limit");
-  const savedPage = readAuthCookie("page");
 
-  const initialPage =
-    Number(searchParams.get("page")) || Number(savedPage) || 1;
+  const initialPage = Number(searchParams.get("page")) || 1;
   const initialLimit =
     Number(searchParams.get("limit")) || Number(savedLimit) || 10;
   const initialSearch = searchParams.get("search") || "";
@@ -100,7 +98,6 @@ export const useTableState = () => {
     params.set("page", String(currentPage));
     params.set("limit", String(limit));
     createAuthCookie("limit", limit.toString());
-    createAuthCookie("page", currentPage.toString());
     if (search) params.set("search", search);
     else if (!search) params.delete("search");
     if (status) params.set("status", status);
