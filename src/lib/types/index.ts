@@ -143,13 +143,13 @@ export type FilterOption =
   | "yesterday"
   | "today"
   | "last7days"
-  | "thisweek"
-  | "lastweek"
-  | "thismonth"
-  | "lastmonth"
-  | "last6months"
-  | "thisyear"
-  | "lastyear"
+  | "thisWeek"
+  | "lastWeek"
+  | "thisMonth"
+  | "lastMonth"
+  | "last6Months"
+  | "thisYear"
+  | "lastYear"
   | "custom";
 
 export interface DateRange {

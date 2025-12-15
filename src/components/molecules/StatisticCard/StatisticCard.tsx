@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { numberWithCommas } from "@/lib/helpers";
+import { TrendingDown, TrendingUp } from "lucide-react";
 
 interface StatisticCardProps {
   icon: React.ReactElement;
@@ -8,6 +9,9 @@ interface StatisticCardProps {
   value: number;
   currency?: string;
   onClick?: () => void;
+  percentage?: number;
+  percentageType?: "positive" | "negative";
+  period?: string;
 }
 
 const StatisticCard = ({
@@ -17,6 +21,9 @@ const StatisticCard = ({
   onClick,
   color = "green",
   icon: Icon,
+  percentage,
+  percentageType,
+  period,
 }: StatisticCardProps) => {
   const colorClasses = {
     green: "bg-green-50 text-green-600 border-green-100",
@@ -30,7 +37,7 @@ const StatisticCard = ({
 
   return (
     <Card
-      className={`dark:bg-gray-800 p-6 ${
+      className={`dark:bg-gray-800 p-6 h-fit ${
         onClick !== undefined
           ? "hover:shadow-lg transition-all duration-300 cursor-pointer"
           : ""
@@ -38,7 +45,7 @@ const StatisticCard = ({
       onClick={onClick}
     >
       <div className="flex justify-between">
-        <h4 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
+        <h4 className="text-sm font-medium text-gray-600 dark:text-gray-300 capitalize mb-1">
           {title}
         </h4>
         {Icon !== undefined && (
@@ -51,6 +58,29 @@ const StatisticCard = ({
         {currency && currency}
         {value && numberWithCommas(value)}
       </h1>
+      {percentage !== undefined && (
+        <div className="flex items-center gap-2">
+          <span
+            className={`text-xs px-3 py-1 rounded-full flex items-center gap-1 ${
+              percentageType === "positive"
+                ? "text-green-500 bg-green-50"
+                : "text-red-500 bg-red-50"
+            }`}
+          >
+            {percentageType === "positive" ? (
+              <TrendingUp className="w-4 h-4" />
+            ) : (
+              <TrendingDown className="w-4 h-4" />
+            )}
+            {percentage}%
+          </span>
+          {period && (
+            <span className="text-xs text-gray-500 dark:text-gray-400">
+              {period}
+            </span>
+          )}
+        </div>
+      )}
     </Card>
   );
 };

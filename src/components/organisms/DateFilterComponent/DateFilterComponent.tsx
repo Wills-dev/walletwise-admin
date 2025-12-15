@@ -23,9 +23,9 @@ const DateFilterComponent = ({
 }: DateFilterProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] =
-    useState<FilterOption>("lastyear");
+    useState<FilterOption>("lastYear");
   const [dateRange, setDateRange] = useState<DateRange>(
-    getDateRange("lastyear")
+    getDateRange("lastYear")
   );
 
   const [showCalendar, setShowCalendar] = useState(false);
