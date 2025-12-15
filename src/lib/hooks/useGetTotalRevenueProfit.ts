@@ -11,7 +11,12 @@ export const useGetTotalRevenueProfit = (type?: "profit" | "revenue") => {
     useState<DateFilterValue | null>(null);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["total profit-revenue", type, includeTransfer],
+    queryKey: [
+      "total profit-revenue",
+      type,
+      includeTransfer,
+      selectedDateFilterValue,
+    ],
     queryFn: () =>
       getTotalRevenueProfit({
         includeTransfer,
@@ -27,6 +32,7 @@ export const useGetTotalRevenueProfit = (type?: "profit" | "revenue") => {
     includeTransfer,
     setIncludeTransfer,
     setSelectedDateFilterValue,
+    selectedDateFilterValue,
     data,
     isLoading,
   };

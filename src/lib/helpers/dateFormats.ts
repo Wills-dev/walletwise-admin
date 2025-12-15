@@ -92,43 +92,43 @@ export const getDateRange = (
     case "last7days":
       return { start: addDays(startOfToday, -6), end: new Date(startOfToday) };
 
-    case "thisweek":
+    case "thisWeek":
       return {
         start: getStartOfWeek(startOfToday),
         end: new Date(startOfToday),
       };
 
-    case "lastweek":
+    case "lastWeek":
       const lastWeekEnd = addDays(getStartOfWeek(startOfToday), -1);
       return { start: getStartOfWeek(lastWeekEnd), end: lastWeekEnd };
 
-    case "thismonth":
+    case "thisMonth":
       return {
         start: new Date(startOfToday.getFullYear(), startOfToday.getMonth(), 1),
         end: new Date(startOfToday),
       };
 
-    case "lastmonth":
+    case "lastMonth":
       const lastMonth = addMonths(startOfToday, -1);
       return {
         start: new Date(lastMonth.getFullYear(), lastMonth.getMonth(), 1),
         end: new Date(startOfToday.getFullYear(), startOfToday.getMonth(), 0),
       };
 
-    case "last6months":
+    case "last6Months":
       const sixMonthsAgo = addMonths(startOfToday, -6);
       return {
         start: new Date(sixMonthsAgo.getFullYear(), sixMonthsAgo.getMonth(), 1),
         end: new Date(startOfToday),
       };
 
-    case "thisyear":
+    case "thisYear":
       return {
         start: new Date(startOfToday.getFullYear(), 0, 1),
         end: new Date(startOfToday),
       };
 
-    case "lastyear":
+    case "lastYear":
       return {
         start: new Date(startOfToday.getFullYear() - 1, 0, 1),
         end: new Date(startOfToday.getFullYear() - 1, 11, 31),

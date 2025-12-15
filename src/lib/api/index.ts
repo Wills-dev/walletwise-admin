@@ -30,8 +30,8 @@ export const getTotalRevenueProfit = async ({
     const queryString = new URLSearchParams(query).toString();
 
     const url = queryString
-      ? `/total-revenue-profit?${queryString}`
-      : `/total-revenue-profit`;
+      ? `/statistics/total-revenue-profit?${queryString}`
+      : `/statistics/total-revenue-profit`;
 
     const { data } = await axiosInstance.get(url);
     return data?.data;
@@ -68,8 +68,8 @@ export const getRevenueProfit = async ({
     const queryString = new URLSearchParams(query).toString();
 
     const url = queryString
-      ? `/revenue-profit?${queryString}`
-      : `/evenue-profit`;
+      ? `/statistics/revenue-profit?${queryString}`
+      : `/statistics/evenue-profit`;
 
     const { data } = await axiosInstance.get(url);
     return data?.data;
@@ -106,8 +106,8 @@ export const getRevenueProfitByCategory = async ({
     const queryString = new URLSearchParams(query).toString();
 
     const url = queryString
-      ? `/revenue-profit-by-category?${queryString}`
-      : `/revenue-profit-by-category`;
+      ? `/statistics/revenue-profit-by-category?${queryString}`
+      : `/statistics/revenue-profit-by-category`;
 
     const { data } = await axiosInstance.get(url);
     return data?.data;
