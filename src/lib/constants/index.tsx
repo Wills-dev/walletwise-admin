@@ -14,6 +14,13 @@ import {
   UserRoundPlus,
   Users,
   UserStar,
+  Phone,
+  Dices,
+  Tv,
+  Wifi,
+  Zap,
+  Gift,
+  Send,
 } from "lucide-react";
 
 export const links = [
@@ -143,5 +150,45 @@ export const services = [
   {
     name: "hotel reservation",
     link: "/services/hotel-reservations",
+  },
+];
+
+export const servicesData = [
+  {
+    label: "Airtime",
+    value: "airtime",
+    color: "rgba(59, 130, 246, 0.8)",
+    icon: Phone,
+  },
+  {
+    label: "Betting",
+    value: "betting",
+    color: "rgba(239, 68, 68, 0.8)",
+    icon: Dices,
+  },
+  { label: "Cable", value: "cable", color: "rgba(34, 197, 94, 0.8)", icon: Tv },
+  {
+    label: "Data",
+    value: "data",
+    color: "rgba(168, 85, 247, 0.8)",
+    icon: Wifi,
+  },
+  {
+    label: "Electricity",
+    value: "electricity",
+    color: "rgba(234, 179, 8, 0.8)",
+    icon: Zap,
+  },
+  {
+    label: "Giftcard",
+    value: "giftcard",
+    color: "rgba(236, 72, 153, 0.8)",
+    icon: Gift,
+  },
+  {
+    label: "Transfer",
+    value: "transfer",
+    color: "rgba(20, 184, 166, 0.8)",
+    icon: Send,
   },
 ];

@@ -6,12 +6,17 @@ import { DateFilterValue } from "../types";
 import { getRevenueProfitByCategory } from "../api";
 
 export const useGetRevenueProfitByCategory = (type?: "profit" | "revenue") => {
-  const [service, setService] = useState("");
+  const [service, setService] = useState("airtime");
   const [selectedDateFilterValue, setSelectedDateFilterValue] =
     useState<DateFilterValue | null>(null);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["revenue-profit", type, service],
+    queryKey: [
+      "revenue-profit by category",
+      type,
+      service,
+      selectedDateFilterValue,
+    ],
     queryFn: () =>
       getRevenueProfitByCategory({
         service,
@@ -29,5 +34,6 @@ export const useGetRevenueProfitByCategory = (type?: "profit" | "revenue") => {
     setSelectedDateFilterValue,
     data,
     isLoading,
+    selectedDateFilterValue,
   };
 };

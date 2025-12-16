@@ -1,7 +1,7 @@
 "use client";
 
 import ProfitDistribution from "../ProfitDistribution/ProfitDistribution";
-import RevenueDistribution from "../RevenueDistribution";
+import RevenueDistribution from "../RevenueDistribution/RevenueDistribution";
 
 const AnalyticsWrapper = () => {
   return (
