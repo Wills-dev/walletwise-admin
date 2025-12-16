@@ -86,7 +86,7 @@ const ReusableRadialChart = ({
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square"
+          className="mx-auto aspect-square "
           style={{ maxHeight: `${size}px` }}
         >
           <RadialBarChart
