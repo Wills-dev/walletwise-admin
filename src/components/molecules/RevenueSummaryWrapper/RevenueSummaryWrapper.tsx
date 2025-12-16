@@ -14,6 +14,7 @@ interface RevenueSummaryWrapperProps {
   totatlRevenueWithTransfers?: number;
   percentageWithTransfers?: number;
   percentageTypeWithTransfers?: "positive" | "negative";
+  type?: "revenue" | "profit";
 }
 
 const RevenueSummaryWrapper = ({
@@ -25,29 +26,28 @@ const RevenueSummaryWrapper = ({
   totatlRevenueWithTransfers,
   percentageWithTransfers,
   percentageTypeWithTransfers,
+  type = "revenue",
 }: RevenueSummaryWrapperProps) => {
   return (
-    <div
-      className={`grid grid-cols-1 gap-6 ${
-        isFetching ? "sm:grid-cols-3" : "sm:grid-cols-2"
-      }`}
-    >
+    <div className={`grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-6`}>
       {isFetching ? (
         <SummaryCardLoader />
       ) : (
         <>
+          {type === "revenue" && (
+            <StatisticCard
+              title={`Total Revenue with Transfer`}
+              currency="₦"
+              color="blue"
+              value={totatlRevenueWithTransfers || 0}
+              icon={<DollarSign className="w-6 h-6" />}
+              percentage={percentageWithTransfers}
+              percentageType={percentageTypeWithTransfers}
+              period={period}
+            />
+          )}
           <StatisticCard
-            title="Total Revenue with Transfers"
-            currency="₦"
-            color="blue"
-            value={totatlRevenueWithTransfers || 0}
-            icon={<DollarSign className="w-6 h-6" />}
-            percentage={percentageWithTransfers}
-            percentageType={percentageTypeWithTransfers}
-            period={period}
-          />
-          <StatisticCard
-            title="Total Revenue"
+            title={`Total ${type === "revenue" ? " Revenue" : " Profit"}`}
             currency="₦"
             color="orange"
             value={totalRevenue}

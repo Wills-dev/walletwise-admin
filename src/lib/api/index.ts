@@ -90,12 +90,15 @@ export const getRevenueProfitByCategory = async ({
   try {
     const query: Record<string, string> = {};
 
+    query.includeTransfer = "true";
+
     if (type) query.type = type;
-    if (service) query.service = String(service);
+    if (service) query.category = service;
 
     if (selectedDateFilterValue) {
       if (selectedDateFilterValue.label === "custom") {
-        query.customFilter = `${formatCreatedAt(
+        query.filterType = "customRange";
+        query.filterValue = `${formatCreatedAt(
           selectedDateFilterValue.dateRange.start
         )},${formatCreatedAt(selectedDateFilterValue.dateRange.end)}`;
       } else {

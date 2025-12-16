@@ -128,7 +128,6 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  color: #ffa50080;
 }
 
 ::-webkit-scrollbar-track {

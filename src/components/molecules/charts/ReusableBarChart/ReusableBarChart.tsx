@@ -87,7 +87,7 @@ const ReusableBarChart = ({
               axisLine={false}
               tickFormatter={(value) => {
                 if (typeof value === "string" && value.length > 3) {
-                  return value.slice(0, 10);
+                  return value.slice(0, 13);
                 }
                 return value;
               }}

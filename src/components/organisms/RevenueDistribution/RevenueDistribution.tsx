@@ -5,11 +5,11 @@ import { useEffect } from "react";
 import { DateFilterValue } from "@/lib/types";
 import { useGetTotalRevenueProfit } from "@/lib/hooks/useGetTotalRevenueProfit";
 
-import ChartLoader from "../atoms/skeleton/ChartLoader";
-import DateFilterComponent from "./DateFilterComponent/DateFilterComponent";
-import ReusableBarChart from "../molecules/charts/ReusableBarChart/ReusableBarChart";
-import RevenueSummaryWrapper from "../molecules/RevenueSummaryWrapper/RevenueSummaryWrapper";
-import RevenueServiceSummary from "../molecules/RevenueServiceSummary/RevenueServiceSummary";
+import ChartLoader from "../../atoms/skeleton/ChartLoader";
+import DateFilterComponent from "../DateFilterComponent/DateFilterComponent";
+import ReusableBarChart from "../../molecules/charts/ReusableBarChart/ReusableBarChart";
+import RevenueSummaryWrapper from "../../molecules/RevenueSummaryWrapper/RevenueSummaryWrapper";
+import RevenueServiceSummary from "../../molecules/RevenueServiceSummary/RevenueServiceSummary";
 
 const RevenueDistribution = () => {
   const {
@@ -107,7 +107,6 @@ const RevenueDistribution = () => {
           </div>
         </div>
       </div>
-
       <RevenueServiceSummary />
     </div>
   );

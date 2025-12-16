@@ -59,7 +59,8 @@ export interface TableWrapperProps<TData = unknown> {
 
 export interface optionsType {
   label: string;
-  value: number | string;
+  value: string;
+  color?: string;
 }
 
 export interface fetchDataProps {
