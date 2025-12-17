@@ -1,12 +1,12 @@
 import { Suspense } from "react";
 
 import DashboardLayout from "@/components/templates/DashboardLayout/DashboardLayout";
-import EarningsWrapper from "@/components/organisms/EarningsWrapper/EarningsWrapper";
 import MainLoader from "@/components/atoms/MainLoader/MainLoader";
+import ReferralWrapper from "@/components/organisms/ReferralWrapper/ReferralWrapper";
 
 import { ProtectedPage } from "@/components/ProtectedPage";
 
-const EarningsPage = () => {
+const ReferralPage = () => {
   return (
     <Suspense fallback={<MainLoader />}>
       <ProtectedPage
@@ -17,12 +17,12 @@ const EarningsPage = () => {
         ]}
         requireAll={false}
       >
-        <DashboardLayout title="Earnings">
-          <EarningsWrapper />
+        <DashboardLayout title="Referrals">
+          <ReferralWrapper />
         </DashboardLayout>
       </ProtectedPage>
     </Suspense>
   );
 };
 
-export default EarningsPage;
+export default ReferralPage;
