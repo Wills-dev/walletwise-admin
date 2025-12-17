@@ -34,6 +34,7 @@ export const useTableState = () => {
 
   const handleSwithTab = (tab: string) => {
     setTab(tab);
+    setCurrentPage(1);
   };
 
   const handleSortChange = (values: { [key: number]: string }): void => {
@@ -49,16 +50,12 @@ export const useTableState = () => {
   const nextPage = (totalPages: number) => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
-    } else {
-      return;
     }
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
-    } else {
-      return;
     }
   };
 
@@ -92,19 +89,30 @@ export const useTableState = () => {
     setSubmittedQuery(search);
   };
 
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit);
+    setCurrentPage(1);
+    createAuthCookie("limit", newLimit.toString());
+  };
+
   const updateUrl = useCallback(() => {
     const params = new URLSearchParams(searchParams.toString());
-    if (tab) params.set("tab", tab);
-    else if (!tab) params.delete("tab");
+
     params.set("page", String(currentPage));
     params.set("limit", String(limit));
-    createAuthCookie("limit", limit.toString());
+
+    if (tab) params.set("tab", tab);
+    else params.delete("tab");
+
     if (search) params.set("search", search);
-    else if (!search) params.delete("search");
+    else params.delete("search");
+
     if (status) params.set("status", status);
-    else if (!status) params.delete("status");
+    else params.delete("status");
+
     if (transferType) params.set("transferType", transferType);
-    else if (!transferType) params.delete("transferType");
+    else params.delete("transferType");
+
     router.replace(`?${params.toString()}`);
   }, [
     router,
@@ -124,7 +132,7 @@ export const useTableState = () => {
   return {
     currentPage,
     limit,
-    setLimit,
+    setLimit: handleLimitChange,
     nextPage,
     prevPage,
     goToFirstPage,
