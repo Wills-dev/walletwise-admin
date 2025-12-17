@@ -216,3 +216,10 @@ export type UserCommissionAnalytics = {
   services: ServiceMetrics;
   totals: Totals;
 };
+
+export interface EarningTableData {
+  category: string;
+  date: string;
+  total_profit: number;
+  total_revenue: number;
+}

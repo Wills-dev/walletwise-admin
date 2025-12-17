@@ -40,7 +40,7 @@ const CommissionWrapper = () => {
       <CommissionTable
         data={data?.users}
         isLoading={isLoading}
-        totalPages={data?.totalPages}
+        totalPages={data?.pagination?.total_pages}
         currentPage={currentPage}
         prevPage={prevPage}
         nextPage={nextPage}

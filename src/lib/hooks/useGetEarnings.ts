@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useTableState } from "./useTableState";
-import { getCommisionsEarned } from "../api/commission";
 
-export const useGetCommissions = () => {
+import { useTableState } from "./useTableState";
+import { getEarnings } from "../api/earnings";
+
+export const useGetEarnings = () => {
   const {
     currentPage,
     limit,
@@ -13,32 +14,21 @@ export const useGetCommissions = () => {
     goToLastPage,
     isFirstPage,
     isLastPage,
-    search,
-    handleSearchChange,
-    handleClear,
-    submittedQuery,
-    handleSearch,
-    filter,
-    handleSortChange,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
+    handleSwithTab,
+    tab,
   } = useTableState();
 
-  const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: [
-      "commissions",
-      submittedQuery,
-      limit,
-      currentPage,
-      selectedDateFilterValue,
-    ],
+  const { data, isPending, isLoading, isError, error } = useQuery({
+    queryKey: ["earnings", limit, currentPage, tab, selectedDateFilterValue],
     queryFn: () =>
-      getCommisionsEarned({
+      getEarnings({
         currentPage,
         limit,
-        search: submittedQuery,
-        filter,
         selectedDateFilterValue,
+        service: tab,
+        search: null,
       }),
     enabled: true,
     staleTime: 5 * 60 * 1000,
@@ -53,20 +43,15 @@ export const useGetCommissions = () => {
     goToLastPage,
     isFirstPage,
     isLastPage,
-    search,
-    handleSearchChange,
     data,
     isPending,
     isLoading,
     isError,
     error,
-    handleSearch,
-    handleClear,
     currentPage,
     limit,
-    refetch,
-    filter,
-    handleSortChange,
     setSelectedDateFilterValue,
+    handleSwithTab,
+    tab,
   };
 };
