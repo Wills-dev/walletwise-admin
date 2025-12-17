@@ -38,6 +38,7 @@ export const useTableState = () => {
 
   const handleSortChange = (values: { [key: number]: string }): void => {
     setFilter(values);
+    setCurrentPage(1);
   };
 
   const handleStatusChange = (status: string) => {

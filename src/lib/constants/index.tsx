@@ -192,3 +192,9 @@ export const servicesData = [
     icon: Send,
   },
 ];
+
+export const commissionSortOptions = [
+  { label: "Sort by", values: ["revenue"] },
+  { label: "Period", values: ["daily", "weekly", "monthly"] },
+  { label: "Order", values: ["asc", "desc"] },
+];
