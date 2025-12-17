@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: UserState = {
   isAuthenticated: false,
+  isLoading: true,
   user: null,
 };
 
@@ -13,10 +14,15 @@ const authSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.isAuthenticated = true;
+      state.isLoading = false;
     },
     clearUser: (state) => {
       state.user = null;
       state.isAuthenticated = false;
+      state.isLoading = false;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
     updateUser: (state, action: PayloadAction<Partial<User>>) => {
       if (state.user) {
@@ -26,5 +32,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, clearUser, updateUser } = authSlice.actions;
+export const { setUser, clearUser, updateUser, setLoading } = authSlice.actions;
 export default authSlice.reducer;

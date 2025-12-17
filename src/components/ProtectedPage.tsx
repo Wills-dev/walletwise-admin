@@ -25,24 +25,27 @@ export function ProtectedPage({
   redirectTo = "/unauthorized",
 }: ProtectedPageProps) {
   const router = useRouter();
-
-  const { isLoading } = useCurrentUser();
-  const { user, isAuthenticated } = useSelector(
+  useCurrentUser();
+  const { user, isAuthenticated, isLoading } = useSelector(
     (state: RootState) => state.auth
   );
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.replace("/login");
+    if (isLoading) return;
+
+    if (!isAuthenticated) {
+      router.push("/login");
       return;
     }
 
-    if (
-      !isLoading &&
-      isAuthenticated &&
-      !checkPermissions(user?.permissions, requiredPermissions, requireAll)
-    ) {
-      router.replace(redirectTo);
+    const hasAccess = checkPermissions(
+      user?.permissions,
+      requiredPermissions,
+      requireAll
+    );
+
+    if (!hasAccess) {
+      router.push(redirectTo);
     }
   }, [
     isLoading,
@@ -54,7 +57,21 @@ export function ProtectedPage({
     router,
   ]);
 
-  if (isLoading || !isAuthenticated) {
+  if (isLoading) {
+    return <MainLoader />;
+  }
+
+  if (!isAuthenticated) {
+    return <MainLoader />;
+  }
+
+  const hasAccess = checkPermissions(
+    user?.permissions,
+    requiredPermissions,
+    requireAll
+  );
+
+  if (!hasAccess) {
     return <MainLoader />;
   }
 
