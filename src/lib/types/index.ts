@@ -179,3 +179,40 @@ export interface SortDropdownProps {
   className?: string;
   onFilter?: () => void;
 }
+
+type TransactionMetric = {
+  count: number;
+  volume: number;
+};
+
+type ServiceMetrics = {
+  airtime: TransactionMetric;
+  betting: TransactionMetric;
+  cable: TransactionMetric;
+  data: TransactionMetric;
+  electricity: TransactionMetric;
+  giftcard: TransactionMetric;
+  transfer: TransactionMetric;
+};
+
+type Totals = {
+  commission_transactions: number;
+  count: number;
+  profit: number;
+  revenue: number;
+  user_commission: number;
+};
+
+export type UserCommissionAnalytics = {
+  id: string;
+  user_tag: string;
+  first_name: string;
+  last_name: string;
+  full_name: string;
+  email: string;
+  phone_number: string;
+  referral_count: number;
+  created_at: string;
+  services: ServiceMetrics;
+  totals: Totals;
+};

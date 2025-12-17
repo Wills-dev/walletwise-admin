@@ -1,10 +1,15 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 import { useSelector } from "react-redux";
 
 import { RootState } from "@/store";
 import { checkPermissions } from "@/lib/helpers/checkPermissions";
+import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
+
+import MainLoader from "./atoms/MainLoader/MainLoader";
 
 interface ProtectedPageProps {
   children: React.ReactNode;
@@ -19,20 +24,38 @@ export function ProtectedPage({
   requireAll = true,
   redirectTo = "/unauthorized",
 }: ProtectedPageProps) {
-  const { user } = useSelector((state: RootState) => state.auth);
+  const router = useRouter();
 
-  if (!user) {
-    redirect("/login");
-  }
-
-  const hasAccess = checkPermissions(
-    user.permissions,
-    requiredPermissions,
-    requireAll
+  const { isLoading } = useCurrentUser();
+  const { user, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
   );
 
-  if (!hasAccess) {
-    redirect(redirectTo);
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.replace("/login");
+      return;
+    }
+
+    if (
+      !isLoading &&
+      isAuthenticated &&
+      !checkPermissions(user?.permissions, requiredPermissions, requireAll)
+    ) {
+      router.replace(redirectTo);
+    }
+  }, [
+    isLoading,
+    isAuthenticated,
+    user,
+    requiredPermissions,
+    requireAll,
+    redirectTo,
+    router,
+  ]);
+
+  if (isLoading || !isAuthenticated) {
+    return <MainLoader />;
   }
 
   return <>{children}</>;
