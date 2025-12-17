@@ -6,7 +6,11 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { getCurrentUser } from "../api";
 import { clearAuthClear } from "@/lib/helpers/cookie";
-import { clearUser, setUser } from "@/store/features/auth/authSlice";
+import {
+  clearUser,
+  setUser,
+  setLoading,
+} from "@/store/features/auth/authSlice";
 
 export const useCurrentUser = (enabled: boolean = true) => {
   const dispatch = useDispatch();
@@ -21,6 +25,10 @@ export const useCurrentUser = (enabled: boolean = true) => {
     retry: 1,
     staleTime: 5 * 60 * 1000,
   });
+
+  useEffect(() => {
+    dispatch(setLoading(isLoading));
+  }, [isLoading, dispatch]);
 
   useEffect(() => {
     if (data?.data) {
