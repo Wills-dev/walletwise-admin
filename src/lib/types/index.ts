@@ -223,3 +223,14 @@ export interface EarningTableData {
   total_profit: number;
   total_revenue: number;
 }
+
+export type ReferralUser = {
+  id: string;
+  user_tag: string;
+  first_name: string;
+  last_name: string;
+  referred_by: string | null;
+  referral_count: number;
+  created_at: string;
+  latest_referral_date: string | null;
+};
