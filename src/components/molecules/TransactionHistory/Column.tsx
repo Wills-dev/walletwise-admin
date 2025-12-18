@@ -76,6 +76,19 @@ export const Column = [
       );
     },
   }),
+  columnHelper.accessor("category", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Service
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  }),
   columnHelper.accessor("amount", {
     header: () => <div className="">Amount</div>,
     cell: ({ row }) => {

@@ -3,9 +3,10 @@
 import PageTitle from "@/components/atoms/PageTitle/PageTitle";
 import TransactionHistory from "@/components/molecules/TransactionHistory/TransactionHistory";
 import TransactionSummary from "@/components/molecules/TransactionSummary/TransactionSummary";
-import { useGetAllTransactions } from "@/lib/hooks/useGetAllTransactions";
 
-const AllTransactions = () => {
+import { useGetUserTagTransactions } from "@/lib/hooks/useGetUserTagTransactions";
+
+const UsertagTransactions = () => {
   const {
     setLimit,
     nextPage,
@@ -25,13 +26,13 @@ const AllTransactions = () => {
     refetch,
     handleSortChange,
     setSelectedDateFilterValue,
-  } = useGetAllTransactions();
+  } = useGetUserTagTransactions();
 
   return (
     <div className="space-y-6">
       <PageTitle
-        title="All Transactions"
-        description="Track and manage all transaction details"
+        title="Usertag Transactions"
+        description="Track and manage all usertag transactions"
       />
       <TransactionSummary
         isLoading={isLoading}
@@ -62,4 +63,4 @@ const AllTransactions = () => {
   );
 };
 
-export default AllTransactions;
+export default UsertagTransactions;

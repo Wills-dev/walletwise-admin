@@ -201,5 +201,5 @@ export const commissionSortOptions = [
 
 export const TransactionSortOptions = [
   { label: "Order", values: ["ASC", "DESC"] },
-  { label: "Status", values: ["pending", "success", "failed"] },
+  { label: "Status", values: ["pending", "success", "reversed", "failed"] },
 ];
