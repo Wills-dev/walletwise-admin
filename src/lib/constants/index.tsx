@@ -54,7 +54,7 @@ export const links = [
       },
       {
         name: "all transactions",
-        link: "all-transactions",
+        link: "/all-transactions",
         icon: <ArrowLeftRight className="w-4 h-4" />,
       },
       {
@@ -142,8 +142,8 @@ export const services = [
     link: "/services/electricity",
   },
   {
-    name: "giftcards",
-    link: "/services/giftcards",
+    name: "giftcard",
+    link: "/services/giftcard",
   },
   { name: "transfer", link: "/services/transfer" },
   { name: "book flight", link: "/services/book-flight" },
@@ -197,4 +197,9 @@ export const commissionSortOptions = [
   { label: "Sort by", values: ["revenue"] },
   { label: "Period", values: ["daily", "weekly", "monthly"] },
   { label: "Order", values: ["asc", "desc"] },
+];
+
+export const TransactionSortOptions = [
+  { label: "Order", values: ["ASC", "DESC"] },
+  { label: "Status", values: ["pending", "success", "failed"] },
 ];

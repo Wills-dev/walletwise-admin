@@ -25,8 +25,6 @@ const DateFilterComponent = ({
   const [selectedFilter, setSelectedFilter] = useState<FilterOption>("today");
   const [dateRange, setDateRange] = useState<DateRange>(getDateRange("today"));
 
-  console.log("dateRange", dateRange);
-
   const [showCalendar, setShowCalendar] = useState(false);
   const [customStart, setCustomStart] = useState<Date | null>(null);
   const [customEnd, setCustomEnd] = useState<Date | null>(null);
