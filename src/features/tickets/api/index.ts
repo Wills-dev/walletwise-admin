@@ -101,3 +101,24 @@ export const getTicketInfo = async ({ ticketId }: { ticketId: string }) => {
     throw error;
   }
 };
+
+export const updateTicketStatus = async ({
+  status,
+  subject,
+  ticketId,
+  messageContent,
+}: {
+  status: string;
+  subject: string;
+  ticketId: string;
+  messageContent: string;
+}) => {
+  try {
+    const payload = { status, subject, messageContent };
+    const url = `/dispute/${ticketId}/status`;
+    const { data } = await axiosInstance.patch(url, payload);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
