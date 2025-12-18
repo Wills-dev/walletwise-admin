@@ -90,3 +90,14 @@ export const getSupportSummary = async ({
     throw error;
   }
 };
+
+export const getTicketInfo = async ({ ticketId }: { ticketId: string }) => {
+  try {
+    const url = `/dispute/${ticketId}`;
+
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
