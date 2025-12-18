@@ -15,6 +15,7 @@ import UserInfoCard from "@/components/molecules/UserInfoCard/UserInfoCard";
 import TransactionInfoCard from "@/components/molecules/TransactionInfoCard/TransactionInfoCard";
 import MessageCard from "@/components/molecules/MessageCard/MessageCard";
 import AdminInfoLoader from "@/components/atoms/skeleton/AdminInfoLoader";
+import RespondTicketForm from "@/components/molecules/RespondTicketForm/RespondTicketForm";
 
 const TicketInfoWrapper = ({ ticketId }: { ticketId: string }) => {
   const { data, isLoading } = useGetTicketInfo(ticketId);
@@ -75,6 +76,9 @@ const TicketInfoWrapper = ({ ticketId }: { ticketId: string }) => {
                 ))}
               </div>
             </div>
+          )}
+          {data?.dispute_status !== "resolved" && (
+            <RespondTicketForm ticketId={ticketId} />
           )}
         </>
       )}
