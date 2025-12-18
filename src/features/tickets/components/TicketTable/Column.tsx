@@ -11,9 +11,9 @@ import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/Co
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
 import { formatDate } from "@/lib/helpers/dateFormats";
-import { WalletTransaction } from "@/lib/types";
+import { TicketType } from "../../types";
 
-const columnHelper = createColumnHelper<WalletTransaction>();
+const columnHelper = createColumnHelper<TicketType>();
 
 interface ColumnProps<TData = unknown> {
   table: Table<TData>;
@@ -32,7 +32,7 @@ export const Column = [
         aria-label="Select all"
       />
     ),
-    cell: ({ row }: CellContext<WalletTransaction, unknown>) => (
+    cell: ({ row }: CellContext<TicketType, unknown>) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -42,7 +42,7 @@ export const Column = [
     enableSorting: false,
     enableHiding: false,
   },
-  columnHelper.accessor("date", {
+  columnHelper.accessor("created_at", {
     header: ({ column }) => {
       return (
         <Button
@@ -55,50 +55,25 @@ export const Column = [
       );
     },
     cell: ({ row }) => {
-      const date: string = row.getValue("date");
+      const date: string = row.getValue("created_at");
       const formatted = date ? formatDate(date) : "";
       return <div className="">{formatted}</div>;
     },
   }),
-  columnHelper.accessor("transaction_id", {
-    header: "Transaction ID",
+  columnHelper.accessor("dispute_id", {
+    header: "Ticket ID",
   }),
-  columnHelper.accessor("asset_id", {
+  columnHelper.accessor("dispute_type", {
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Transaction type
+          Ticket Type
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
-    },
-  }),
-  columnHelper.accessor("category", {
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Service
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  }),
-  columnHelper.accessor("amount", {
-    header: () => <div className="">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "NGN",
-      }).format(amount);
-
-      return <div className=" font-medium">{formatted}</div>;
     },
   }),
   columnHelper.accessor("user.user_tag", {
@@ -151,7 +126,7 @@ export const Column = [
       );
     },
   }),
-  columnHelper.accessor("status", {
+  columnHelper.accessor("dispute_status", {
     header: ({ column }) => {
       return (
         <Button
@@ -164,29 +139,34 @@ export const Column = [
       );
     },
     cell: ({ row }) => {
-      const status = row.getValue("status") as string;
+      const status = row.getValue("dispute_status") as string;
       return <StatusBubble status={status} />;
     },
   }),
 
   {
     id: "actions",
-    cell: ({ row }: CellContext<WalletTransaction, unknown>) => {
-      const transaction = row.original;
+    cell: ({ row }: CellContext<TicketType, unknown>) => {
+      const dispute = row.original;
 
       return (
         <>
           <ColumnActionDropdown>
             <DropdownMenuItem>
-              <Link
-                href={`/services/${transaction?.category}/info/${transaction.id}`}
-              >
-                View info
+              <Link href={`/tickets/info/${dispute?.id}`}>
+                View ticket info
               </Link>
             </DropdownMenuItem>
+            {/* <DropdownMenuItem>
+              <Link href={`/manage-user/info/${dispute.user?.id}`}>
+                View user info
+              </Link>
+            </DropdownMenuItem> */}
             <DropdownMenuItem>
-              <Link href={`/manage-user/info/${transaction.user?.id}`}>
-                View user
+              <Link
+                href={`/services/${dispute?.transaction?.category}/info/${dispute?.transaction?.id}`}
+              >
+                View transaction info
               </Link>
             </DropdownMenuItem>
           </ColumnActionDropdown>
