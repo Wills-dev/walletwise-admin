@@ -234,3 +234,37 @@ export type ReferralUser = {
   created_at: string;
   latest_referral_date: string | null;
 };
+
+export type TransactionDetails = {
+  bankName: string;
+  billerRef: string;
+  recepientAcc: string;
+  remark: string;
+};
+
+export type TransactionUser = {
+  id: string;
+  user_tag: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  created_at: string;
+};
+
+export type WalletTransaction = {
+  id: number;
+  transaction_id: string;
+  product_name: string;
+  category: string;
+  type: string;
+  status: string;
+  asset_id: string;
+  amount: string;
+  fee: string;
+  commission: string;
+  balance: string;
+  date: string;
+  details: TransactionDetails;
+  user: TransactionUser;
+};

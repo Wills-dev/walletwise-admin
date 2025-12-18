@@ -11,15 +11,15 @@ import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/Co
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
 import { formatDate } from "@/lib/helpers/dateFormats";
-import { TransactionType } from "@/lib/types";
+import { WalletTransaction } from "@/lib/types";
 
-const columnHelper = createColumnHelper();
+const columnHelper = createColumnHelper<WalletTransaction>();
 
 interface ColumnProps<TData = unknown> {
   table: Table<TData>;
 }
 
-export const Column = (hasPermission: boolean, service: string) => [
+export const Column = [
   {
     id: "select",
     header: ({ table }: ColumnProps) => (
@@ -32,7 +32,7 @@ export const Column = (hasPermission: boolean, service: string) => [
         aria-label="Select all"
       />
     ),
-    cell: ({ row }: CellContext<TransactionType, unknown>) => (
+    cell: ({ row }: CellContext<WalletTransaction, unknown>) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -88,38 +88,56 @@ export const Column = (hasPermission: boolean, service: string) => [
       return <div className=" font-medium">{formatted}</div>;
     },
   }),
-  ...(hasPermission
-    ? [
-        columnHelper.accessor("company_commission", {
-          header: () => <div className="">Company Commission</div>,
-          cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("company_commission"));
-            const formatted = new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "NGN",
-            }).format(amount);
+  columnHelper.accessor("user.user_tag", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          User tag
+          <ArrowUpDown className="ml-2 h-4 w-4 text-center" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const user = row.original?.user;
 
-            return <div className=" font-medium">{formatted}</div>;
-          },
-        }),
-      ]
-    : []),
-  ...(hasPermission
-    ? [
-        columnHelper.accessor("user_commission", {
-          header: () => <div className="">User Commission</div>,
-          cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("user_commission"));
-            const formatted = new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "NGN",
-            }).format(amount);
+      return (
+        <Link
+          href={`/manage-user/info/${user?.id}`}
+          className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full"
+        >
+          {user?.user_tag}
+        </Link>
+      );
+    },
+  }),
+  columnHelper.accessor("user.first_name", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Full Name
+          <ArrowUpDown className="ml-2 h-4 w-4 text-center" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const user = row.original?.user;
 
-            return <div className=" font-medium">{formatted}</div>;
-          },
-        }),
-      ]
-    : []),
+      return (
+        <Link
+          href={`/manage-user/user-info/${user?.id}`}
+          className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full capitalize"
+        >
+          {user?.first_name} {user?.last_name}
+        </Link>
+      );
+    },
+  }),
   columnHelper.accessor("status", {
     header: ({ column }) => {
       return (
@@ -138,48 +156,23 @@ export const Column = (hasPermission: boolean, service: string) => [
     },
   }),
 
-  columnHelper.accessor("user_tag", {
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          User Tag
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  }),
-  columnHelper.accessor("full_name", {
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Full name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  }),
-
   {
     id: "actions",
-    cell: ({ row }: CellContext<TransactionType, unknown>) => {
+    cell: ({ row }: CellContext<WalletTransaction, unknown>) => {
       const transaction = row.original;
 
       return (
         <>
           <ColumnActionDropdown>
             <DropdownMenuItem>
-              <Link href={`/services/${service}/info/${transaction.id}`}>
+              <Link
+                href={`/services/${transaction?.category}/info/${transaction.id}`}
+              >
                 View info
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href={`/manage-user/info/${transaction.userID}`}>
+              <Link href={`/manage-user/info/${transaction.user?.id}`}>
                 View user
               </Link>
             </DropdownMenuItem>

@@ -4,10 +4,10 @@ import { Table } from "@tanstack/react-table";
 
 import { DateFilterValue, SortOption } from "@/lib/types";
 
+import ColumnSorting from "../ColumnSorting/ColumnSorting";
 import DateFilterComponent from "@/components/organisms/DateFilterComponent/DateFilterComponent";
 import SearchInput from "../SearchInput/SearchInput";
 import SortDropdown from "@/components/organisms/SortDropdown/SortDropdown";
-import ColumnSorting from "../ColumnSorting/ColumnSorting";
 
 interface TableResourceToolbarProps<TData = unknown> {
   setSelectedDateFilterValue?: (value: DateFilterValue) => void;
