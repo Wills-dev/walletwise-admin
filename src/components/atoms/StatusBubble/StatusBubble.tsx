@@ -19,6 +19,7 @@ const StatusBubble = ({ status }: { status: string }) => {
     inactive: "text-yellow-400 bg-yellow-50",
     credit: "text-green-400 bg-green-50",
     debit: "text-red-400 bg-red-50",
+    resolved: "text-green-400 bg-green-50",
   };
 
   return (
