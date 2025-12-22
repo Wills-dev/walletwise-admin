@@ -65,13 +65,13 @@ const TicketInfoWrapper = ({ ticketId }: { ticketId: string }) => {
             <UserInfoCard user={data?.user} />
             <TransactionInfoCard transaction={data?.transaction} />
           </div>
-          {data.messages.length > 0 && (
+          {data?.messages?.length > 0 && (
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
                 Communication History
               </h2>
               <div className="space-y-4">
-                {data.messages.map((message: Message) => (
+                {data?.messages?.map((message: Message) => (
                   <MessageCard key={message.message_id} message={message} />
                 ))}
               </div>

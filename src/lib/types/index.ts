@@ -268,3 +268,22 @@ export type WalletTransaction = {
   details: TransactionDetails;
   user: TransactionUser;
 };
+
+export interface Notification {
+  id: string;
+  subject: string;
+  message: string;
+  admin_id: string;
+  notification_type: string;
+  created_at: string;
+  updated_at: string;
+  created_by: CreatedBy;
+}
+
+export interface CreatedBy {
+  first_name: string;
+  last_name: string;
+  email: string;
+  full_name: string;
+  role: string;
+}
