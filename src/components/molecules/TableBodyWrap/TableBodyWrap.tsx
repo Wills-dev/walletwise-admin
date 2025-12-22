@@ -38,7 +38,7 @@ const TableBodyWrap = ({ table, columns }: TableBodyWrapProps) => {
             className={row.getIsSelected() ? "bg-blue-50" : ""}
           >
             {row?.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id} className="max-w-md w-fit">
+              <TableCell key={cell.id} className="max-w-lg whitespace-normal">
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
             ))}

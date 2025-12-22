@@ -32,7 +32,7 @@ const ReusableDropdown = ({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="dark:bg-gray-800">
-          {buttonLabel}
+          {value || buttonLabel}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 dark:bg-gray-800">
