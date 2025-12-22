@@ -27,3 +27,19 @@ export const deleteNotification = async ({
     throw error;
   }
 };
+
+export const pushNotification = async ({
+  subject,
+  message,
+}: {
+  subject: string;
+  message: string;
+}) => {
+  try {
+    const url = `/notifications`;
+    const { data } = await axiosInstance.post(url, { subject, message });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

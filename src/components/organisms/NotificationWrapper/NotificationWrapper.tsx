@@ -9,6 +9,7 @@ import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 
 import { useGetAllNotifications } from "@/lib/hooks/useGetAllNotifications";
 import { Column } from "./Column";
+import NotificationActionPanel from "@/components/molecules/NotificationActionPanel/NotificationActionPanel";
 
 const NotificationWrapper = () => {
   const {
@@ -34,6 +35,7 @@ const NotificationWrapper = () => {
           title="Notifications"
           description="Manage notification details "
         />
+        <NotificationActionPanel />
       </div>
       <motion.div
         initial={{ opacity: 0 }}
