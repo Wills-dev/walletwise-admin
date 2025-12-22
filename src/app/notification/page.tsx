@@ -2,9 +2,9 @@ import { Suspense } from "react";
 
 import DashboardLayout from "@/components/templates/DashboardLayout/DashboardLayout";
 import MainLoader from "@/components/atoms/MainLoader/MainLoader";
+import NotificationWrapper from "@/components/organisms/NotificationWrapper/NotificationWrapper";
 
 import { ProtectedPage } from "@/components/ProtectedPage";
-import NotificationWrapper from "@/components/organisms/NotificationWrapper/NotificationWrapper";
 
 const NotificationPage = () => {
   return (
