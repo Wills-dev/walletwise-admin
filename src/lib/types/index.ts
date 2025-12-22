@@ -29,6 +29,7 @@ export interface fetchDataProps {
   filter?: {
     [key: number]: string;
   };
+  tier?: number;
   service?: string;
   transferType?: string;
   selectedDateFilterValue?: DateFilterValue | null;
@@ -286,4 +287,22 @@ export interface CreatedBy {
   email: string;
   full_name: string;
   role: string;
+}
+
+export interface TiersType {
+  tier1: number;
+  tier2: number;
+  tier3: number;
+}
+
+export interface KYCTableData {
+  bvn_status: string;
+  error_reason: string | null;
+  id: number;
+  identity_status: string;
+  nin_status: string;
+  submission_date: null | number;
+  tier: string;
+  userID: string;
+  verification_date: null | number;
 }

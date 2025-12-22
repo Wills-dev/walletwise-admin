@@ -17,6 +17,7 @@ export const useTableState = () => {
   const initialTab = searchParams.get("tab") || "";
   const initialTransferType = searchParams.get("transferType") || "";
 
+  const [tier, setTier] = useState<number | undefined>(undefined);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [limit, setLimit] = useState(initialLimit);
   const [search, setSearch] = useState(initialSearch);
@@ -44,6 +45,11 @@ export const useTableState = () => {
 
   const handleStatusChange = (status: string) => {
     setStatus(status);
+    setCurrentPage(1);
+  };
+
+  const handleTierChange = (tier: number | undefined) => {
+    setTier(tier);
     setCurrentPage(1);
   };
 
@@ -155,5 +161,7 @@ export const useTableState = () => {
     transferType,
     handleStatusChange,
     handleSwitchTransferType,
+    tier,
+    handleTierChange,
   };
 };
