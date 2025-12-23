@@ -33,3 +33,24 @@ export const getKycInfo = async ({ kycId }: { kycId: string }) => {
     throw error;
   }
 };
+
+export const updateKycStatus = async ({
+  kycId,
+  action,
+  message,
+}: {
+  kycId: string;
+  action: "decline" | "approve";
+  message: string;
+}) => {
+  try {
+    const url = `/kyc/${kycId}/status`;
+    const { data } = await axiosInstance.patch(url, {
+      action,
+      message,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

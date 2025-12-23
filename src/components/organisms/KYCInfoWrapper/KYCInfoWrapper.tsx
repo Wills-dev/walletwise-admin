@@ -49,7 +49,7 @@ const KYCInfoWrapper = ({ kycId }: { kycId: string }) => {
           )}
           <KYCUserProfile user={data?.user} tier={data?.kyc?.tier} />
           <Separator />
-          <KYCActionButtons />
+          {data?.kyc?.tier !== "3" && <KYCActionButtons kycId={kycId} />}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <VerificationStatusCard kycData={data?.kyc} />
             <DocumentDetailsCard kycDetails={data?.kyc?.kyc_details} />

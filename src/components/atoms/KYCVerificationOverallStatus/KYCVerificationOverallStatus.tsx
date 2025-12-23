@@ -25,7 +25,7 @@ const KYCVerificationOverallStatus = ({
       )}
       <AlertDescription className="text-emerald-700 dark:text-emerald-300">
         {isFullVerified
-          ? "This account has beenfully verified and is active"
+          ? "This account has been fully verified and is active"
           : isPartiallyVerified
           ? "This account is partially verified"
           : "This account has not be verified."}
