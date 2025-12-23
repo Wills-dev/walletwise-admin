@@ -11,6 +11,7 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import ColumnActionDropdown from "../ColumnActionDropdown/ColumnActionDropdown";
+import { formatDate } from "@/lib/helpers/dateFormats";
 
 const columnHelper = createColumnHelper<KYCTableData>();
 
@@ -57,7 +58,7 @@ export const Column = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Status
+          BVN Status
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -65,6 +66,49 @@ export const Column = [
     cell: ({ row }) => {
       const status = row.getValue("bvn_status") as string;
       return <StatusBubble status={status} />;
+    },
+  }),
+  columnHelper.accessor("identity_status", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          ID Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const status = row.getValue("identity_status") as string;
+      return <StatusBubble status={status} />;
+    },
+  }),
+  columnHelper.accessor("nin_status", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          NIN Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const status = row.getValue("nin_status") as string;
+      return <StatusBubble status={status} />;
+    },
+  }),
+  columnHelper.accessor("submission_date", {
+    header: "Submission date",
+    cell: ({ row }) => {
+      const date: string = row.getValue("submission_date");
+      const formatted = date ? formatDate(date) : "N/A";
+
+      return <div className="font-medium whitespace-nowrap">{formatted}</div>;
     },
   }),
 

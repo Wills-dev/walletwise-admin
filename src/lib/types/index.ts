@@ -306,3 +306,24 @@ export interface KYCTableData {
   userID: string;
   verification_date: null | number;
 }
+
+export interface KYCDetails {
+  idType: string;
+  idNumber: string;
+  validIDImage: string;
+  passportImage: string;
+  proofOfAddressImage: string;
+}
+
+export interface KYCData {
+  id: number;
+  userID: string;
+  bvn_status: string;
+  nin_status: string;
+  identity_status: string;
+  tier: string;
+  error_reason: string | null;
+  submission_date: string | null;
+  verification_date: string | null;
+  kyc_details: KYCDetails;
+}

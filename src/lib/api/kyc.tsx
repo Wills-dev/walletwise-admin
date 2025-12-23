@@ -23,3 +23,13 @@ export const getAllKYC = async ({
     throw error;
   }
 };
+
+export const getKycInfo = async ({ kycId }: { kycId: string }) => {
+  try {
+    const url = `/kyc/${kycId}`;
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};

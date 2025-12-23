@@ -17,3 +17,8 @@ export const genderRole = [
 export const userSortOptions = [
   { label: "Order", values: ["newest", "oldest"] },
 ];
+
+export const kycBreadcrumb = [
+  { label: "KYC management", href: "/manage-kyc" },
+  { label: "KYC Info" },
+];
