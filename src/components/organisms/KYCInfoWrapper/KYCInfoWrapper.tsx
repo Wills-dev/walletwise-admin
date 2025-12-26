@@ -25,6 +25,8 @@ const KYCInfoWrapper = ({ kycId }: { kycId: string }) => {
     data?.kyc?.kyc_details?.validIDImage ||
     data?.kyc?.kyc_details?.passportImage;
 
+  const showActionBtns = data?.kyc?.kyc_details && data?.kyc?.tier !== "3";
+
   return (
     <div className="space-y-6">
       <PageTitle title="KYC Details" description="Manage user kyc details" />
@@ -49,7 +51,7 @@ const KYCInfoWrapper = ({ kycId }: { kycId: string }) => {
           )}
           <KYCUserProfile user={data?.user} tier={data?.kyc?.tier} />
           <Separator />
-          {data?.kyc?.tier !== "3" && <KYCActionButtons kycId={kycId} />}
+          {showActionBtns && <KYCActionButtons kycId={kycId} />}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <VerificationStatusCard kycData={data?.kyc} />
             <DocumentDetailsCard kycDetails={data?.kyc?.kyc_details} />

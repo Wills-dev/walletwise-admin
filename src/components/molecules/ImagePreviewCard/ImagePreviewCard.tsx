@@ -66,7 +66,7 @@ const ImagePreviewCard = ({
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
           onClick={() => setIsModalOpen(false)}
         >
-          <div className="max-w-4xl w-full max-h-[90vh] overflow-auto">
+          <div className="max-w-4xl w-full max-h-[90vh]  overflow-auto">
             <Image
               src={imageUrl}
               alt={title}

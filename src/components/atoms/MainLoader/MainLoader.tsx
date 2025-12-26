@@ -4,7 +4,7 @@ const MainLoader = () => {
   return (
     <div className="min-h-screen h-full w-full flex flex-col justify-center items-center dark:bg-gray-900 bg-white px-4">
       <h6 className="text-2xl text-center text-purple-800 dark:text-purple-600">
-        Walletwise Admin
+        WalletWise Admin
       </h6>
       {/* <div className="flex items-center">
         <p className="text-center dark:text-gray-300 flex items-center gap-1 mt-">
