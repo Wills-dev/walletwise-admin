@@ -7,6 +7,7 @@ import { useGetGeneralStat } from "@/lib/hooks/useGetGeneralStat";
 
 import SummaryCardLoader from "@/components/atoms/skeleton/SummaryCardLoader";
 import StatisticCard from "../StatisticCard/StatisticCard";
+import { PermissionGate } from "@/components/PermissionGate";
 
 const OverviewSummary = () => {
   const { data, isLoading } = useGetGeneralStat();
@@ -23,20 +24,30 @@ const OverviewSummary = () => {
         <SummaryCardLoader />
       ) : (
         <>
-          <StatisticCard
-            title="Total revenue"
-            value={data?.totalRevenue}
-            icon={<DollarSign />}
-            color="blue"
-            currency="₦"
-          />
-          <StatisticCard
-            title="Total profit"
-            value={data?.totalProfit}
-            icon={<PoundSterling />}
-            color="green"
-            currency="₦"
-          />
+          {" "}
+          <PermissionGate
+            permissions={[
+              "admin_management.read",
+              "admin_management.write",
+              "admin_management.create",
+            ]}
+            requireAll={false}
+          >
+            <StatisticCard
+              title="Total revenue"
+              value={data?.totalRevenue}
+              icon={<DollarSign />}
+              color="blue"
+              currency="₦"
+            />
+            <StatisticCard
+              title="Total profit"
+              value={data?.totalProfit}
+              icon={<PoundSterling />}
+              color="green"
+              currency="₦"
+            />
+          </PermissionGate>
           <StatisticCard
             title="Total Disputes"
             value={data?.totalDisputes}
