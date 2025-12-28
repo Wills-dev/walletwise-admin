@@ -203,3 +203,14 @@ export const TransactionSortOptions = [
   { label: "Order", values: ["ASC", "DESC"] },
   { label: "Status", values: ["pending", "success", "reversed", "failed"] },
 ];
+
+const currentYear = new Date().getFullYear();
+const startYear = 2024;
+
+export const years = Array.from(
+  { length: currentYear - startYear + 1 },
+  (_, i) => {
+    const year = (startYear + i).toString();
+    return { label: year, value: year };
+  }
+);

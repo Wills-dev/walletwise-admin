@@ -37,3 +37,13 @@ export const getEarnings = async ({
     throw error;
   }
 };
+
+export const getYearEarnings = async ({ year }: { year?: string }) => {
+  try {
+    const url = `/statistics/earnings${year ? `?year=${year}` : ""}`;
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
