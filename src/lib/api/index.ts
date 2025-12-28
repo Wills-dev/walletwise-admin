@@ -118,3 +118,13 @@ export const getRevenueProfitByCategory = async ({
     throw error;
   }
 };
+
+export const generalStat = async () => {
+  try {
+    const url = "/statistics/overall";
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
