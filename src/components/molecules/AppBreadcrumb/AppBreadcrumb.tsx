@@ -32,7 +32,7 @@ const AppBreadcrumb = ({ items }: AppBreadcrumbProps) => {
                     <BreadcrumbItem>
                       <BreadcrumbLink
                         href={item.href}
-                        className="hover:text-purple-600"
+                        className="hover:text-purple-600 capitalize"
                       >
                         {item.label}
                       </BreadcrumbLink>

@@ -34,7 +34,7 @@ const KYCVerificationOverallStatus = ({
           ? "This account has been fully verified and is active"
           : isPartiallyVerified
           ? "This account is partially verified"
-          : "This account has not be verified."}
+          : "This account has not been verified."}
         .
       </AlertDescription>
     </Alert>

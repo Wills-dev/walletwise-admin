@@ -76,6 +76,23 @@ export const Column = (hasPermission: boolean, service: string) => [
       );
     },
   }),
+  columnHelper.accessor("type", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Type
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const type = row.getValue("type") as string;
+      return <StatusBubble status={type} />;
+    },
+  }),
   columnHelper.accessor("amount", {
     header: () => <div className="">Amount</div>,
     cell: ({ row }) => {
