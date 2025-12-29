@@ -178,3 +178,12 @@ export const getUserCount = async ({ year }: { year?: string }) => {
     throw error;
   }
 };
+
+export const getUserDistribution = async () => {
+  try {
+    const { data } = await axiosInstance.get(`/users/state-distribution`);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};

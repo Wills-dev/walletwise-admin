@@ -67,3 +67,13 @@ export interface SecurityQuestionType {
   answer: string;
   question: string;
 }
+
+export type ChartConfigType = {
+  count: {
+    label: string;
+  };
+  [key: string]: {
+    label: string;
+    color?: string;
+  };
+};
