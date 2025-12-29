@@ -166,3 +166,15 @@ export const reactivateUser = async ({
     throw error;
   }
 };
+
+export const getUserCount = async ({ year }: { year?: string }) => {
+  try {
+    const url = `/statistics/users-count-by-month${
+      year ? `?year=${year}` : ""
+    }`;
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
