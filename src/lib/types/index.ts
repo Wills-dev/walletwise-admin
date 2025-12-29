@@ -241,6 +241,13 @@ export type TransactionDetails = {
   billerRef: string;
   recepientAcc: string;
   remark: string;
+  requestID?: string;
+  token?: string;
+  units?: string;
+  customerName?: string;
+  customerAddress?: string;
+  pinNumber?: string;
+  senderAcc?: string;
 };
 
 export type TransactionUser = {

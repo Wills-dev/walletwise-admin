@@ -31,3 +31,13 @@ export const getServiceTransaction = async ({
     throw error;
   }
 };
+
+export const getServiceInfo = async ({ id }: { id: string }) => {
+  try {
+    const url = `/transactions/${id}`;
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};

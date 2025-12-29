@@ -27,7 +27,7 @@ const UserDistribution = () => {
         <p className="text-xs">Error fetching user distributionn</p>
       ) : (
         <div className="flex gap-6 flex-wrap w-full">
-          <div className="flex-1 w-full">
+          <div className="flex-1 w-full max-sm:hidden">
             {isLoading ? (
               <ChartLoader />
             ) : (
