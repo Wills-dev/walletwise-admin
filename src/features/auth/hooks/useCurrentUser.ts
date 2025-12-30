@@ -31,8 +31,8 @@ export const useCurrentUser = (enabled: boolean = true) => {
   }, [isLoading, dispatch]);
 
   useEffect(() => {
-    if (data?.data) {
-      dispatch(setUser(data.data));
+    if (data) {
+      dispatch(setUser(data));
     }
   }, [data, dispatch]);
 
@@ -51,5 +51,6 @@ export const useCurrentUser = (enabled: boolean = true) => {
     isError,
     error,
     refetch,
+    data,
   };
 };
