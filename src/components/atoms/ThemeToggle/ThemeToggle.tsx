@@ -12,11 +12,12 @@ const ThemeToggle = () => {
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      suppressHydrationWarning
     >
       {theme === "dark" ? (
-        <Sun className="h-5 w-5" />
+        <Sun className="h-5 w-5" suppressHydrationWarning />
       ) : (
-        <Moon className="h-5 w-5" />
+        <Moon className="h-5 w-5" suppressHydrationWarning />
       )}
     </Button>
   );

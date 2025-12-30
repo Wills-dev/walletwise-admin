@@ -83,3 +83,25 @@ export const logout = async () => {
     throw error;
   }
 };
+
+export const changePassword = async ({
+  oldPassword,
+  newPassword,
+  confirmPassword,
+}: {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}) => {
+  try {
+    const url = `/admins/me/password`;
+    const { data } = await axiosInstance.post(url, {
+      oldPassword,
+      newPassword,
+      confirmPassword,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
