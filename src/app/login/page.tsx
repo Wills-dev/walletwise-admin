@@ -4,7 +4,7 @@ import LoginWrapper from "@/features/auth/components/LoginWrapper/LoginWrapper";
 const page = () => {
   return (
     <AuthLayout
-      title="Welcome to Walletwise! 👋"
+      title="Welcome to WalletWise! 👋"
       description="Please sign-in to your account"
     >
       <LoginWrapper />
