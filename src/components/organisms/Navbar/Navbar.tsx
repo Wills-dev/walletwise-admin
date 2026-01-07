@@ -9,8 +9,9 @@ import UserBadge from "@/components/atoms/UserBadge/UserBadge";
 import UserBadgeLoader from "@/components/atoms/skeleton/UserBadgeLoader";
 import NotificationIcon from "@/components/atoms/NotificationIcon/NotificationIcon";
 import ThemeToggle from "@/components/atoms/ThemeToggle/ThemeToggle";
-import { Menu, X } from "lucide-react";
 import Logo from "@/components/atoms/Logo/Logo";
+
+import { Menu, X } from "lucide-react";
 
 const Navbar = ({
   title,

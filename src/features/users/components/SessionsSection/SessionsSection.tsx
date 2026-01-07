@@ -8,7 +8,7 @@ import SectionHeader from "@/components/atoms/SectionHeader/SectionHeader";
 import SessionCard from "../SessionCard/SessionCard";
 
 const SessionsSection = ({ sessions }: { sessions: SessionType[] }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm overflow-hidden">

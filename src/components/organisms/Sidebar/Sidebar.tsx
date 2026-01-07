@@ -1,6 +1,9 @@
+"use client";
+
 import NavLink from "@/components/atoms/NavLink/NavLink";
 
 import { links } from "@/lib/constants";
+// import { useDisputeNotifications } from "@/lib/hooks/useDisputeNotifications";
 
 interface DashboardSidebarProps {
   isSidebarOpen: boolean;
@@ -8,6 +11,8 @@ interface DashboardSidebarProps {
 }
 
 const Sidebar = ({ isSidebarOpen }: DashboardSidebarProps) => {
+  // const { notifications, isConnected } = useDisputeNotifications();
+
   return (
     <aside
       className={`fixed top-0 left-0 z-30 h-screen min-h-screen w-24 overflow-y-0 bg-[#FAFAFB] dark:bg-gray-800 border-r border-[#EDEDED] dark:border-gray-700 transition-transform duration-300 py-6 ${

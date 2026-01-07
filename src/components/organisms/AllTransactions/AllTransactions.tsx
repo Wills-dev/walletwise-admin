@@ -25,6 +25,7 @@ const AllTransactions = () => {
     refetch,
     handleSortChange,
     setSelectedDateFilterValue,
+    setExcludeTransfer,
   } = useGetAllTransactions();
 
   return (
@@ -34,6 +35,10 @@ const AllTransactions = () => {
         description="Track and manage all transaction details"
       />
       <TransactionSummary
+        totalTransactionsExcludeTransfer={
+          data?.summary?.otal_transactions_exclude_transfer | 0
+        }
+        setExcludeTransfer={setExcludeTransfer}
         isLoading={isLoading}
         totalTransactions={data?.summary?.total_transactions | 0}
       />

@@ -9,6 +9,7 @@ export const getAllTransactions = async ({
   search,
   filter,
   selectedDateFilterValue,
+  excludeTransfer,
 }: fetchDataProps) => {
   try {
     const params = new URLSearchParams();
@@ -19,6 +20,8 @@ export const getAllTransactions = async ({
     if (search) params.set("search", search);
     if (filter?.[0]) params.set("sortOrder", filter[0]);
     if (filter?.[1]) params.set("status", filter[1]);
+    if (excludeTransfer)
+      params.set("excludeTransfers", excludeTransfer.toString());
     if (selectedDateFilterValue) {
       if (selectedDateFilterValue.label === "custom") {
         params.set(
