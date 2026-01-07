@@ -6,8 +6,8 @@ import CardWrapper from "@/components/atoms/CardWrapper/CardWrapper";
 interface TransactionSummaryProps {
   isLoading: boolean;
   totalTransactions: number;
-  totalTransactionsExcludeTransfer: number;
-  setExcludeTransfer: (exclude: boolean) => void;
+  totalTransactionsExcludeTransfer?: number;
+  setExcludeTransfer?: (exclude: boolean) => void;
 }
 
 const TransactionSummary = ({
@@ -16,6 +16,11 @@ const TransactionSummary = ({
   totalTransactionsExcludeTransfer,
   setExcludeTransfer,
 }: TransactionSummaryProps) => {
+  const handleChange = (value: boolean) => {
+    if (setExcludeTransfer !== undefined) {
+      setExcludeTransfer(value);
+    } else return null;
+  };
   return (
     <CardWrapper loading={isLoading}>
       <StatisticCard
@@ -23,15 +28,17 @@ const TransactionSummary = ({
         value={totalTransactions}
         icon={<Repeat />}
         color="blue"
-        onClick={() => setExcludeTransfer(false)}
+        onClick={() => handleChange(false)}
       />
-      <StatisticCard
-        title="In app transactions"
-        value={totalTransactionsExcludeTransfer}
-        icon={<Crown />}
-        color="green"
-        onClick={() => setExcludeTransfer(true)}
-      />
+      {totalTransactionsExcludeTransfer !== undefined && (
+        <StatisticCard
+          title="In app transactions"
+          value={totalTransactionsExcludeTransfer}
+          icon={<Crown />}
+          color="green"
+          onClick={() => handleChange(true)}
+        />
+      )}
     </CardWrapper>
   );
 };
