@@ -12,6 +12,7 @@ import UserTransactionTable from "../UserTransactionTable/UserTransactionTable";
 
 import { userBreadcrumb } from "../../constants";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
+import UserReferralSection from "../UserReferralSection/UserReferralSection";
 
 const UserInfoWrapper = ({ userId }: { userId: string }) => {
   const {
@@ -50,7 +51,7 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
           isLoading={isLoading}
           wallet={data?.wallet}
           commissionBalance={data?.commissionBalance}
-          referralCount={data?.referralCount || 0}
+          referralCount={data?.referrals?.referralCount || 0}
         />
       </div>
       <UserTransactionTable
@@ -66,6 +67,20 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
         isLastPage={isLastPage}
         limit={limit}
         setLimit={setLimit}
+      />
+      <UserReferralSection
+        totalPages={data?.transactions?.totalPages}
+        currentPage={currentPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        goToFirstPage={goToFirstPage}
+        goToLastPage={goToLastPage}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        limit={limit}
+        setLimit={setLimit}
+        isLoading={isLoading}
+        userReferrals={data?.referrals?.referrals}
       />
       {isLoading ? (
         <>

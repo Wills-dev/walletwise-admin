@@ -8,7 +8,7 @@ import { formatDate } from "@/lib/helpers/dateFormats";
 import SectionHeader from "@/components/atoms/SectionHeader/SectionHeader";
 
 const UserLogsSection = ({ userLogs }: { userLogs: UserLogType[] }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const getActivityTypeColor = (type: string) => {
     if (type.includes("suspended"))

@@ -51,6 +51,14 @@ export interface SessionType {
   last_login: string;
 }
 
+export interface UserReferralType {
+  id: string;
+  first_name: string;
+  last_name: string;
+  user_tag: string;
+  created_at: string;
+}
+
 export interface UserLogType {
   id: string;
   user_id: string;

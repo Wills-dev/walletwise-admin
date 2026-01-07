@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useTableState } from "./useTableState";
 import { getAllTransactions } from "../api/allTransactions";
+import { useState } from "react";
 
 export const useGetAllTransactions = () => {
+  const [excludeTransfer, setExcludeTransfer] = useState(false);
   const {
     currentPage,
     limit,
@@ -32,6 +34,7 @@ export const useGetAllTransactions = () => {
       limit,
       currentPage,
       selectedDateFilterValue,
+      excludeTransfer,
     ],
     queryFn: () =>
       getAllTransactions({
@@ -40,6 +43,7 @@ export const useGetAllTransactions = () => {
         search: submittedQuery,
         filter,
         selectedDateFilterValue,
+        excludeTransfer,
       }),
     enabled: true,
     staleTime: 5 * 60 * 1000,
@@ -69,5 +73,7 @@ export const useGetAllTransactions = () => {
     filter,
     handleSortChange,
     setSelectedDateFilterValue,
+    excludeTransfer,
+    setExcludeTransfer,
   };
 };
