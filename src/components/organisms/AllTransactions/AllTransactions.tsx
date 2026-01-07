@@ -36,7 +36,7 @@ const AllTransactions = () => {
       />
       <TransactionSummary
         totalTransactionsExcludeTransfer={
-          data?.summary?.otal_transactions_exclude_transfer | 0
+          data?.summary?.total_transactions_exclude_transfer | 0
         }
         setExcludeTransfer={setExcludeTransfer}
         isLoading={isLoading}
