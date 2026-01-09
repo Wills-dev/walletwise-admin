@@ -1,12 +1,12 @@
 import { Suspense } from "react";
 
 import MainLoader from "@/components/atoms/MainLoader/MainLoader";
-import ServiceWrapper from "@/features/services/components/ServiceWrapper/ServiceWrapper";
+import DataWrapper from "@/features/services/components/DataWrapper/DataWrapper";
 
 const DataServicePage = () => {
   return (
     <Suspense fallback={<MainLoader />}>
-      <ServiceWrapper service="data" />
+      <DataWrapper />
     </Suspense>
   );
 };

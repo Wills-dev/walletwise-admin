@@ -30,3 +30,10 @@ export interface ServiceData {
   user_tag: string;
   user_created_at: string;
 }
+
+export interface CreateDataPlanType {
+  base_plan_id: string;
+  fulfillment_quantity: string;
+  commission: string;
+  plan_code?: string;
+}
