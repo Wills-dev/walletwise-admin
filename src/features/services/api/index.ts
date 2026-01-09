@@ -48,13 +48,41 @@ export const getDataPlans = async ({
 
     if (search) params.set("search", search);
     if (exclude !== undefined) {
-      params.set("is_custom", exclude.toString());
-    } else if (filter?.[0] !== undefined) params.set("is_custom", filter[0]);
+      params.set("is_custom", String(exclude));
+    } else {
+      const selected = filter?.[0];
+
+      if (selected === "custom plans") {
+        params.set("is_custom", "true");
+      } else if (selected === "original plans") {
+        params.set("is_custom", "false");
+      } else if (selected === "all plans") {
+        params.delete("is_custom");
+      }
+    }
+
+    if (filter?.[1] === "active plans") {
+      params.set("is_active", "true");
+    } else if (filter?.[1] === "inactive plans") {
+      params.set("is_active", "false");
+    } else if (filter?.[1] === "all plans") {
+      params.delete("is_active");
+    }
 
     if (filter?.[1]) params.set("is_active", filter[1]);
 
     const url = `/data-providers/plans?${params.toString()}`;
 
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getServiceInfo = async ({ id }: { id: string }) => {
+  try {
+    const url = `/transactions/${id}`;
     const { data } = await axiosInstance.get(url);
     return data?.data;
   } catch (error) {
@@ -82,10 +110,36 @@ export const createCustomDataPlan = async ({
   }
 };
 
-export const getServiceInfo = async ({ id }: { id: string }) => {
+export const editDataPlan = async ({
+  id,
+  commission,
+  is_active,
+}: {
+  id: number;
+  commission?: string;
+  is_active?: boolean;
+}) => {
   try {
-    const url = `/transactions/${id}`;
-    const { data } = await axiosInstance.get(url);
+    const payload: Record<string, unknown> = {};
+    if (commission !== undefined || commission !== "") {
+      payload.commission = Number(commission);
+    }
+
+    if (is_active !== undefined) {
+      payload.is_active = is_active;
+    }
+    const url = `/data-providers/plans/custom/${id}`;
+    const { data } = await axiosInstance.patch(url, payload);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteDataPlan = async ({ id }: { id: number }) => {
+  try {
+    const url = `/data-providers/plans/custom/${id}`;
+    const { data } = await axiosInstance.delete(url);
     return data?.data;
   } catch (error) {
     throw error;

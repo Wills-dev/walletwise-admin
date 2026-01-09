@@ -26,9 +26,9 @@ const CreateDataPlanModal = ({
   handleSubmit,
   isPending,
 }: CreateDataPlanModalProps) => {
-  const { data, isLoading } = useGetDataPlans(false);
+  const { data, isLoading } = useGetDataPlans(false, 20);
 
-  const formOriginalDataPlan = data?.map(
+  const formOriginalDataPlan = data?.records?.map(
     (plan: { name: string; id: number }) => ({
       label: plan?.name,
       value: plan?.id?.toString(),
