@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { useTableState } from "./useTableState";
-import { getAllTransactions } from "../api/allTransactions";
-import { useState } from "react";
+import { useTableState } from "@/lib/hooks/useTableState";
+import { getDataPlans } from "../api";
 
-export const useGetAllTransactions = () => {
-  const [excludeTransfer, setExcludeTransfer] = useState(false);
+export const useGetDataPlans = (exclude?: boolean) => {
   const {
     currentPage,
     limit,
@@ -23,27 +21,17 @@ export const useGetAllTransactions = () => {
     handleSearch,
     filter,
     handleSortChange,
-    selectedDateFilterValue,
-    setSelectedDateFilterValue,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: [
-      "all transactions",
-      submittedQuery,
-      limit,
-      currentPage,
-      selectedDateFilterValue,
-      excludeTransfer,
-    ],
+    queryKey: ["data plans", submittedQuery, limit, currentPage, exclude],
     queryFn: () =>
-      getAllTransactions({
+      getDataPlans({
         currentPage,
         limit,
         search: submittedQuery,
         filter,
-        selectedDateFilterValue,
-        exclude: excludeTransfer,
+        exclude,
       }),
     enabled: true,
     staleTime: 5 * 60 * 1000,
@@ -70,10 +58,7 @@ export const useGetAllTransactions = () => {
     currentPage,
     limit,
     refetch,
-    filter,
     handleSortChange,
-    setSelectedDateFilterValue,
-    excludeTransfer,
-    setExcludeTransfer,
+    filter,
   };
 };

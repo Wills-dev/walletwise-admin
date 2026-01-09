@@ -32,7 +32,7 @@ export interface fetchDataProps {
   tier?: number;
   service?: string;
   transferType?: string;
-  excludeTransfer?: boolean;
+  exclude?: boolean;
   selectedDateFilterValue?: DateFilterValue | null;
 }
 
