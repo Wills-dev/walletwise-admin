@@ -216,6 +216,11 @@ export const TransactionSortOptions = [
   { label: "Status", values: ["pending", "success", "reversed", "failed"] },
 ];
 
+export const dataPlanSortOptions = [
+  { label: "Sort by", values: ["all plans", "custom plans", "original plans"] },
+  { label: "Status", values: ["all plans", "active plans", "inactive plans"] },
+];
+
 const currentYear = new Date().getFullYear();
 const startYear = 2024;
 

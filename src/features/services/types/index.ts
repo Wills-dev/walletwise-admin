@@ -37,3 +37,29 @@ export interface CreateDataPlanType {
   commission: string;
   plan_code?: string;
 }
+
+export interface DataPlan {
+  id: number;
+  name: string;
+  network: string;
+  provider: string;
+
+  plan_code: string;
+  variation_code: string;
+  external_plan_id: string;
+
+  volume: string;
+  validity: string;
+
+  cost: string;
+  commission: string;
+  final_price: string;
+
+  fulfillment_quantity: number | null;
+
+  is_active: boolean;
+  is_custom: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

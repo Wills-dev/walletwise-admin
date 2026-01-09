@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTableState } from "@/lib/hooks/useTableState";
 import { getDataPlans } from "../api";
 
-export const useGetDataPlans = (exclude?: boolean) => {
+export const useGetDataPlans = (exclude?: boolean, allLimit?: number) => {
   const {
     currentPage,
     limit,
@@ -24,11 +24,18 @@ export const useGetDataPlans = (exclude?: boolean) => {
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["data plans", submittedQuery, limit, currentPage, exclude],
+    queryKey: [
+      "data plans",
+      submittedQuery,
+      limit,
+      currentPage,
+      exclude,
+      allLimit,
+    ],
     queryFn: () =>
       getDataPlans({
         currentPage,
-        limit,
+        limit: allLimit || limit,
         search: submittedQuery,
         filter,
         exclude,
