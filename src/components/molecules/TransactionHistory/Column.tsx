@@ -63,7 +63,7 @@ export const Column = [
   columnHelper.accessor("transaction_id", {
     header: "Transaction ID",
   }),
-  columnHelper.accessor("asset_id", {
+  columnHelper.accessor("type", {
     header: ({ column }) => {
       return (
         <Button
@@ -71,6 +71,23 @@ export const Column = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Transaction type
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const status = row.getValue("type") as string;
+      return <StatusBubble status={status} />;
+    },
+  }),
+  columnHelper.accessor("asset_id", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Asset
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );

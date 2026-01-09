@@ -14,7 +14,7 @@ export const useCreateCustomDataPlan = () => {
   const [dataPlan, setDataPlan] = useState<CreateDataPlanType>({
     base_plan_id: "",
     fulfillment_quantity: "",
-    commission: "",
+    plan_code: "",
   });
 
   const resetForm = () => {
@@ -22,7 +22,7 @@ export const useCreateCustomDataPlan = () => {
     setDataPlan({
       base_plan_id: "",
       fulfillment_quantity: "",
-      commission: "",
+      plan_code: "",
     });
   };
 
@@ -34,7 +34,7 @@ export const useCreateCustomDataPlan = () => {
     const { name, value } = e.target;
     setDataPlan({
       ...dataPlan,
-      [name]: ["fulfillment_quantity", "commission"].includes(name)
+      [name]: ["fulfillment_quantity"].includes(name)
         ? formatInputTextNumber(value)
         : value,
     });

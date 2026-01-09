@@ -93,16 +93,18 @@ export const getServiceInfo = async ({ id }: { id: string }) => {
 export const createCustomDataPlan = async ({
   base_plan_id,
   fulfillment_quantity,
-  commission,
+  plan_code,
 }: CreateDataPlanType) => {
   try {
     const url = `/data-providers/plans/custom`;
 
-    const payload = {
+    const payload: Record<string, unknown> = {
       base_plan_id: Number(base_plan_id),
       fulfillment_quantity: Number(fulfillment_quantity),
-      commission: Number(commission),
     };
+    if (plan_code) {
+      payload.plan_code = plan_code;
+    }
     const { data } = await axiosInstance.post(url, payload);
     return data?.data;
   } catch (error) {
@@ -112,24 +114,14 @@ export const createCustomDataPlan = async ({
 
 export const editDataPlan = async ({
   id,
-  commission,
   is_active,
 }: {
   id: number;
-  commission?: string;
-  is_active?: boolean;
+  is_active: boolean;
 }) => {
   try {
-    const payload: Record<string, unknown> = {};
-    if (commission !== undefined || commission !== "") {
-      payload.commission = Number(commission);
-    }
-
-    if (is_active !== undefined) {
-      payload.is_active = is_active;
-    }
     const url = `/data-providers/plans/custom/${id}`;
-    const { data } = await axiosInstance.patch(url, payload);
+    const { data } = await axiosInstance.patch(url, { is_active });
     return data?.data;
   } catch (error) {
     throw error;

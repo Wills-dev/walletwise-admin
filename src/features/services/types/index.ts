@@ -34,7 +34,7 @@ export interface ServiceData {
 export interface CreateDataPlanType {
   base_plan_id: string;
   fulfillment_quantity: string;
-  commission: string;
+  commission?: string;
   plan_code?: string;
 }
 
