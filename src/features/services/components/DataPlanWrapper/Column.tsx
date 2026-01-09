@@ -54,7 +54,7 @@ export const Column = [
     cell: ({ row }) => {
       const created_at: string = row.getValue("created_at");
       const formatted = created_at ? formatDate(created_at) : "";
-      return <div className="">{formatted}</div>;
+      return <div className="whitespace-nowrap">{formatted}</div>;
     },
   }),
   columnHelper.accessor("id", {
@@ -73,14 +73,14 @@ export const Column = [
       );
     },
   }),
-  columnHelper.accessor("network", {
+  columnHelper.accessor("plan_code", {
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Network
+          Plan code
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );

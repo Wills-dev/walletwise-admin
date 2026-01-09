@@ -69,12 +69,12 @@ const CreateDataPlanModal = ({
           />
         </div>
         <div className="space-y-2">
-          <Label title="Commission (optional)" />
+          <Label title="Plan code (optional)" />
           <Input
-            value={dataPlan.commission}
+            value={dataPlan?.plan_code || ""}
             onChange={handleChange}
             type="text"
-            name="commission"
+            name="plan_code"
             placeholder=""
           />
         </div>

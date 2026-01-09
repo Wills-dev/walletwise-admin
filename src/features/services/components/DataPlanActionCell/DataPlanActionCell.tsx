@@ -6,7 +6,6 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 import ConfirmAction from "@/components/molecules/ConfirmAction/ConfirmAction";
-import UpdateDataPlanCommission from "@/components/molecules/modals/UpdateDataPlanCommission/UpdateDataPlanCommission";
 
 const DataPlanActionCell = ({
   is_custom,
@@ -19,19 +18,8 @@ const DataPlanActionCell = ({
 }) => {
   const { isOpen, onCancel, isPending, setIsOpen, deleteDataPlan } =
     useDeleteDataPlan();
-  const {
-    handleEdit,
-    commission,
-    setCommission,
-    open,
-    setOpen,
-    isSubmitting,
-    openModal,
-    setOpenModal,
-    openComm,
-    setOpenComm,
-    handleUpdateCommission,
-  } = useEditDataPlan(id);
+  const { handleEdit, open, setOpen, isSubmitting, openModal, setOpenModal } =
+    useEditDataPlan(id);
 
   return (
     <>
@@ -68,15 +56,6 @@ const DataPlanActionCell = ({
               Deactivate plan
             </DropdownMenuItem>
           )}
-          <DropdownMenuItem
-            className="text-gray-700 dark:text-gray-300"
-            onClick={(e) => {
-              e.preventDefault();
-              setOpenComm(true);
-            }}
-          >
-            Update commission
-          </DropdownMenuItem>
           <ConfirmAction
             isPending={isPending}
             open={isOpen}
@@ -91,10 +70,7 @@ const DataPlanActionCell = ({
             open={open}
             setOpen={setOpen}
             onCancel={() => setOpen(false)}
-            onConfirm={() => {
-              handleEdit(true);
-              setCommission("");
-            }}
+            onConfirm={() => handleEdit(true)}
             title="Activate data plan"
             description="Are you sure you want to activate data plan?"
           />
@@ -103,20 +79,9 @@ const DataPlanActionCell = ({
             open={openModal}
             setOpen={setOpenModal}
             onCancel={() => setOpenModal(false)}
-            onConfirm={() => {
-              handleEdit(false);
-              setCommission("");
-            }}
+            onConfirm={() => handleEdit(false)}
             title="Deactivate data plan"
             description="Are you sure you want to deactivate data plan?"
-          />
-          <UpdateDataPlanCommission
-            handleSubmit={handleUpdateCommission}
-            commission={commission}
-            setCommission={setCommission}
-            isPending={isSubmitting}
-            openModal={openComm}
-            setOpenModal={setOpenComm}
           />
         </ColumnActionDropdown>
       )}
