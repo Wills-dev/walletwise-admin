@@ -142,6 +142,15 @@ const DataWrapper = () => {
         </AnimatePresence>
       ),
     },
+    {
+      value: "data-plan",
+      label: "Data plan",
+      content: (
+        <AnimatePresence>
+          <DataPlanWrapper />
+        </AnimatePresence>
+      ),
+    },
   ];
 
   return (

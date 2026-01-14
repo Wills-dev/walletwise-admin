@@ -63,3 +63,23 @@ export interface DataPlan {
   created_at: string;
   updated_at: string;
 }
+
+export type GiftCardTransaction = {
+  id: number;
+  user_id: string;
+
+  token: string;
+  transaction_id: string;
+  gift_card_key: string;
+  gift_card_name: string | null;
+  currency: string;
+  amount_in_currency: string;
+  amount_in_naira: string;
+  exchange_rate: string;
+  fee: string;
+  final_amount: string;
+  status: "pending" | "success" | "failed" | "reversed";
+  image_url: string | null;
+  created_at: string;
+  updated_at: string;
+};

@@ -145,6 +145,10 @@ export const services = [
     name: "giftcard",
     link: "/services/giftcard",
   },
+  {
+    name: "redeem gift",
+    link: "/services/gift-redeem",
+  },
   { name: "transfer", link: "/services/transfer" },
   { name: "book flight", link: "/services/book-flight" },
   {
@@ -219,6 +223,12 @@ export const TransactionSortOptions = [
 export const dataPlanSortOptions = [
   { label: "Sort by", values: ["all plans", "custom plans", "original plans"] },
   { label: "Status", values: ["all plans", "active plans", "inactive plans"] },
+];
+
+export const redeemGiftSortOptions = [
+  { label: "Currency", values: ["USD", "NGN", "EUR", "GBP"] },
+  { label: "Order", values: ["asc", "desc"] },
+  { label: "Status", values: ["pending", "success", "reversed", "failed"] },
 ];
 
 const currentYear = new Date().getFullYear();
