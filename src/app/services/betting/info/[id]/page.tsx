@@ -9,7 +9,7 @@ const BettingInfoPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
 
   return (
-    <DashboardLayout title="Admin Info">
+    <DashboardLayout title="Service Info">
       <ServiceInfoWrapper serviceId={id} />
     </DashboardLayout>
   );

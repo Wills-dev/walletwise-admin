@@ -30,7 +30,7 @@ const GiftcardRedemptionWrapper = () => {
     refetch,
     handleSortChange,
     setSelectedDateFilterValue,
-    handleStatusChange,
+    // handleStatusChange,
   } = useGetGiftCardRedemption();
 
   const typedColumns = Column as ColumnDef<unknown>[];
