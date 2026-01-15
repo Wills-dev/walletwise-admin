@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getGiftcardRedemption } from "../api/giftcard";
+import { getGifcardRatings } from "../api/giftcard";
 import { useTableState } from "@/lib/hooks/useTableState";
 
-export const useGetGiftCardRedemption = () => {
+export const useGetGiftcardRatings = () => {
   const {
     currentPage,
     limit,
@@ -19,24 +19,18 @@ export const useGetGiftCardRedemption = () => {
     handleClear,
     submittedQuery,
     handleSearch,
-    status,
     filter,
-    selectedDateFilterValue,
-    setSelectedDateFilterValue,
     handleSortChange,
-    handleStatusChange,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: [submittedQuery, limit, currentPage, status],
+    queryKey: [submittedQuery, limit, currentPage],
     queryFn: () =>
-      getGiftcardRedemption({
+      getGifcardRatings({
         currentPage,
         limit,
         search: submittedQuery,
-        status,
         filter,
-        selectedDateFilterValue,
       }),
     enabled: true,
     staleTime: 5 * 60 * 1000,
@@ -63,9 +57,6 @@ export const useGetGiftCardRedemption = () => {
     currentPage,
     limit,
     refetch,
-    filter,
     handleSortChange,
-    setSelectedDateFilterValue,
-    handleStatusChange,
   };
 };
