@@ -81,7 +81,7 @@ export const getGifcardRatings = async ({
   }
 };
 
-export const getGifcardRatingInfo = async ({ id }: { id: string }) => {
+export const getGifcardRatingInfo = async ({ id }: { id: number }) => {
   try {
     const { data } = await axiosInstance.get(`/rates/${id}`);
     return data?.data;
@@ -96,7 +96,7 @@ export const editGifcardRatingInfo = async ({
   fee,
   is_active,
 }: {
-  id: string;
+  id: number;
   rate?: number;
   fee?: number;
   is_active?: boolean;
