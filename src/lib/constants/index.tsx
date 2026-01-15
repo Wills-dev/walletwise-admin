@@ -226,9 +226,13 @@ export const dataPlanSortOptions = [
 ];
 
 export const redeemGiftSortOptions = [
-  { label: "Currency", values: ["USD", "NGN", "EUR", "GBP"] },
+  { label: "Currency", values: ["USD", "NGN", "EUR", "GBP", "CAD"] },
   { label: "Order", values: ["asc", "desc"] },
   { label: "Status", values: ["pending", "success", "reversed", "failed"] },
+];
+export const ratingGiftSortOptions = [
+  { label: "Currency", values: ["USD", "CAD", "EUR", "GBP"] },
+  { label: "Status", values: ["active", "inactive"] },
 ];
 
 const currentYear = new Date().getFullYear();

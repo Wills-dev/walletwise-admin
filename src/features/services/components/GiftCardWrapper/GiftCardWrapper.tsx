@@ -1,13 +1,13 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-// import { useAdminPermission } from "@/lib/hooks/useAdminPermission";
+import { AnimatePresence } from "framer-motion";
 
 import ServiceLayout from "@/components/templates/ServiceLayout/ServiceLayout";
 import GiftcardRedemptionWrapper from "../GiftcardRedemptionWrapper/GiftcardRedemptionWrapper";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import GiftcardRatingWrapper from "../GiftcardRatingWrapper/GiftcardRatingWrapper";
 
 const GiftCardWrapper = () => {
   const router = useRouter();
@@ -16,7 +16,6 @@ const GiftCardWrapper = () => {
   const initialTab = searchParams.get("redeem-tab") || "";
 
   const [tab, setTab] = useState(initialTab);
-  //   const { hasPermission } = useAdminPermission();
 
   const handleSwithTab = (tab: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -39,13 +38,17 @@ const GiftCardWrapper = () => {
     {
       value: "giftcard-rating",
       label: "Giftcard rating",
-      content: <AnimatePresence></AnimatePresence>,
+      content: (
+        <AnimatePresence>
+          <GiftcardRatingWrapper />
+        </AnimatePresence>
+      ),
     },
   ];
 
   return (
     <ServiceLayout
-      title={"Redeem Giftcard "}
+      title="Redeem Giftcard "
       tabs={tabs}
       defaultTab={tab || "giftcard-redemption"}
       onClick={handleSwithTab}

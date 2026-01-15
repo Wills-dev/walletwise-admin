@@ -52,3 +52,64 @@ export const getRedeemGiftInfo = async ({ id }: { id: string }) => {
     throw error;
   }
 };
+
+export const getGifcardRatings = async ({
+  // currentPage,
+  // limit,
+  filter,
+}: fetchDataProps) => {
+  try {
+    const query: Record<string, string> = {};
+
+    // query.page = currentPage.toString();
+    // query.limit = limit.toString();
+    if (filter?.[0]) query.currency = filter[0];
+    if (filter?.[1] === "active") {
+      query.sort_order = true.toString();
+    } else if (filter?.[1] === "inactive") {
+      query.sort_order = false.toString();
+    }
+
+    const queryString = new URLSearchParams(query).toString();
+
+    const { data } = await axiosInstance.get(
+      `/rates${queryString ? `?${queryString}` : ""}`
+    );
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getGifcardRatingInfo = async ({ id }: { id: string }) => {
+  try {
+    const { data } = await axiosInstance.get(`/rates/${id}`);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const editGifcardRatingInfo = async ({
+  id,
+  rate,
+  fee,
+  is_active,
+}: {
+  id: string;
+  rate?: number;
+  fee?: number;
+  is_active?: boolean;
+}) => {
+  try {
+    const payload: { rate?: number; fee?: number; is_active?: boolean } = {};
+    if (rate !== undefined) payload.rate = rate;
+    if (fee !== undefined) payload.fee = fee;
+    if (is_active !== undefined) payload.is_active = is_active;
+
+    const { data } = await axiosInstance.patch(`/rates/${id}`, payload);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};

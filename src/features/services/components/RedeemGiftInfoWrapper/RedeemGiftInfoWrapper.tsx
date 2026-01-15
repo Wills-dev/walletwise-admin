@@ -3,15 +3,15 @@
 import AdminInfoLoader from "@/components/atoms/skeleton/AdminInfoLoader";
 import PageTitle from "@/components/atoms/PageTitle/PageTitle";
 import AppBreadcrumb from "@/components/molecules/AppBreadcrumb/AppBreadcrumb";
+import ActionButtons from "@/components/molecules/ActionButtons/ActionButtons";
+import GiftCardSummaryCard from "@/components/molecules/GiftCardSummaryCard/GiftCardSummaryCard";
+import CardDetailsCard from "@/components/molecules/CardDetailsCard/CardDetailsCard";
+import CardImageCard from "@/components/molecules/CardImageCard/CardImageCard";
 
 import { useGetRedeemGiftInfo } from "../../hooks/useGetRedeemGiftInfo";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import ActionButtons from "@/components/molecules/ActionButtons/ActionButtons";
-import GiftCardSummaryCard from "@/components/molecules/GiftCardSummaryCard/GiftCardSummaryCard";
-import CardDetailsCard from "@/components/molecules/CardDetailsCard/CardDetailsCard";
-import CardImageCard from "@/components/molecules/CardImageCard/CardImageCard";
 
 const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
   const { data, isLoading } = useGetRedeemGiftInfo(serviceId);
@@ -23,7 +23,6 @@ const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
 
   const handleRedeem = async () => {
     console.log("Redeeming gift card...");
-    // Add your API call here
   };
 
   const handleDecline = async () => {
@@ -32,8 +31,6 @@ const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
 
   const isRedeemed = data?.status === "redeemed";
   const isDeclined = data?.status === "declined";
-
-  console.log("data", data);
 
   return (
     <div className="space-y-4">
