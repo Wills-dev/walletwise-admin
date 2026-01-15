@@ -15,7 +15,7 @@ export const useEditDataPlan = (id: number) => {
   const { mutate, isPending } = useMutation({
     mutationFn: editDataPlan,
     onSuccess: () => {
-      toast.success("Admin successfully created.");
+      toast.success("Data plan successfully updated.");
       setOpen(false);
       setOpenModal(false);
       queryClient.invalidateQueries({
