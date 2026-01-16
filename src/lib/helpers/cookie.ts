@@ -9,8 +9,11 @@ export const createAuthCookie = (
   cookies.set(cookieName, cookieValue, {
     expires,
     path: "/",
-    sameSite: "strict",
-    secure: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    ...(process.env.NEXT_PUBLIC_COOKIE_DOMAIN && {
+      domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+    }),
   });
 };
 
