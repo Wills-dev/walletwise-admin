@@ -28,7 +28,7 @@ const ActionButtons = ({
   const [showDeclineDialog, setShowDeclineDialog] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const isPending = data.status === "pending";
+  const isPending = data?.status === "pending";
 
   if (!isPending) return null;
 
