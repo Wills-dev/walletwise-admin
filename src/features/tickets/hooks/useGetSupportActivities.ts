@@ -21,6 +21,7 @@ export const useGetSupportActivities = () => {
     handleSearch,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useTicketStates();
 
   const { data, isPending, isLoading, isError, error } = useQuery({
@@ -63,5 +64,6 @@ export const useGetSupportActivities = () => {
     currentPage,
     limit,
     setSelectedDateFilterValue,
+    setCurrentPage,
   };
 };

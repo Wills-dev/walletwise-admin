@@ -22,6 +22,7 @@ export const useGetCommissions = () => {
     handleSortChange,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -68,5 +69,6 @@ export const useGetCommissions = () => {
     filter,
     handleSortChange,
     setSelectedDateFilterValue,
+    setCurrentPage,
   };
 };

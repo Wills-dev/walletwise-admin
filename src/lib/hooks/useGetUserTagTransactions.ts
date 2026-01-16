@@ -23,6 +23,7 @@ export const useGetUserTagTransactions = () => {
     handleSortChange,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -69,5 +70,6 @@ export const useGetUserTagTransactions = () => {
     filter,
     handleSortChange,
     setSelectedDateFilterValue,
+    setCurrentPage,
   };
 };

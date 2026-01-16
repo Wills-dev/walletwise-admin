@@ -32,6 +32,7 @@ interface TransactionHistoryProps<TData = unknown> {
   handleChange?: (search: string) => void;
   handleClear?: () => void;
   onSubmit?: (e: FormEvent) => void;
+  setCurrentPage: (page: number) => void;
 }
 
 const TransactionHistory = ({
@@ -54,6 +55,7 @@ const TransactionHistory = ({
   handleChange,
   handleClear,
   onSubmit,
+  setCurrentPage,
 }: TransactionHistoryProps) => {
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -89,6 +91,7 @@ const TransactionHistory = ({
           handleClear={handleClear}
           onSubmit={onSubmit}
           sortOptions={TransactionSortOptions}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

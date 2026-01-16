@@ -20,6 +20,7 @@ interface ServiceEarningsSummaryProps<TData = unknown> {
   limit: number;
   setLimit: (limit: number) => void;
   setSelectedDateFilterValue: (value: DateFilterValue) => void;
+  setCurrentPage: (page: number) => void;
 }
 
 const ServiceEarningsSummary = ({
@@ -38,6 +39,7 @@ const ServiceEarningsSummary = ({
   setLimit,
   totalPages,
   setSelectedDateFilterValue,
+  setCurrentPage,
 }: ServiceEarningsSummaryProps) => {
   return (
     <div className="space-y-6 pt-6">
@@ -60,6 +62,7 @@ const ServiceEarningsSummary = ({
         setLimit={setLimit}
         isLoading={isLoading}
         setSelectedDateFilterValue={setSelectedDateFilterValue}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

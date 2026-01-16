@@ -163,5 +163,6 @@ export const useTableState = () => {
     handleSwitchTransferType,
     tier,
     handleTierChange,
+    setCurrentPage,
   };
 };

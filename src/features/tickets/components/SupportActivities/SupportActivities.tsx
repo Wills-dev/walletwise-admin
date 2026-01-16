@@ -23,6 +23,7 @@ const SupportActivities = () => {
     currentPage,
     limit,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useGetSupportActivities();
 
   return (
@@ -53,6 +54,7 @@ const SupportActivities = () => {
         handleClear={handleClear}
         onSubmit={handleSearch}
         isLoading={isLoading}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

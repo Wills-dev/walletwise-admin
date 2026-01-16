@@ -29,6 +29,7 @@ export const useGetServiceTransactions = (service: string) => {
     transferType,
     handleSwitchTransferType,
     handleStatusChange,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -84,5 +85,6 @@ export const useGetServiceTransactions = (service: string) => {
     handleSwitchTransferType,
     transferType,
     handleStatusChange,
+    setCurrentPage,
   };
 };

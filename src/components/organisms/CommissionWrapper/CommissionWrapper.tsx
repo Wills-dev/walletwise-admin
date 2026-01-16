@@ -26,6 +26,7 @@ const CommissionWrapper = () => {
     refetch,
     handleSortChange,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useGetCommissions();
 
   return (
@@ -57,6 +58,7 @@ const CommissionWrapper = () => {
         handleClear={handleClear}
         onSubmit={handleSearch}
         setSelectedDateFilterValue={setSelectedDateFilterValue}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

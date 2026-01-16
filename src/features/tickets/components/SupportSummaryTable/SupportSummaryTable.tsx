@@ -23,6 +23,7 @@ const SupportSummaryTable = () => {
     currentPage,
     limit,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useGetSupportSummary();
 
   const typedColumns = Column as ColumnDef<unknown>[];
@@ -52,6 +53,7 @@ const SupportSummaryTable = () => {
           isLastPage={isLastPage}
           limit={limit}
           setLimit={setLimit}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

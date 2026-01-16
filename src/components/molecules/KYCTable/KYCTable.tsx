@@ -24,6 +24,7 @@ interface ManageAdminTableProps<TData = unknown> {
   handleClear?: () => void;
   onSubmit?: (e: FormEvent) => void;
   isLoading: boolean;
+  setCurrentPage: (page: number) => void;
 }
 
 const KYCTable = ({
@@ -43,6 +44,7 @@ const KYCTable = ({
   handleClear,
   onSubmit,
   isLoading,
+  setCurrentPage,
 }: ManageAdminTableProps) => {
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -68,6 +70,7 @@ const KYCTable = ({
           handleChange={handleChange}
           handleClear={handleClear}
           onSubmit={onSubmit}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </div>

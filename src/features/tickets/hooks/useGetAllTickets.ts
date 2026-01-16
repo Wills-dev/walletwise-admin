@@ -19,6 +19,7 @@ export const useGetAllTickets = () => {
     handleClear,
     submittedQuery,
     handleSearch,
+    setCurrentPage,
   } = useTicketStates();
 
   const { data, isPending, isLoading, isError, error } = useQuery({
@@ -53,5 +54,6 @@ export const useGetAllTickets = () => {
     handleClear,
     currentPage,
     limit,
+    setCurrentPage,
   };
 };

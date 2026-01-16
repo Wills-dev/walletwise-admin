@@ -29,6 +29,7 @@ const GiftcardRatingWrapper = () => {
     limit,
     refetch,
     handleSortChange,
+    setCurrentPage,
   } = useGetGiftcardRatings();
 
   const typedColumns = Column as ColumnDef<unknown>[];
@@ -45,7 +46,7 @@ const GiftcardRatingWrapper = () => {
       ) : (
         <TableWrapper
           columns={typedColumns}
-          data={data || []}
+          data={data?.rates || []}
           totalPages={data?.pagination?.totalPages || 1}
           currentPage={currentPage}
           prevPage={prevPage}
@@ -63,6 +64,7 @@ const GiftcardRatingWrapper = () => {
           handleSortChange={handleSortChange}
           refetch={refetch}
           sortOptions={ratingGiftSortOptions}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

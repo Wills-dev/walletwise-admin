@@ -43,6 +43,7 @@ const TableWrapper = ({
   handleClear,
   onSubmit,
   sortOptions,
+  setCurrentPage,
 }: TableWrapperProps) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -105,6 +106,7 @@ const TableWrapper = ({
         isLastPage={isLastPage}
         limit={limit}
         setLimit={setLimit}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

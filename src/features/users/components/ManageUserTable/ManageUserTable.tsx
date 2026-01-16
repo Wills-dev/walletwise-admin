@@ -26,6 +26,7 @@ interface ManageUserTableProps<TData = unknown> {
   isLoading: boolean;
   refetch: () => void;
   handleSortChange: (values: { [key: number]: string }) => void;
+  setCurrentPage: (page: number) => void;
 }
 
 const ManageUserTable = ({
@@ -47,6 +48,7 @@ const ManageUserTable = ({
   isLoading,
   refetch,
   handleSortChange,
+  setCurrentPage,
 }: ManageUserTableProps) => {
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -75,6 +77,7 @@ const ManageUserTable = ({
           handleSortChange={handleSortChange}
           refetch={refetch}
           sortOptions={userSortOptions}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </div>

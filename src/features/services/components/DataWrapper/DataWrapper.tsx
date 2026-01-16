@@ -34,6 +34,7 @@ const DataWrapper = () => {
     handleSwithTab,
     tab,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useGetServiceTransactions("data");
 
   const { hasPermission } = useAdminPermission();
@@ -89,6 +90,7 @@ const DataWrapper = () => {
             onSubmit={handleSearch}
             sortOptions={sortOptions}
             service="data"
+            setCurrentPage={setCurrentPage}
           />
         </AnimatePresence>
       ),
@@ -137,7 +139,8 @@ const DataWrapper = () => {
             handleClear={handleClear}
             onSubmit={handleSearch}
             sortOptions={sortOptions}
-            service="aritime"
+            service="data"
+            setCurrentPage={setCurrentPage}
           />
         </AnimatePresence>
       ),

@@ -26,6 +26,7 @@ const UsertagTransactions = () => {
     refetch,
     handleSortChange,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useGetUserTagTransactions();
 
   return (
@@ -58,6 +59,7 @@ const UsertagTransactions = () => {
         handleClear={handleClear}
         onSubmit={handleSearch}
         setSelectedDateFilterValue={setSelectedDateFilterValue}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

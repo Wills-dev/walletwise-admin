@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 import {
   Select,
@@ -7,6 +8,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useDebouncedSetter } from "@/lib/hooks/useDebouncedSetter";
+import { useState } from "react";
 
 interface PaginationComponentProps {
   totalPages: number;
@@ -19,6 +22,7 @@ interface PaginationComponentProps {
   isLastPage: (totalPages: number) => boolean;
   limit: number;
   setLimit: (limit: number) => void;
+  setCurrentPage?: (page: number) => void;
 }
 
 const PaginationComponent = ({
@@ -32,9 +36,19 @@ const PaginationComponent = ({
   isLastPage,
   limit,
   setLimit,
+  setCurrentPage,
 }: PaginationComponentProps) => {
+  const [pageInput, setPageInput] = useState(currentPage);
   const noPrevPage = isFirstPage();
   const noNextPage = () => isLastPage(totalPages);
+
+  const debounce = useDebouncedSetter(500);
+
+  const handleChange = (value: number) => {
+    debounce(() => {
+      setCurrentPage?.(value);
+    });
+  };
 
   return (
     <div className="flex items-center justify-between p-4">
@@ -109,6 +123,22 @@ const PaginationComponent = ({
               />
             </svg>
           </Button>
+          {setCurrentPage !== undefined && (
+            <Input
+              // type="number"
+              min="1"
+              max={totalPages}
+              value={pageInput}
+              onChange={(e) => {
+                const page = parseInt(e.target.value);
+                if (page >= 1 && page <= totalPages) {
+                  setPageInput(page);
+                  handleChange(page);
+                }
+              }}
+              className="h-8 max-w-16 text-center border border-gray-300 dark:border-gray-600"
+            />
+          )}
           <Button
             variant="outline"
             className="h-8 w-8 p-0"
