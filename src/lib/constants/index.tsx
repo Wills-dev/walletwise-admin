@@ -36,21 +36,41 @@ export const links = [
         name: "analytics",
         link: "/analytics",
         icon: <ChartNoAxesCombined className="w-4 h-4" />,
+        permissions: [
+          "admin_management.read",
+          "admin_management.write",
+          "admin_management.create",
+        ],
       },
       {
         name: "earnings",
         link: "/earnings",
         icon: <HandCoins className="w-4 h-4" />,
+        permissions: [
+          "admin_management.read",
+          "admin_management.write",
+          "admin_management.create",
+        ],
       },
       {
         name: "commission",
         link: "/commission",
         icon: <GitCompareArrows className="w-4 h-4" />,
+        permissions: [
+          "admin_management.read",
+          "admin_management.write",
+          "admin_management.create",
+        ],
       },
       {
         name: "referrals",
         link: "/referrals",
         icon: <UserRoundPlus className="w-4 h-4" />,
+        permissions: [
+          "admin_management.read",
+          "admin_management.write",
+          "admin_management.create",
+        ],
       },
       {
         name: "all transactions",
@@ -61,6 +81,11 @@ export const links = [
         name: "usertag",
         link: "/usertag",
         icon: <UserStar className="w-4 h-4" />,
+        permissions: [
+          "admin_management.read",
+          "admin_management.write",
+          "admin_management.create",
+        ],
       },
       {
         name: "services",
@@ -87,6 +112,11 @@ export const links = [
         name: "manage admin",
         link: "/manage-admin",
         icon: <UserLock className="w-4 h-4" />,
+        permissions: [
+          "admin_management.read",
+          "admin_management.write",
+          "admin_management.create",
+        ],
       },
       {
         name: "manage user",
@@ -102,6 +132,11 @@ export const links = [
         name: "roles",
         link: "/roles",
         icon: <UserRoundPen className="w-4 h-4" />,
+        permissions: [
+          "admin_management.read",
+          "admin_management.write",
+          "admin_management.create",
+        ],
       },
     ],
   },
