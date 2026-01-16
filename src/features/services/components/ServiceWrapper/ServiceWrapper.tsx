@@ -33,6 +33,7 @@ const ServiceWrapper = ({ service }: { service: string }) => {
     handleSwithTab,
     tab,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useGetServiceTransactions(service);
 
   const { hasPermission } = useAdminPermission();
@@ -88,6 +89,7 @@ const ServiceWrapper = ({ service }: { service: string }) => {
             onSubmit={handleSearch}
             sortOptions={sortOptions}
             service={service}
+            setCurrentPage={setCurrentPage}
           />
         </AnimatePresence>
       ),
@@ -127,7 +129,8 @@ const ServiceWrapper = ({ service }: { service: string }) => {
             handleClear={handleClear}
             onSubmit={handleSearch}
             sortOptions={sortOptions}
-            service="aritime"
+            service={service}
+            setCurrentPage={setCurrentPage}
           />
         </AnimatePresence>
       ),

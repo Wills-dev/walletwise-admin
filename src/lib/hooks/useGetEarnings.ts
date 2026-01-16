@@ -18,6 +18,7 @@ export const useGetEarnings = () => {
     setSelectedDateFilterValue,
     handleSwithTab,
     tab,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error } = useQuery({
@@ -53,5 +54,6 @@ export const useGetEarnings = () => {
     setSelectedDateFilterValue,
     handleSwithTab,
     tab,
+    setCurrentPage,
   };
 };

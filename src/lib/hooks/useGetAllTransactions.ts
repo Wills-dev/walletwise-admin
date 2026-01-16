@@ -25,6 +25,7 @@ export const useGetAllTransactions = () => {
     handleSortChange,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -75,5 +76,6 @@ export const useGetAllTransactions = () => {
     setSelectedDateFilterValue,
     excludeTransfer,
     setExcludeTransfer,
+    setCurrentPage,
   };
 };

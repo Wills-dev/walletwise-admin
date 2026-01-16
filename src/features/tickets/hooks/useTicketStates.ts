@@ -114,5 +114,6 @@ export const useTicketStates = () => {
     selectedDateFilterValue,
     setSelectedDateFilterValue,
     handleSortChange,
+    setCurrentPage,
   };
 };

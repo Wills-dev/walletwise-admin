@@ -27,6 +27,7 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
     goToLastPage,
     isFirstPage,
     isLastPage,
+    setCurrentPage,
   } = useGetUserInfo(userId);
 
   return (
@@ -66,6 +67,7 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
         isFirstPage={isFirstPage}
         isLastPage={isLastPage}
         limit={limit}
+        setCurrentPage={setCurrentPage}
         setLimit={setLimit}
       />
       <UserReferralSection
@@ -81,6 +83,7 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
         setLimit={setLimit}
         isLoading={isLoading}
         userReferrals={data?.referrals?.referrals}
+        setCurrentPage={setCurrentPage}
       />
       {isLoading ? (
         <>

@@ -29,6 +29,7 @@ interface SupportActivitiesTableProps<TData = unknown> {
   handleClear?: () => void;
   onSubmit?: (e: FormEvent) => void;
   isLoading: boolean;
+  setCurrentPage?: (page: number) => void;
 }
 
 const SupportActivitiesTable = ({
@@ -49,6 +50,7 @@ const SupportActivitiesTable = ({
   handleClear,
   onSubmit,
   isLoading,
+  setCurrentPage,
 }: SupportActivitiesTableProps) => {
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -81,6 +83,7 @@ const SupportActivitiesTable = ({
           handleChange={handleChange}
           handleClear={handleClear}
           onSubmit={onSubmit}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

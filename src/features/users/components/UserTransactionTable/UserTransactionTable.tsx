@@ -18,6 +18,7 @@ interface UserTransactionTableProps<TData = unknown> {
   limit: number;
   setLimit: (limit: number) => void;
   isLoading: boolean;
+  setCurrentPage: (page: number) => void;
 }
 
 const UserTransactionTable = ({
@@ -33,6 +34,7 @@ const UserTransactionTable = ({
   limit,
   setLimit,
   isLoading,
+  setCurrentPage,
 }: UserTransactionTableProps) => {
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -54,6 +56,7 @@ const UserTransactionTable = ({
           isLastPage={isLastPage}
           limit={limit}
           setLimit={setLimit}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </div>

@@ -23,6 +23,7 @@ export const useGetUsers = () => {
     status,
     handleStatusChange,
     handleSortChange,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -62,5 +63,6 @@ export const useGetUsers = () => {
     refetch,
     handleStatusChange,
     handleSortChange,
+    setCurrentPage,
   };
 };

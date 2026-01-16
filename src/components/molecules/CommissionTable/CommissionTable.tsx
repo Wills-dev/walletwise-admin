@@ -32,6 +32,7 @@ interface CommissionTableProps<TData = unknown> {
   handleChange?: (search: string) => void;
   handleClear?: () => void;
   onSubmit?: (e: FormEvent) => void;
+  setCurrentPage: (page: number) => void;
 }
 
 const CommissionTable = ({
@@ -54,6 +55,7 @@ const CommissionTable = ({
   handleChange,
   handleClear,
   onSubmit,
+  setCurrentPage,
 }: CommissionTableProps) => {
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -89,6 +91,7 @@ const CommissionTable = ({
           handleClear={handleClear}
           onSubmit={onSubmit}
           sortOptions={commissionSortOptions}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

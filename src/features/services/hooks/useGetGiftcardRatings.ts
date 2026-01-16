@@ -21,6 +21,7 @@ export const useGetGiftcardRatings = () => {
     handleSearch,
     filter,
     handleSortChange,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -58,5 +59,6 @@ export const useGetGiftcardRatings = () => {
     limit,
     refetch,
     handleSortChange,
+    setCurrentPage,
   };
 };

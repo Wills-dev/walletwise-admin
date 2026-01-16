@@ -26,6 +26,7 @@ const TicketTable = () => {
     handleClear,
     currentPage,
     limit,
+    setCurrentPage,
   } = useGetAllTickets();
 
   const typedColumns = Column as ColumnDef<unknown>[];
@@ -58,6 +59,7 @@ const TicketTable = () => {
           handleChange={handleSearchChange}
           handleClear={handleClear}
           onSubmit={handleSearch}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

@@ -14,6 +14,7 @@ export const useGetUserInfo = (userId: string) => {
     goToLastPage,
     isFirstPage,
     isLastPage,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isLoading } = useQuery({
@@ -41,5 +42,6 @@ export const useGetUserInfo = (userId: string) => {
     goToLastPage,
     isFirstPage,
     isLastPage,
+    setCurrentPage,
   };
 };

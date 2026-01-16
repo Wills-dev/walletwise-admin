@@ -16,6 +16,7 @@ export const useGetSupportSummary = () => {
     isLastPage,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
+    setCurrentPage,
   } = useTicketStates();
 
   const { data, isPending, isLoading, isError, error } = useQuery({
@@ -48,5 +49,6 @@ export const useGetSupportSummary = () => {
     currentPage,
     limit,
     setSelectedDateFilterValue,
+    setCurrentPage,
   };
 };

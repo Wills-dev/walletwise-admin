@@ -26,6 +26,7 @@ const ManageUserWrapper = () => {
     refetch,
     handleStatusChange,
     handleSortChange,
+    setCurrentPage,
   } = useGetUsers();
 
   return (
@@ -61,6 +62,7 @@ const ManageUserWrapper = () => {
         onSubmit={handleSearch}
         handleSortChange={handleSortChange}
         refetch={refetch}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

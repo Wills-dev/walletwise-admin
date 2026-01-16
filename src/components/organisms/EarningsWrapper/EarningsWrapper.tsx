@@ -22,6 +22,7 @@ const EarningsWrapper = () => {
     setSelectedDateFilterValue,
     handleSwithTab,
     tab,
+    setCurrentPage,
   } = useGetEarnings();
 
   const content = (
@@ -41,6 +42,7 @@ const EarningsWrapper = () => {
       limit={limit}
       setLimit={setLimit}
       setSelectedDateFilterValue={setSelectedDateFilterValue}
+      setCurrentPage={setCurrentPage}
     />
   );
 

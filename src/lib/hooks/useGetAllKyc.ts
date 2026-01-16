@@ -23,6 +23,7 @@ export const useGetAllKyc = () => {
     handleTierChange,
     status,
     handleStatusChange,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error } = useQuery({
@@ -63,5 +64,6 @@ export const useGetAllKyc = () => {
     handleTierChange,
     status,
     handleStatusChange,
+    setCurrentPage,
   };
 };

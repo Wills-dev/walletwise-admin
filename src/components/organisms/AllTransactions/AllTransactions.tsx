@@ -26,6 +26,7 @@ const AllTransactions = () => {
     handleSortChange,
     setSelectedDateFilterValue,
     setExcludeTransfer,
+    setCurrentPage,
   } = useGetAllTransactions();
 
   return (
@@ -61,6 +62,7 @@ const AllTransactions = () => {
         handleChange={handleSearchChange}
         handleClear={handleClear}
         onSubmit={handleSearch}
+        setCurrentPage={setCurrentPage}
         setSelectedDateFilterValue={setSelectedDateFilterValue}
       />
     </div>

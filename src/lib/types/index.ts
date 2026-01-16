@@ -57,6 +57,7 @@ export interface TableWrapperProps<TData = unknown> {
   handleClear?: () => void;
   onSubmit?: (e: FormEvent) => void;
   sortOptions?: SortOption[];
+  setCurrentPage?: (page: number) => void;
 }
 
 export interface optionsType {
@@ -126,6 +127,7 @@ export interface HistoryProps<TData = unknown> {
   service: string;
   handleSwitchTransferType?: (value: string) => void;
   transferType?: string;
+  setCurrentPage: (page: number) => void;
 }
 
 export interface TransactionType {

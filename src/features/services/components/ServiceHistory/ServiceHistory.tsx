@@ -43,6 +43,7 @@ const ServiceHistory = ({
   service,
   handleSwitchTransferType,
   transferType,
+  setCurrentPage,
 }: HistoryProps) => {
   const { hasPermission } = useAdminPermission();
   const showTransferTab =
@@ -103,6 +104,7 @@ const ServiceHistory = ({
             handleClear={handleClear}
             onSubmit={onSubmit}
             sortOptions={sortOptions}
+            setCurrentPage={setCurrentPage}
           />
         )}
       </div>

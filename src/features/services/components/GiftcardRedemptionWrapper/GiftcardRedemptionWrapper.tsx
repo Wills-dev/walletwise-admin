@@ -31,6 +31,7 @@ const GiftcardRedemptionWrapper = () => {
     handleSortChange,
     setSelectedDateFilterValue,
     // handleStatusChange,
+    setCurrentPage,
   } = useGetGiftCardRedemption();
 
   const typedColumns = Column as ColumnDef<unknown>[];
@@ -66,6 +67,7 @@ const GiftcardRedemptionWrapper = () => {
           refetch={refetch}
           sortOptions={redeemGiftSortOptions}
           setSelectedDateFilterValue={setSelectedDateFilterValue}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

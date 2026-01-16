@@ -23,6 +23,7 @@ interface EarningsTableProps<TData = unknown> {
   limit: number;
   setLimit: (limit: number) => void;
   setSelectedDateFilterValue: (value: DateFilterValue) => void;
+  setCurrentPage: (page: number) => void;
 }
 
 const EarningsTable = ({
@@ -39,6 +40,7 @@ const EarningsTable = ({
   limit,
   setLimit,
   setSelectedDateFilterValue,
+  setCurrentPage,
 }: EarningsTableProps) => {
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -66,6 +68,7 @@ const EarningsTable = ({
           isLastPage={isLastPage}
           limit={limit}
           setLimit={setLimit}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </motion.div>

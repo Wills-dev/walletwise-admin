@@ -25,6 +25,7 @@ const UserReferralSection = ({
   limit,
   setLimit,
   isLoading,
+  setCurrentPage,
 }: {
   userReferrals: UserReferralType[];
   totalPages: number;
@@ -38,6 +39,7 @@ const UserReferralSection = ({
   limit: number;
   setLimit: (limit: number) => void;
   isLoading: boolean;
+  setCurrentPage: (page: number) => void;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -72,6 +74,7 @@ const UserReferralSection = ({
               isLastPage={isLastPage}
               limit={limit}
               setLimit={setLimit}
+              setCurrentPage={setCurrentPage}
             />
           )}
         </div>

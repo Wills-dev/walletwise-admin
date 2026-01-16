@@ -26,6 +26,7 @@ const ManageKycWrapper = () => {
     isPending,
     handleTierChange,
     handleStatusChange,
+    setCurrentPage,
   } = useGetAllKyc();
 
   return (
@@ -60,6 +61,7 @@ const ManageKycWrapper = () => {
         handleChange={handleSearchChange}
         handleClear={handleClear}
         onSubmit={handleSearch}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

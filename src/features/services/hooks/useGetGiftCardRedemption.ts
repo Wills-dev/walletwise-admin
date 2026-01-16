@@ -25,6 +25,7 @@ export const useGetGiftCardRedemption = () => {
     setSelectedDateFilterValue,
     handleSortChange,
     handleStatusChange,
+    setCurrentPage,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -67,5 +68,6 @@ export const useGetGiftCardRedemption = () => {
     handleSortChange,
     setSelectedDateFilterValue,
     handleStatusChange,
+    setCurrentPage,
   };
 };
