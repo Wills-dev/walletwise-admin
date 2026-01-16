@@ -35,6 +35,7 @@ const TransferWapper = () => {
     handleSwitchTransferType,
     transferType,
     handleStatusChange,
+    setCurrentPage,
   } = useGetServiceTransactions("transfer");
 
   const { hasPermission } = useAdminPermission();
@@ -92,6 +93,7 @@ const TransferWapper = () => {
             service={"transfer"}
             handleSwitchTransferType={handleSwitchTransferType}
             transferType={transferType}
+            setCurrentPage={setCurrentPage}
           />
         </AnimatePresence>
       ),
@@ -132,6 +134,7 @@ const TransferWapper = () => {
             onSubmit={handleSearch}
             sortOptions={sortOptions}
             service="transfer"
+            setCurrentPage={setCurrentPage}
           />
         </AnimatePresence>
       ),
