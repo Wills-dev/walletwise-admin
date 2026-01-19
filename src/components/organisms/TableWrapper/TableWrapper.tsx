@@ -87,6 +87,7 @@ const TableWrapper = ({
           handleSortChange={handleSortChange}
           table={table}
           sortOptions={sortOptions}
+          rowSelection={rowSelection}
         />
       </div>
       <div className="shadow">

@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 
-import { Table } from "@tanstack/react-table";
+import { RowSelectionState, Table } from "@tanstack/react-table";
 
 import { DateFilterValue, SortOption } from "@/lib/types";
 
@@ -8,6 +8,7 @@ import ColumnSorting from "../ColumnSorting/ColumnSorting";
 import DateFilterComponent from "@/components/organisms/DateFilterComponent/DateFilterComponent";
 import SearchInput from "../SearchInput/SearchInput";
 import SortDropdown from "@/components/organisms/SortDropdown/SortDropdown";
+import ExportButton from "../ExportButton/ExportButton";
 
 interface TableResourceToolbarProps<TData = unknown> {
   setSelectedDateFilterValue?: (value: DateFilterValue) => void;
@@ -19,6 +20,7 @@ interface TableResourceToolbarProps<TData = unknown> {
   handleSortChange?: (values: { [key: number]: string }) => void;
   table: Table<TData>;
   sortOptions?: SortOption[];
+  rowSelection: RowSelectionState;
 }
 
 const TableResourceToolbar = ({
@@ -31,6 +33,7 @@ const TableResourceToolbar = ({
   handleSortChange,
   table,
   sortOptions,
+  rowSelection,
 }: TableResourceToolbarProps) => {
   const showSearch =
     search !== undefined &&
@@ -70,6 +73,7 @@ const TableResourceToolbar = ({
             onSubmit={onSubmit}
           />
         )}
+        <ExportButton table={table} rowSelection={rowSelection} />
         <ColumnSorting table={table} />
       </div>
     </div>
