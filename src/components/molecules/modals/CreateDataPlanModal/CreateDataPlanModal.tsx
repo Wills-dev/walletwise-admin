@@ -13,7 +13,7 @@ interface CreateDataPlanModalProps {
   dataPlan: CreateDataPlanType;
   handleSubmit: (e: React.FormEvent) => void;
   handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   isPending: boolean;
 }
@@ -32,7 +32,7 @@ const CreateDataPlanModal = ({
     (plan: { name: string; id: number }) => ({
       label: plan?.name,
       value: plan?.id?.toString(),
-    })
+    }),
   );
 
   const isFormFilled = dataPlan?.base_plan_id && dataPlan?.fulfillment_quantity;
@@ -65,6 +65,16 @@ const CreateDataPlanModal = ({
             onChange={handleChange}
             type="text"
             name="fulfillment_quantity"
+            placeholder=""
+          />
+        </div>
+        <div className="space-y-2">
+          <Label title="Price" />
+          <Input
+            value={dataPlan?.final_price || ""}
+            onChange={handleChange}
+            type="text"
+            name="final_price"
             placeholder=""
           />
         </div>

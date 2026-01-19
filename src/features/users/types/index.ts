@@ -49,6 +49,7 @@ export interface SessionType {
   ip: string;
   expires_at: string;
   last_login: string;
+  location: string;
 }
 
 export interface UserReferralType {

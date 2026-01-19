@@ -8,6 +8,7 @@ import { createCustomDataPlan } from "../api";
 import { ApiErrorResponse } from "@/lib/types";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 import { formatInputTextNumber } from "@/lib/helpers/formatNumbers";
+import { formatInputTextNumberWithCommas } from "@/lib/helpers/formatInputTextNumberWithCommas";
 
 export const useCreateCustomDataPlan = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -15,6 +16,7 @@ export const useCreateCustomDataPlan = () => {
     base_plan_id: "",
     fulfillment_quantity: "",
     plan_code: "",
+    final_price: "",
   });
 
   const resetForm = () => {
@@ -23,20 +25,23 @@ export const useCreateCustomDataPlan = () => {
       base_plan_id: "",
       fulfillment_quantity: "",
       plan_code: "",
+      final_price: "",
     });
   };
 
   const queryClient = useQueryClient();
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setDataPlan({
       ...dataPlan,
       [name]: ["fulfillment_quantity"].includes(name)
         ? formatInputTextNumber(value)
-        : value,
+        : name === "final_price"
+          ? formatInputTextNumberWithCommas(value)
+          : value,
     });
   };
 
