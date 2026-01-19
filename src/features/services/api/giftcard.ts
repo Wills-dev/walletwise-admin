@@ -127,11 +127,12 @@ export const updateRedeemGiftcardStatus = async ({
     const payload: { status: "success" | "failed"; admin_notes?: string } = {
       status,
     };
-    if (admin_notes !== undefined || admin_notes)
+    if (typeof admin_notes === "string" && admin_notes.trim() !== "") {
       payload.admin_notes = admin_notes;
+    }
 
     const { data } = await axiosInstance.patch(
-      `/gift-card-redemptions/${id}/status`,
+      `/gift-cards/${id}/status`,
       payload,
     );
     return data?.data;
