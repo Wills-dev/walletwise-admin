@@ -26,7 +26,7 @@ export const getGiftcardRedemption = async ({
       if (selectedDateFilterValue.label === "custom") {
         query.filterType = "customRange";
         query.filterValue = `${formatCreatedAt(
-          selectedDateFilterValue.dateRange.start
+          selectedDateFilterValue.dateRange.start,
         )},${formatCreatedAt(selectedDateFilterValue.dateRange.end)}`;
       } else {
         query.filterType = selectedDateFilterValue.label;
@@ -73,7 +73,7 @@ export const getGifcardRatings = async ({
     const queryString = new URLSearchParams(query).toString();
 
     const { data } = await axiosInstance.get(
-      `/rates${queryString ? `?${queryString}` : ""}`
+      `/rates${queryString ? `?${queryString}` : ""}`,
     );
     return data?.data;
   } catch (error) {
@@ -108,6 +108,32 @@ export const editGifcardRatingInfo = async ({
     if (is_active !== undefined) payload.is_active = is_active;
 
     const { data } = await axiosInstance.patch(`/rates/${id}`, payload);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateRedeemGiftcardStatus = async ({
+  id,
+  status,
+  admin_notes,
+}: {
+  id: string;
+  status: "success" | "failed";
+  admin_notes: string;
+}) => {
+  try {
+    const payload: { status: "success" | "failed"; admin_notes?: string } = {
+      status,
+    };
+    if (admin_notes !== undefined || admin_notes)
+      payload.admin_notes = admin_notes;
+
+    const { data } = await axiosInstance.patch(
+      `/gift-card-redemptions/${id}/status`,
+      payload,
+    );
     return data?.data;
   } catch (error) {
     throw error;
