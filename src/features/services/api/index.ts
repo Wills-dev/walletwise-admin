@@ -1,6 +1,7 @@
 import { axiosInstance } from "@/lib/axiosInstance";
 import { fetchDataProps } from "@/lib/types";
 import { CreateDataPlanType } from "../types";
+import { removeCommas } from "@/lib/helpers/removeCommas";
 
 export const getServiceTransaction = async ({
   currentPage,
@@ -94,6 +95,7 @@ export const createCustomDataPlan = async ({
   base_plan_id,
   fulfillment_quantity,
   plan_code,
+  final_price,
 }: CreateDataPlanType) => {
   try {
     const url = `/data-providers/plans/custom`;
@@ -102,6 +104,9 @@ export const createCustomDataPlan = async ({
       base_plan_id: Number(base_plan_id),
       fulfillment_quantity: Number(fulfillment_quantity),
     };
+    if (final_price) {
+      payload.final_price = removeCommas(final_price);
+    }
     if (plan_code) {
       payload.plan_code = plan_code;
     }

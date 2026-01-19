@@ -13,8 +13,13 @@ import UserTransactionTable from "../UserTransactionTable/UserTransactionTable";
 import { userBreadcrumb } from "../../constants";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 import UserReferralSection from "../UserReferralSection/UserReferralSection";
+import { canViewTransactions } from "@/lib/helpers/canViewTransactions";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import RestrictionEmptyState from "@/components/atoms/RestrictionEmptyState/RestrictionEmptyState";
 
 const UserInfoWrapper = ({ userId }: { userId: string }) => {
+  const { user } = useSelector((state: RootState) => state.auth);
   const {
     data,
     isLoading,
@@ -29,6 +34,8 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
     isLastPage,
     setCurrentPage,
   } = useGetUserInfo(userId);
+
+  const currentAdminId = user?.id || "";
 
   return (
     <div className="space-y-4">
@@ -55,21 +62,25 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
           referralCount={data?.referrals?.referralCount || 0}
         />
       </div>
-      <UserTransactionTable
-        isLoading={isLoading}
-        data={data?.transactions?.transactions}
-        totalPages={data?.transactions?.totalPages}
-        currentPage={currentPage}
-        prevPage={prevPage}
-        nextPage={nextPage}
-        goToFirstPage={goToFirstPage}
-        goToLastPage={goToLastPage}
-        isFirstPage={isFirstPage}
-        isLastPage={isLastPage}
-        limit={limit}
-        setCurrentPage={setCurrentPage}
-        setLimit={setLimit}
-      />
+      {canViewTransactions(userId, currentAdminId) ? (
+        <UserTransactionTable
+          isLoading={isLoading}
+          data={data?.transactions?.transactions}
+          totalPages={data?.transactions?.totalPages}
+          currentPage={currentPage}
+          prevPage={prevPage}
+          nextPage={nextPage}
+          goToFirstPage={goToFirstPage}
+          goToLastPage={goToLastPage}
+          isFirstPage={isFirstPage}
+          isLastPage={isLastPage}
+          limit={limit}
+          setCurrentPage={setCurrentPage}
+          setLimit={setLimit}
+        />
+      ) : (
+        <RestrictionEmptyState />
+      )}
       <UserReferralSection
         totalPages={data?.transactions?.totalPages}
         currentPage={currentPage}

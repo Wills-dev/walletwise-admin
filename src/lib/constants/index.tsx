@@ -66,11 +66,6 @@ export const links = [
         name: "referrals",
         link: "/referrals",
         icon: <UserRoundPlus className="w-4 h-4" />,
-        permissions: [
-          "admin_management.read",
-          "admin_management.write",
-          "admin_management.create",
-        ],
       },
       {
         name: "all transactions",
@@ -278,5 +273,5 @@ export const years = Array.from(
   (_, i) => {
     const year = (startYear + i).toString();
     return { label: year, value: year };
-  }
+  },
 );

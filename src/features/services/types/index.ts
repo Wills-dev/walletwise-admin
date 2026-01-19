@@ -36,6 +36,7 @@ export interface CreateDataPlanType {
   fulfillment_quantity: string;
   commission?: string;
   plan_code?: string;
+  final_price?: string;
 }
 
 export interface DataPlan {
