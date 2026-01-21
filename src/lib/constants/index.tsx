@@ -21,6 +21,7 @@ import {
   Zap,
   Gift,
   Send,
+  GiftIcon,
 } from "lucide-react";
 
 export const links = [
@@ -86,6 +87,11 @@ export const links = [
         name: "services",
         link: "/services/airtime",
         icon: <Database className="w-4 h-4" />,
+      },
+      {
+        name: "redeem giftcard",
+        link: "/services/gift-redeem",
+        icon: <GiftIcon className="w-4 h-4" />,
       },
     ],
   },
@@ -166,7 +172,10 @@ export const services = [
     name: "data",
     link: "/services/data",
   },
-
+  {
+    name: "education",
+    link: "/services/education",
+  },
   {
     name: "electricity",
     link: "/services/electricity",
