@@ -32,7 +32,7 @@ const MessageCard = ({ message }: { message: Message }) => {
       </CardHeader>
       <CardContent className="max-w-2xl">
         <div
-          className="prose prose-sm dark:prose-invert max-w-none text-foreground/90"
+          className="prose prose-sm dark:prose-invert wrap-break-words whitespace-normal max-w-none text-foreground/90"
           dangerouslySetInnerHTML={{ __html: message?.message }}
         />
       </CardContent>
