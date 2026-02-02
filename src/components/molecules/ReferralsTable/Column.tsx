@@ -10,6 +10,7 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 
 import { ReferralUser } from "@/lib/types";
+import { formatDate } from "@/lib/helpers/dateFormats";
 
 const columnHelper = createColumnHelper<ReferralUser>();
 
@@ -49,6 +50,24 @@ export const Column = [
     enableSorting: false,
     enableHiding: false,
   },
+  columnHelper.accessor("created_at", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const date: string = row.getValue("created_at");
+      const formatted = date ? formatDate(date) : "";
+      return <div className="">{formatted}</div>;
+    },
+  }),
   columnHelper.accessor("first_name", {
     header: ({ column }) => {
       return (

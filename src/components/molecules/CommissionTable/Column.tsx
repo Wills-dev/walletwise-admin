@@ -131,6 +131,20 @@ export const Column = [
       );
     },
   }),
+  columnHelper.accessor("services.education", {
+    header: "Education",
+    cell: ({ getValue }) => {
+      const education = getValue();
+      return (
+        <div>
+          <span className="font-medium">{education?.count || 0}</span>
+          <span className="text-gray-500 ml-1">
+            (₦{education?.volume?.toLocaleString() || 0})
+          </span>
+        </div>
+      );
+    },
+  }),
   columnHelper.accessor("services.electricity", {
     header: "Electricity",
     cell: ({ getValue }) => {
@@ -145,6 +159,7 @@ export const Column = [
       );
     },
   }),
+
   columnHelper.accessor("services.giftcard", {
     header: "Giftcard ",
     cell: ({ getValue }) => {
