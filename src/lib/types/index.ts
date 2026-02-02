@@ -195,6 +195,7 @@ type ServiceMetrics = {
   cable: TransactionMetric;
   data: TransactionMetric;
   electricity: TransactionMetric;
+  education: TransactionMetric;
   giftcard: TransactionMetric;
   transfer: TransactionMetric;
 };
