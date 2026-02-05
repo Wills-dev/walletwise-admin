@@ -73,6 +73,11 @@ const EarningsWrapper = () => {
       content,
     },
     {
+      label: "Education",
+      value: "education",
+      content,
+    },
+    {
       label: "Electricity",
       value: "electricity",
       content,
