@@ -338,3 +338,11 @@ export interface KYCData {
   verification_date: string | null;
   kyc_details: KYCDetails;
 }
+
+export interface NotificationPayload {
+  type?: string;
+  title?: string;
+  message?: string;
+  data?: Record<string, unknown>;
+  timestamp?: string;
+}
