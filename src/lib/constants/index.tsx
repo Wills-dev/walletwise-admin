@@ -57,11 +57,6 @@ export const links = [
         name: "commission",
         link: "/commission",
         icon: <GitCompareArrows className="w-4 h-4" />,
-        permissions: [
-          "admin_management.read",
-          "admin_management.write",
-          "admin_management.create",
-        ],
       },
       {
         name: "referrals",
@@ -77,11 +72,6 @@ export const links = [
         name: "usertag",
         link: "/usertag",
         icon: <UserStar className="w-4 h-4" />,
-        permissions: [
-          "admin_management.read",
-          "admin_management.write",
-          "admin_management.create",
-        ],
       },
       {
         name: "services",
