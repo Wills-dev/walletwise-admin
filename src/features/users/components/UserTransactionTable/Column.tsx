@@ -20,7 +20,7 @@ interface ColumnProps<TData = unknown> {
   table: Table<TData>;
 }
 
-export const Column = [
+export const Column = (hasPermission: boolean) => [
   {
     id: "select",
     header: ({ table }: ColumnProps) => (
@@ -120,18 +120,22 @@ export const Column = [
     },
   }),
 
-  columnHelper.accessor("commission", {
-    header: () => <div className="">Commission</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("commission"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "NGN",
-      }).format(amount);
+  ...(hasPermission
+    ? [
+        columnHelper.accessor("commission", {
+          header: () => <div className="">Commission</div>,
+          cell: ({ row }) => {
+            const amount = parseFloat(row.getValue("commission"));
+            const formatted = new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "NGN",
+            }).format(amount);
 
-      return <div className=" font-medium">{formatted}</div>;
-    },
-  }),
+            return <div className=" font-medium">{formatted}</div>;
+          },
+        }),
+      ]
+    : []),
 
   columnHelper.accessor("balance", {
     header: () => <div className="">Balance</div>,
@@ -175,7 +179,7 @@ export const Column = [
             <DropdownMenuItem>
               <Link
                 href={`/services/${findServiceName(
-                  transaction?.category
+                  transaction?.category,
                 )}/info/${transaction.id}`}
               >
                 View info

@@ -4,6 +4,7 @@ import { Column } from "./Column";
 
 import TableLoader from "@/components/atoms/skeleton/TableLoader";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
+import { useAdminPermission } from "@/lib/hooks/useAdminPermission";
 
 interface UserTransactionTableProps<TData = unknown> {
   data: TData[];
@@ -36,7 +37,8 @@ const UserTransactionTable = ({
   isLoading,
   setCurrentPage,
 }: UserTransactionTableProps) => {
-  const typedColumns = Column as ColumnDef<unknown>[];
+  const { hasPermission } = useAdminPermission();
+  const typedColumns = Column(hasPermission) as ColumnDef<unknown>[];
 
   return (
     <div>
