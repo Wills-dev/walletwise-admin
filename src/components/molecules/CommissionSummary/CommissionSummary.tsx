@@ -31,7 +31,7 @@ const CommissionSummary = ({
         color="green"
       />
       <StatisticCard
-        title="Refferrals"
+        title="Referrals"
         value={referrals || 0}
         icon={<Share2 />}
         color="purple"
