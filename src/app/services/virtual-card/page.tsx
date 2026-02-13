@@ -6,7 +6,7 @@ import ServiceWrapper from "@/features/services/components/ServiceWrapper/Servic
 const VirtualCardPage = () => {
   return (
     <Suspense fallback={<MainLoader />}>
-      <ServiceWrapper service="virtual-card" />
+      <ServiceWrapper service="card-creation" />
     </Suspense>
   );
 };
