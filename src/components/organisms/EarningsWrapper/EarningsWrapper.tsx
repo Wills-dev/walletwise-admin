@@ -82,10 +82,20 @@ const EarningsWrapper = () => {
       value: "electricity",
       content,
     },
+    {
+      label: "E-Sim",
+      value: "esim",
+      content,
+    },
 
     {
       label: "Gift Cards",
       value: "giftcard",
+      content,
+    },
+    {
+      label: "Gift Redeem",
+      value: "gift-redeem",
       content,
     },
 
@@ -94,7 +104,13 @@ const EarningsWrapper = () => {
       value: "transfer",
       content,
     },
+    {
+      label: "Virtual Card",
+      value: "virtual-card",
+      content,
+    },
   ];
+
   return (
     <div className="space-y-6">
       <PageTitle
