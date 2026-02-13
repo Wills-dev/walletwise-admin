@@ -106,7 +106,7 @@ const EarningsWrapper = () => {
     },
     {
       label: "Virtual Card",
-      value: "virtual-card",
+      value: "card-creation",
       content,
     },
   ];
