@@ -171,6 +171,10 @@ export const services = [
     link: "/services/electricity",
   },
   {
+    name: "esim",
+    link: "/services/esim",
+  },
+  {
     name: "giftcard",
     link: "/services/giftcard",
   },
@@ -179,6 +183,10 @@ export const services = [
     link: "/services/gift-redeem",
   },
   { name: "transfer", link: "/services/transfer" },
+  {
+    name: "virtual card",
+    link: "/services/virtual-card",
+  },
   { name: "book flight", link: "/services/book-flight" },
   {
     name: "hotel reservation",
