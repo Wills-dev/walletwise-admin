@@ -8,6 +8,7 @@ interface DoubleCalendarPanelProps {
   customStart: Date | null;
   customEnd: Date | null;
   onDateSelect: (date: Date) => void;
+  maxDays?: number;
 }
 
 const DoubleCalendarPanel = ({
@@ -18,6 +19,7 @@ const DoubleCalendarPanel = ({
   customStart,
   customEnd,
   onDateSelect,
+  maxDays,
 }: DoubleCalendarPanelProps) => {
   return (
     <div className="absolute top-full mt-2 left-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl z-50">
@@ -38,12 +40,14 @@ const DoubleCalendarPanel = ({
           onDateSelect={onDateSelect}
         />
       </div>
-      <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-b-xl">
-        <p className="text-sm text-gray-700 dark:text-gray-300">
-          <strong className="font-semibold">Note:</strong> You can select only a
-          maximum of 30 days.
-        </p>
-      </div>
+      {maxDays !== undefined && (
+        <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-b-xl">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            <strong className="font-semibold">Note:</strong> You can select only
+            a maximum of {maxDays} days.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

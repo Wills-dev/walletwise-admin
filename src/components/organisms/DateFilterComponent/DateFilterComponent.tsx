@@ -15,11 +15,13 @@ import { toast } from "sonner";
 interface DateFilterProps {
   onDateChange?: (value: DateFilterValue) => void;
   className?: string;
+  maxDays?: number;
 }
 
 const DateFilterComponent = ({
   onDateChange,
   className = "",
+  maxDays,
 }: DateFilterProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState<FilterOption>("today");
@@ -90,13 +92,16 @@ const DateFilterComponent = ({
         setCustomStart(date);
         setCustomEnd(null);
       } else {
-        const daysDiff = Math.floor(
-          (date.getTime() - customStart.getTime()) / (1000 * 60 * 60 * 24)
-        );
-        if (daysDiff > 30) {
-          toast.error("You can only select a maximum of 30 days");
-          return;
+        if (maxDays !== undefined) {
+          const daysDiff = Math.floor(
+            (date.getTime() - customStart.getTime()) / (1000 * 60 * 60 * 24),
+          );
+          if (daysDiff > maxDays) {
+            toast.error(`You can only select a maximum of ${maxDays} days`);
+            return;
+          }
         }
+
         setCustomEnd(date);
         const range = { start: customStart, end: date };
         setDateRange(range);
@@ -153,6 +158,7 @@ const DateFilterComponent = ({
             customStart={customStart}
             customEnd={customEnd}
             onDateSelect={handleCustomDateSelect}
+            maxDays={maxDays}
           />
         </div>
       )}
