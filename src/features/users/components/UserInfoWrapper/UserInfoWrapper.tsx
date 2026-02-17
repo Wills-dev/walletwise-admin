@@ -17,6 +17,7 @@ import { canViewTransactions } from "@/lib/helpers/canViewTransactions";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import RestrictionEmptyState from "@/components/atoms/RestrictionEmptyState/RestrictionEmptyState";
+import UserDisputeSection from "../UserDisputeSection/UserDisputeSection";
 
 const UserInfoWrapper = ({ userId }: { userId: string }) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -94,6 +95,21 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
         setLimit={setLimit}
         isLoading={isLoading}
         userReferrals={data?.referrals?.referrals}
+        setCurrentPage={setCurrentPage}
+      />
+      <UserDisputeSection
+        userDisputes={data?.disputes?.disputes}
+        totalPages={data?.disputes?.totalPages}
+        currentPage={currentPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        goToFirstPage={goToFirstPage}
+        goToLastPage={goToLastPage}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        limit={limit}
+        setLimit={setLimit}
+        isLoading={isLoading}
         setCurrentPage={setCurrentPage}
       />
       {isLoading ? (

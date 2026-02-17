@@ -60,6 +60,24 @@ export interface UserReferralType {
   created_at: string;
 }
 
+export interface UserDisputeType {
+  id: string;
+  dispute_id: string;
+  user_id: string;
+  dispute_type: string;
+  description: string;
+  dispute_status: string;
+  created_at: string;
+  updated_at: string;
+  product_name: string;
+  category: string;
+  transaction_id: string;
+  transaction_date: string;
+  transaction_status: string;
+  transaction_type: string;
+  amount: string;
+}
+
 export interface UserLogType {
   id: string;
   user_id: string;
