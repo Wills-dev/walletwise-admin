@@ -10,6 +10,7 @@ interface UserSummaryProps {
   totalUsers: number;
   unknownUsers: number;
   inactiveUsers: number;
+  deletedUsers: number;
 }
 
 const UserSummary = ({
@@ -19,6 +20,7 @@ const UserSummary = ({
   inactiveUsers,
   activeUsers,
   handleStatusChange,
+  deletedUsers,
 }: UserSummaryProps) => {
   return (
     <CardWrapper loading={isLoading}>
@@ -48,6 +50,13 @@ const UserSummary = ({
         title="Suspended users"
         value={inactiveUsers || 0}
         onClick={() => handleStatusChange("inactive")}
+        icon={<UserX />}
+        color="red"
+      />
+      <StatisticCard
+        title="Deleted users"
+        value={deletedUsers || 0}
+        onClick={() => handleStatusChange("deleted")}
         icon={<UserX />}
         color="red"
       />
