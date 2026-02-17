@@ -1,6 +1,7 @@
 import DashboardLayout from "@/components/templates/DashboardLayout/DashboardLayout";
 
 import { ProtectedPage } from "@/components/ProtectedPage";
+import RolesWrapper from "@/components/organisms/RolesWrapper/RolesWrapper";
 
 const RolesPermissionPage = () => {
   return (
@@ -13,7 +14,7 @@ const RolesPermissionPage = () => {
       requireAll={false}
     >
       <DashboardLayout title="Roles/permissions">
-        RolesPermissionPage
+        <RolesWrapper />
       </DashboardLayout>
     </ProtectedPage>
   );
