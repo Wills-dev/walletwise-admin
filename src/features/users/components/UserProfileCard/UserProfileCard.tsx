@@ -6,8 +6,15 @@ import { convertDateFormat } from "@/lib/helpers/dateFormats";
 import InfoItem from "@/components/atoms/InfoItem/InfoItem";
 import StatusBadge from "@/components/atoms/StatusBadge/StatusBadge";
 import UserActionButton from "../UserActionButton/UserActionButton";
+import Link from "next/link";
 
-const UserProfileCard = ({ user }: { user: UserType }) => {
+const UserProfileCard = ({
+  user,
+  kycId,
+}: {
+  user: UserType;
+  kycId?: string;
+}) => {
   return (
     <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm">
       <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -18,9 +25,18 @@ const UserProfileCard = ({ user }: { user: UserType }) => {
         <div className="flex-1">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                {user.first_name} {user.last_name}
-              </h2>
+              {kycId !== undefined ? (
+                <Link
+                  href={`/manage-kyc/info/${kycId}`}
+                  className="hover:underline transition-all duration-300"
+                >
+                  {user.first_name} {user.last_name}
+                </Link>
+              ) : (
+                <h2>
+                  {user.first_name} {user.last_name}
+                </h2>
+              )}
               <p className="text-gray-500 dark:text-gray-400">
                 @{user.user_tag}
               </p>

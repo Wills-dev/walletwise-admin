@@ -49,7 +49,7 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
         <UserInfoLoader />
       ) : (
         <>
-          <UserProfileCard user={data?.user} />
+          <UserProfileCard user={data?.user} kycId={data?.kyc?.kyc_id} />
         </>
       )}
       <div>
@@ -61,6 +61,8 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
           wallet={data?.wallet}
           commissionBalance={data?.commissionBalance}
           referralCount={data?.referrals?.referralCount || 0}
+          userId={userId}
+          currentAdminId={currentAdminId}
         />
       </div>
       {canViewTransactions(userId, currentAdminId) ? (
