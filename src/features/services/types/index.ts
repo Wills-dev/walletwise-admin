@@ -94,3 +94,23 @@ export type GiftCardRating = {
   fee: string;
   is_active: boolean;
 };
+
+export type GiftCardProduct = {
+  id: number;
+  asset_id: string;
+  country: string;
+  currency: string;
+  is_active: true;
+  created_at: string;
+  updated_at: string;
+};
+
+export type GiftCardCategory = {
+  id: number;
+  product_id: string;
+  name: string;
+  rate: string;
+  is_active: true;
+  created_at: string;
+  updated_at: string;
+};

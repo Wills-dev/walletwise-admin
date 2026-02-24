@@ -142,3 +142,39 @@ export const deleteDataPlan = async ({ id }: { id: number }) => {
     throw error;
   }
 };
+export const getRevenueByCategory = async ({
+  selectedService,
+  selectedYear,
+  selectedMonth,
+}: {
+  selectedService?: string;
+  selectedYear?: string;
+  selectedMonth?: string;
+}) => {
+  try {
+    const query = [];
+    if (selectedService && selectedService !== "undefined") {
+      query.push(`category=${selectedService}`);
+    } else {
+      query.push(`category=airtime}`);
+    }
+    if (selectedYear && selectedMonth) {
+      query.push(`filterType=month-year`);
+      query.push(`filterValue=${selectedMonth}-${selectedYear}`);
+    } else if (selectedYear) {
+      query.push(`filterType=year`);
+      query.push(`filterValue=${selectedYear}`);
+    } else if (selectedMonth) {
+      query.push(`filterType=month`);
+      query.push(`filterValue=${selectedMonth}`);
+    }
+
+    const url = `/statistics/revenue/airtime-data${
+      query.length ? `?${query.join("&")}` : ""
+    }`;
+    const { data } = await axiosInstance.get(url);
+    return data?.data?.revenue;
+  } catch (error) {
+    throw error;
+  }
+};
