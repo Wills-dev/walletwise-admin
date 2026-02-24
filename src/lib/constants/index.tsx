@@ -272,6 +272,15 @@ export const ratingGiftSortOptions = [
   { label: "Status", values: ["active", "inactive"] },
 ];
 
+export const productGiftSortOptions = [
+  { label: "Order", values: ["asc", "desc"] },
+  { label: "Status", values: ["active", "inactive"] },
+  {
+    label: "Others",
+    values: ["country", "currency", "created_at", "asset_id"],
+  },
+];
+
 const currentYear = new Date().getFullYear();
 const startYear = 2024;
 
