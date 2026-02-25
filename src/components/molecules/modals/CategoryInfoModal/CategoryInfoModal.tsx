@@ -24,6 +24,7 @@ const CategoryInfoModal = ({
     product_id: string;
     name: string;
     rate: string;
+    admin_rate: string;
     is_active: undefined | string;
   };
   isSubmitting: boolean;
@@ -35,6 +36,7 @@ const CategoryInfoModal = ({
     category?.product_id &&
     category?.name &&
     category?.rate &&
+    category?.admin_rate &&
     category?.is_active !== undefined;
 
   return (
@@ -71,11 +73,21 @@ const CategoryInfoModal = ({
               />
             </div>
             <div className="space-y-2">
-              <Label title="Rate" />
+              <Label title="Vendor Rate" />
               <Input
                 value={category?.rate || ""}
                 type="text"
                 name="rate"
+                onChange={handleChange}
+                placeholder=""
+              />
+            </div>
+            <div className="space-y-2">
+              <Label title="Admin Rate" />
+              <Input
+                value={category?.admin_rate || ""}
+                type="text"
+                name="admin_rate"
                 onChange={handleChange}
                 placeholder=""
               />

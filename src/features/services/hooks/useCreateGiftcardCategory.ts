@@ -15,6 +15,7 @@ export const useCreateGiftcardCategory = () => {
     product_id: "",
     name: "",
     rate: "",
+    admin_rate: "",
   });
 
   const handleChange = (
@@ -23,7 +24,9 @@ export const useCreateGiftcardCategory = () => {
     const { name, value } = e.target;
     setCategory((prev) => ({
       ...prev,
-      [name]: name === "rate" ? formatInputTextNumberWithCommas(value) : value,
+      [name]: ["rate", "admin_rate"].includes(name)
+        ? formatInputTextNumberWithCommas(value)
+        : value,
     }));
   };
 
@@ -47,15 +50,17 @@ export const useCreateGiftcardCategory = () => {
   const handleCreate = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { name, product_id, rate } = category;
+    const { name, product_id, rate, admin_rate } = category;
     const payload: {
       name: string;
       rate: string;
+      admin_rate: string;
       product_id: string;
     } = {
       name,
       rate: removeCommas(rate),
       product_id,
+      admin_rate: removeCommas(admin_rate),
     };
 
     if (!name || !rate || !product_id) {

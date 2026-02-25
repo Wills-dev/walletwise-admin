@@ -20,13 +20,20 @@ export const useEditGiftcardCategory = (id: number) => {
     product_id: "",
     name: "",
     rate: "",
+    admin_rate: "",
     is_active: undefined,
   });
 
   const handleSetOpenModal = (open: boolean) => {
     setOpenModal(open);
     if (!open) {
-      setCategory({ product_id: "", name: "", rate: "", is_active: undefined });
+      setCategory({
+        product_id: "",
+        name: "",
+        rate: "",
+        admin_rate: "",
+        is_active: undefined,
+      });
     }
   };
 
@@ -49,11 +56,12 @@ export const useEditGiftcardCategory = (id: number) => {
 
   useEffect(() => {
     if (categoryInfo && !isLoading) {
-      const { product_id, name, admin_rate, is_active } = categoryInfo;
+      const { product_id, name, rate, admin_rate, is_active } = categoryInfo;
       setCategory({
         product_id,
         name,
-        rate: numberWithCommas(admin_rate || 0),
+        rate: numberWithCommas(rate || 0),
+        admin_rate: numberWithCommas(admin_rate || 0),
         is_active,
       });
     }
@@ -82,22 +90,30 @@ export const useEditGiftcardCategory = (id: number) => {
   const handleEdit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { is_active, name, product_id, rate } = category;
+    const { is_active, name, product_id, rate, admin_rate } = category;
     const payload: {
       is_active?: boolean;
       name?: string;
       rate?: string;
+      admin_rate?: string;
       product_id?: string;
       id: number;
     } = { id };
 
-    if (!name && !rate && !product_id && is_active === undefined) {
+    if (
+      !name &&
+      !rate &&
+      !product_id &&
+      is_active === undefined &&
+      !admin_rate
+    ) {
       toast.error("Please provide at least one value to update.");
       return;
     }
 
     if (name) payload.name = name;
     if (rate) payload.rate = removeCommas(rate);
+    if (admin_rate) payload.admin_rate = removeCommas(admin_rate);
     if (product_id) payload.product_id = product_id;
     if (is_active !== undefined) payload.is_active = is_active;
 

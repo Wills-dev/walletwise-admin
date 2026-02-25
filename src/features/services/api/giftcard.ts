@@ -281,24 +281,29 @@ export const editGifcardCategoryInfo = async ({
   id,
   name,
   rate,
+  admin_rate,
   product_id,
   is_active,
 }: {
   id: number;
   name?: string;
   rate?: string;
+  admin_rate?: string;
   product_id?: string;
   is_active?: boolean;
 }) => {
   try {
     const payload: {
       name?: string;
+      rate?: number;
       admin_rate?: number;
       product_id?: number;
       is_active?: boolean;
     } = {};
     if (name && name.trim() !== "") payload.name = name;
-    if (rate && rate.trim() !== "") payload.admin_rate = Number(rate);
+    if (rate && rate.trim() !== "") payload.rate = Number(rate);
+    if (admin_rate && admin_rate.trim() !== "")
+      payload.admin_rate = Number(admin_rate);
     if (product_id && Number(product_id) !== 0)
       payload.product_id = Number(product_id);
     if (is_active !== undefined) payload.is_active = is_active;
@@ -316,14 +321,21 @@ export const editGifcardCategoryInfo = async ({
 export const createGiftcardCategory = async ({
   name,
   rate,
+  admin_rate,
   product_id,
 }: {
   name: string;
   rate: string;
+  admin_rate: string;
   product_id: string;
 }) => {
   try {
-    const payload = { product_id, name, admin_rate: Number(rate) };
+    const payload = {
+      product_id,
+      name,
+      admin_rate: Number(admin_rate),
+      rate: Number(rate),
+    };
     const { data } = await axiosInstance.post(
       `/gift-cards/category/categories`,
       payload,

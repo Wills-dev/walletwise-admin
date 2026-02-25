@@ -23,12 +23,17 @@ const CreateCategoryModal = ({
     product_id: string;
     name: string;
     rate: string;
+    admin_rate: string;
   };
   isSubmitting: boolean;
 }) => {
   const { productOptions, isLoading } = useGetGiftCardProducts();
 
-  const isAllFilled = category?.name && category?.rate && category?.product_id;
+  const isAllFilled =
+    category?.name &&
+    category?.rate &&
+    category?.product_id &&
+    category?.admin_rate;
 
   return (
     <ModalWrapper open={openModal} onClose={setOpenModal} title="Rating Info ">
@@ -49,11 +54,21 @@ const CreateCategoryModal = ({
               />
             </div>
             <div className="space-y-2">
-              <Label title="Rate" />
+              <Label title="Vendor Rate" />
               <Input
                 value={category?.rate || ""}
                 type="text"
                 name="rate"
+                onChange={handleChange}
+                placeholder=""
+              />
+            </div>
+            <div className="space-y-2">
+              <Label title="Admin Rate" />
+              <Input
+                value={category?.admin_rate || ""}
+                type="text"
+                name="admin_rate"
                 onChange={handleChange}
                 placeholder=""
               />
