@@ -68,6 +68,26 @@ const EarningsWrapper = () => {
       content,
     },
     {
+      label: "Card creation",
+      value: "card-creation",
+      content,
+    },
+    {
+      label: "Card topup",
+      value: "card-topup",
+      content,
+    },
+    {
+      label: "Card refund",
+      value: "card-refund",
+      content,
+    },
+    {
+      label: "Card withdrawal",
+      value: "card-withdrawal",
+      content,
+    },
+    {
       label: "Data",
       value: "data",
       content,
