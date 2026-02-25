@@ -3,12 +3,12 @@ import { Suspense } from "react";
 import MainLoader from "@/components/atoms/MainLoader/MainLoader";
 import ServiceWrapper from "@/features/services/components/ServiceWrapper/ServiceWrapper";
 
-const VirtualCardPage = () => {
+const CardWithdrawalPage = () => {
   return (
     <Suspense fallback={<MainLoader />}>
-      <ServiceWrapper service="virtual-card" />
+      <ServiceWrapper service="card-withdrawal" />
     </Suspense>
   );
 };
 
-export default VirtualCardPage;
+export default CardWithdrawalPage;
