@@ -49,11 +49,11 @@ export const useEditGiftcardCategory = (id: number) => {
 
   useEffect(() => {
     if (categoryInfo && !isLoading) {
-      const { product_id, name, rate, is_active } = categoryInfo;
+      const { product_id, name, admin_rate, is_active } = categoryInfo;
       setCategory({
         product_id,
         name,
-        rate: numberWithCommas(rate),
+        rate: numberWithCommas(admin_rate || 0),
         is_active,
       });
     }

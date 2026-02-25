@@ -117,13 +117,35 @@ export const GiftcardCategoryColumn = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Rate
+          Vendor Rate
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
       const rate = parseFloat(row.getValue("rate"));
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "NGN",
+      }).format(rate);
+
+      return <div className=" font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor("admin_rate", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Admin Rate
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const rate = parseFloat(row.getValue("admin_rate"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "NGN",

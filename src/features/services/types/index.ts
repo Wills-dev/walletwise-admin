@@ -114,4 +114,5 @@ export type GiftCardCategory = {
   created_at: string;
   updated_at: string;
   asset_id: string;
+  admin_rate: string;
 };
