@@ -11,6 +11,8 @@ import { MessageSquare } from "lucide-react";
 import { formatDate } from "@/lib/helpers/dateFormats";
 
 const MessageCard = ({ message }: { message: Message }) => {
+  const formattedContent = (message?.message || "").replace(/&nbsp;/g, " ");
+
   return (
     <Card className="border-border/50 shadow-sm dark:bg-gray-800">
       <CardHeader className="pb-3">
@@ -33,7 +35,7 @@ const MessageCard = ({ message }: { message: Message }) => {
       <CardContent className="max-w-2xl">
         <div
           className="prose prose-sm dark:prose-invert wrap-break-words whitespace-normal max-w-none text-foreground/90"
-          dangerouslySetInnerHTML={{ __html: message?.message }}
+          dangerouslySetInnerHTML={{ __html: formattedContent }}
         />
       </CardContent>
     </Card>

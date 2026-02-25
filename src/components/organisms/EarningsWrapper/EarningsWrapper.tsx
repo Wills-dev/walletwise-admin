@@ -124,11 +124,11 @@ const EarningsWrapper = () => {
       value: "transfer",
       content,
     },
-    {
-      label: "Virtual Card",
-      value: "card-creation",
-      content,
-    },
+    // {
+    //   label: "Virtual Card",
+    //   value: "virtual-card",
+    //   content,
+    // },
   ];
 
   return (
