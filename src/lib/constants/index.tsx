@@ -231,6 +231,13 @@ export const servicesData = [
     icon: Zap,
   },
   {
+    label: "E-Sim",
+    value: "esim",
+    color: "rgba(168, 85, 247, 0.8)",
+    bgColor: "rgb(250 245 255)",
+    icon: Wifi,
+  },
+  {
     label: "Giftcard",
     value: "giftcard",
     color: "rgba(236, 72, 153, 0.8)",
@@ -238,11 +245,25 @@ export const servicesData = [
     icon: Gift,
   },
   {
+    label: "Gift Redeem",
+    value: "gift-redeem",
+    color: "rgba(59, 130, 246, 0.8)",
+    bgColor: "rgb(239 246 255)",
+    icon: Phone,
+  },
+  {
     label: "Transfer",
     value: "transfer",
     color: "rgba(20, 184, 166, 0.8)",
     bgColor: "rgb(240 253 244)",
     icon: Send,
+  },
+  {
+    label: "Virtual Card",
+    value: "card-creation",
+    color: "rgba(234, 179, 8, 0.8)",
+    bgColor: "rgb(254 252 232)",
+    icon: Zap,
   },
 ];
 

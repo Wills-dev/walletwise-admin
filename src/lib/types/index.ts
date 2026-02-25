@@ -346,3 +346,23 @@ export interface NotificationPayload {
   data?: Record<string, unknown>;
   timestamp?: string;
 }
+
+export type serviceType =
+  | "airtime"
+  | "betting"
+  | "cable"
+  | "data"
+  | "education"
+  | "electricity"
+  | "esim"
+  | "giftcard"
+  | "gift-redeem"
+  | "transfer"
+  | "virtual-card"
+  | "card-creation"
+  | "book-flight"
+  | "hotel-reservations";
+
+export type RevenueRow = {
+  period: string;
+} & Partial<Record<serviceType, number>>;
