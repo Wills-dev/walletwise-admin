@@ -2,21 +2,29 @@ import { useState } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import { getRevenueByCategory } from "../api";
+import { serviceType } from "@/lib/types";
 
 export const useGetRevenueByCategory = () => {
-  const [selectedService, setSelectedService] = useState("airtime");
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const currentYear = new Date().getFullYear();
+  const [selectedService, setSelectedService] =
+    useState<serviceType>("airtime");
+  const [selectedYear, setSelectedYear] = useState(currentYear.toString());
   const [selectedMonth, setSelectedMonth] = useState("");
 
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["revenueByCategory"],
+    queryKey: [
+      "revenueByCategory",
+      selectedService,
+      selectedYear,
+      selectedMonth,
+    ],
     queryFn: () =>
       getRevenueByCategory({
         selectedService,
         selectedYear: selectedYear.toString(),
         selectedMonth,
       }),
-    enabled: false,
+    enabled: true,
     staleTime: 5 * 60 * 1000,
     retry: 1,
   });

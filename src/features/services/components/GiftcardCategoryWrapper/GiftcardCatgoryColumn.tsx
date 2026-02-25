@@ -84,6 +84,19 @@ export const GiftcardCategoryColumn = [
       );
     },
   }),
+  columnHelper.accessor("asset_id", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Product Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  }),
   columnHelper.accessor("name", {
     header: ({ column }) => {
       return (
