@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import RestrictionEmptyState from "@/components/atoms/RestrictionEmptyState/RestrictionEmptyState";
 import UserDisputeSection from "../UserDisputeSection/UserDisputeSection";
+import { StatementOfAccount } from "@/components/molecules/StatementOfAccount/StatementOfAccount";
 
 const UserInfoWrapper = ({ userId }: { userId: string }) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -65,6 +66,7 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
           currentAdminId={currentAdminId}
         />
       </div>
+      <StatementOfAccount userId={userId} />
       {canViewTransactions(userId, currentAdminId) ? (
         <UserTransactionTable
           isLoading={isLoading}
