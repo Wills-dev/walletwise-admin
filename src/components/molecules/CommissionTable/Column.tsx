@@ -61,6 +61,20 @@ export const Column = [
         </Button>
       );
     },
+    cell: ({ row }: CellContext<UserCommissionAnalytics, unknown>) => {
+      const user = row.original;
+
+      return (
+        <div>
+          <Link
+            href={`/manage-user/info/${user.id}`}
+            className="hover:underline transition-all duration-300"
+          >
+            {user.full_name}
+          </Link>
+        </div>
+      );
+    },
   }),
   columnHelper.accessor("user_tag", {
     header: ({ column }) => {
@@ -72,6 +86,20 @@ export const Column = [
           User tag
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
+      );
+    },
+    cell: ({ row }: CellContext<UserCommissionAnalytics, unknown>) => {
+      const user = row.original;
+
+      return (
+        <div>
+          <Link
+            href={`/manage-user/info/${user.id}`}
+            className="hover:underline transition-all duration-300"
+          >
+            {user.user_tag}
+          </Link>
+        </div>
       );
     },
   }),

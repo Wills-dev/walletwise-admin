@@ -6,7 +6,7 @@ import { convertDateFormat } from "@/lib/helpers/dateFormats";
 import InfoItem from "@/components/atoms/InfoItem/InfoItem";
 import StatusBadge from "@/components/atoms/StatusBadge/StatusBadge";
 import UserActionButton from "../UserActionButton/UserActionButton";
-import Link from "next/link";
+import Button from "@/components/atoms/Button/Button";
 
 const UserProfileCard = ({
   user,
@@ -26,12 +26,9 @@ const UserProfileCard = ({
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
             <div>
               {kycId !== undefined ? (
-                <Link
-                  href={`/manage-kyc/info/${kycId}`}
-                  className="hover:underline transition-all duration-300"
-                >
+                <Button href={`/manage-kyc/info/${kycId}`}>
                   {user.first_name} {user.last_name}
-                </Link>
+                </Button>
               ) : (
                 <h2>
                   {user.first_name} {user.last_name}
