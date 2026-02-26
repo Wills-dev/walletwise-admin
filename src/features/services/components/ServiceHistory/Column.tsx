@@ -180,6 +180,18 @@ export const Column = (hasPermission: boolean, service: string) => [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      const transaction = row.original as TransactionType;
+
+      return (
+        <Link
+          href={`/manage-user/info/${transaction?.userID}`}
+          className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full"
+        >
+          {transaction?.user_tag}
+        </Link>
+      );
+    },
   }),
   columnHelper.accessor("full_name", {
     header: ({ column }) => {
@@ -191,6 +203,18 @@ export const Column = (hasPermission: boolean, service: string) => [
           Full name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const transaction = row.original as TransactionType;
+
+      return (
+        <Link
+          href={`/manage-user/info/${transaction?.userID}`}
+          className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full"
+        >
+          {transaction?.full_name}
+        </Link>
       );
     },
   }),
