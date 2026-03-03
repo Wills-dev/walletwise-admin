@@ -193,10 +193,16 @@ type ServiceMetrics = {
   airtime: TransactionMetric;
   betting: TransactionMetric;
   cable: TransactionMetric;
+  card_creation: TransactionMetric;
+  card_topup: TransactionMetric;
+  card_withdrawal: TransactionMetric;
+  card_refund: TransactionMetric;
   data: TransactionMetric;
   electricity: TransactionMetric;
+  esim: TransactionMetric;
   education: TransactionMetric;
   giftcard: TransactionMetric;
+  giftcard_redeem: TransactionMetric;
   transfer: TransactionMetric;
 };
 
@@ -220,6 +226,18 @@ export type UserCommissionAnalytics = {
   created_at: string;
   services: ServiceMetrics;
   totals: Totals;
+};
+
+export type StreakAnalytics = {
+  id: string;
+  fullName: string;
+  userTag: string;
+  email: string;
+  currentStreak: number;
+  totalCompletedStreaks: number;
+  totalCheckins: number;
+  lastCheckinDate: string;
+  individualEarnings: number;
 };
 
 export interface EarningTableData {
@@ -366,3 +384,26 @@ export type serviceType =
 export type RevenueRow = {
   period: string;
 } & Partial<Record<serviceType, number>>;
+
+export interface CommissionTableProps<TData = unknown> {
+  isLoading: boolean;
+  data: TData[];
+  totalPages: number;
+  currentPage: number;
+  prevPage: () => void;
+  nextPage: (totalPages: number) => void;
+  goToLastPage: (totalPages: number) => void;
+  goToFirstPage: () => void;
+  isFirstPage: () => boolean;
+  isLastPage: (totalPages: number) => boolean;
+  limit: number;
+  setLimit: (limit: number) => void;
+  setSelectedDateFilterValue: (value: DateFilterValue) => void;
+  refetch: () => void;
+  handleSortChange: (values: { [key: number]: string }) => void;
+  search?: string | number;
+  handleChange?: (search: string) => void;
+  handleClear?: () => void;
+  onSubmit?: (e: FormEvent) => void;
+  setCurrentPage: (page: number) => void;
+}

@@ -272,6 +272,7 @@ export const commissionSortOptions = [
   { label: "Period", values: ["daily", "weekly", "monthly"] },
   { label: "Order", values: ["asc", "desc"] },
 ];
+export const streakSortOptions = [{ label: "Sort by", values: ["streak"] }];
 
 export const TransactionSortOptions = [
   { label: "Order", values: ["ASC", "DESC"] },

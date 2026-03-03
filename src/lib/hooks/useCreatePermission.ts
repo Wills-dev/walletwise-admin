@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import { toast } from "sonner";
 import { QueryClient, useMutation } from "@tanstack/react-query";
@@ -27,7 +27,8 @@ export const useCreatePermission = () => {
     },
   });
 
-  const handleCreatePermission = () => {
+  const handleCreatePermission = (e: FormEvent) => {
+    e.preventDefault();
     if (!permission) {
       toast.error("Permission name is required.");
       return;

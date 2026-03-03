@@ -5,12 +5,12 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { Column } from "./Column";
 import { CommissionTableProps } from "@/lib/types";
-import { commissionSortOptions } from "@/lib/constants";
 
 import TableLoader from "@/components/atoms/skeleton/TableLoader";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
+import { streakSortOptions } from "@/lib/constants";
 
-const CommissionTable = ({
+const StreaksTable = ({
   isLoading,
   data,
   totalPages,
@@ -65,7 +65,7 @@ const CommissionTable = ({
           handleChange={handleChange}
           handleClear={handleClear}
           onSubmit={onSubmit}
-          sortOptions={commissionSortOptions}
+          sortOptions={streakSortOptions}
           setCurrentPage={setCurrentPage}
         />
       )}
@@ -73,4 +73,4 @@ const CommissionTable = ({
   );
 };
 
-export default CommissionTable;
+export default StreaksTable;

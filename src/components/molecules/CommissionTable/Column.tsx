@@ -145,6 +145,62 @@ export const Column = [
       );
     },
   }),
+  columnHelper.accessor("services.card_creation", {
+    header: "Card Creation",
+    cell: ({ getValue }) => {
+      const card_creation = getValue();
+      return (
+        <div>
+          <span className="font-medium">{card_creation.count}</span>
+          <span className="text-gray-500 ml-1">
+            (₦{card_creation.volume.toLocaleString()})
+          </span>
+        </div>
+      );
+    },
+  }),
+  columnHelper.accessor("services.card_topup", {
+    header: "Card Top Up ",
+    cell: ({ getValue }) => {
+      const card_topup = getValue();
+      return (
+        <div>
+          <span className="font-medium">{card_topup.count}</span>
+          <span className="text-gray-500 ml-1">
+            (₦{card_topup.volume.toLocaleString()})
+          </span>
+        </div>
+      );
+    },
+  }),
+  columnHelper.accessor("services.card_withdrawal", {
+    header: "Card Withdrawal",
+    cell: ({ getValue }) => {
+      const card_withdrawal = getValue();
+      return (
+        <div>
+          <span className="font-medium">{card_withdrawal.count}</span>
+          <span className="text-gray-500 ml-1">
+            (₦{card_withdrawal.volume.toLocaleString()})
+          </span>
+        </div>
+      );
+    },
+  }),
+  columnHelper.accessor("services.card_refund", {
+    header: "Card Refund",
+    cell: ({ getValue }) => {
+      const card_refund = getValue();
+      return (
+        <div>
+          <span className="font-medium">{card_refund.count}</span>
+          <span className="text-gray-500 ml-1">
+            (₦{card_refund.volume.toLocaleString()})
+          </span>
+        </div>
+      );
+    },
+  }),
   columnHelper.accessor("services.data", {
     header: "Data ",
     cell: ({ getValue }) => {
@@ -187,7 +243,20 @@ export const Column = [
       );
     },
   }),
-
+  columnHelper.accessor("services.esim", {
+    header: "E-sim",
+    cell: ({ getValue }) => {
+      const esim = getValue();
+      return (
+        <div>
+          <span className="font-medium">{esim.count}</span>
+          <span className="text-gray-500 ml-1">
+            (₦{esim.volume.toLocaleString()})
+          </span>
+        </div>
+      );
+    },
+  }),
   columnHelper.accessor("services.giftcard", {
     header: "Giftcard ",
     cell: ({ getValue }) => {
@@ -202,6 +271,21 @@ export const Column = [
       );
     },
   }),
+  columnHelper.accessor("services.giftcard_redeem", {
+    header: "Redeem Giftcard ",
+    cell: ({ getValue }) => {
+      const giftcard_redeem = getValue();
+      return (
+        <div>
+          <span className="font-medium">{giftcard_redeem.count}</span>
+          <span className="text-gray-500 ml-1">
+            (₦{giftcard_redeem.volume.toLocaleString()})
+          </span>
+        </div>
+      );
+    },
+  }),
+
   columnHelper.accessor("services.transfer", {
     header: "Transfer ",
     cell: ({ getValue }) => {
