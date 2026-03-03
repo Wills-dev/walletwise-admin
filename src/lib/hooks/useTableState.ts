@@ -16,6 +16,7 @@ export const useTableState = () => {
   const initialStatus = searchParams.get("status") || "";
   const initialTab = searchParams.get("tab") || "";
   const initialTransferType = searchParams.get("transferType") || "";
+  const initialVirtualTab = searchParams.get("virtualTab") || "";
 
   const [tier, setTier] = useState<number | undefined>(undefined);
   const [currentPage, setCurrentPage] = useState(initialPage);
@@ -24,6 +25,7 @@ export const useTableState = () => {
   const [filter, setFilter] = useState<{ [key: number]: string }>({});
   const [status, setStatus] = useState(initialStatus);
   const [tab, setTab] = useState(initialTab);
+  const [virtualTab, setVirtualTab] = useState(initialVirtualTab);
   const [submittedQuery, setSubmittedQuery] = useState<string | null>(null);
   const [selectedDateFilterValue, setSelectedDateFilterValue] =
     useState<DateFilterValue | null>(null);
@@ -35,6 +37,11 @@ export const useTableState = () => {
 
   const handleSwithTab = (tab: string) => {
     setTab(tab);
+    setCurrentPage(1);
+  };
+
+  const handleSwitchVirtualTab = (tab: string) => {
+    setVirtualTab(tab);
     setCurrentPage(1);
   };
 
@@ -110,6 +117,9 @@ export const useTableState = () => {
     if (tab) params.set("tab", tab);
     else params.delete("tab");
 
+    if (virtualTab) params.set("virtualTab", virtualTab);
+    else params.delete("virtualTab");
+
     if (search) params.set("search", search);
     else params.delete("search");
 
@@ -128,6 +138,7 @@ export const useTableState = () => {
     currentPage,
     status,
     tab,
+    virtualTab,
     transferType,
   ]);
 
@@ -155,6 +166,8 @@ export const useTableState = () => {
     status,
     handleSwithTab,
     tab,
+    virtualTab,
+    handleSwitchVirtualTab,
     selectedDateFilterValue,
     setSelectedDateFilterValue,
     handleSortChange,

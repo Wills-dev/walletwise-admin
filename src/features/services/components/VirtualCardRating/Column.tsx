@@ -8,9 +8,10 @@ import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import RatingActionButtons from "../RatingActionButtons/RatingActionButtons";
 
 import { formatDate } from "@/lib/helpers/dateFormats";
-import { GiftCardRating } from "../../types";
+import { VirtualCardRating } from "../../types";
+import { numberWithCommas } from "@/lib/helpers";
 
-const columnHelper = createColumnHelper<GiftCardRating>();
+const columnHelper = createColumnHelper<VirtualCardRating>();
 
 interface ColumnProps<TData = unknown> {
   table: Table<TData>;
@@ -29,7 +30,7 @@ export const Column = [
         aria-label="Select all"
       />
     ),
-    cell: ({ row }: CellContext<GiftCardRating, unknown>) => (
+    cell: ({ row }: CellContext<VirtualCardRating, unknown>) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -70,14 +71,29 @@ export const Column = [
       );
     },
   }),
+  columnHelper.accessor("provider_rate", {
+    header: () => <div className="">Provider Rates</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("provider_rate"));
+      const formatted = numberWithCommas(Number(amount));
+
+      return <div className=" font-medium">{formatted}</div>;
+    },
+  }),
   columnHelper.accessor("rate", {
     header: () => <div className="">Rates</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("rate"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "NGN",
-      }).format(amount);
+      const formatted = numberWithCommas(Number(amount));
+
+      return <div className=" font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor("sell_rate", {
+    header: () => <div className="">Sell Rates</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("sell_rate"));
+      const formatted = numberWithCommas(Number(amount));
 
       return <div className=" font-medium">{formatted}</div>;
     },
@@ -115,7 +131,7 @@ export const Column = [
 
   {
     id: "actions",
-    cell: ({ row }: CellContext<GiftCardRating, unknown>) => {
+    cell: ({ row }: CellContext<VirtualCardRating, unknown>) => {
       const rating = row.original;
 
       return <RatingActionButtons id={rating.id} />;

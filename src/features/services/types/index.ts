@@ -85,12 +85,15 @@ export type GiftCardTransaction = {
   updated_at: string;
 };
 
-export type GiftCardRating = {
+export type VirtualCardRating = {
   id: number;
   created_at: string;
   updated_at: string;
   currency: string;
   rate: string;
+  provider_rate: string;
+  sell_rate: string;
+
   fee: string;
   is_active: boolean;
 };

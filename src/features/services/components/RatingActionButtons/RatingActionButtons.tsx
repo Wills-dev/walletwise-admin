@@ -4,7 +4,7 @@ import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/Co
 import RatingInfoModal from "@/components/molecules/modals/RatingInfoModal/RatingInfoModal";
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { useEditRating } from "../../hooks/useEditRating";
+import { useEditVirtualCardRating } from "../../hooks/useEditVirtualCardRating";
 
 const RatingActionButtons = ({ id }: { id: number }) => {
   const {
@@ -16,7 +16,7 @@ const RatingActionButtons = ({ id }: { id: number }) => {
     isSubmitting,
     isLoading,
     ratingInfo,
-  } = useEditRating(id);
+  } = useEditVirtualCardRating(id);
 
   return (
     <>

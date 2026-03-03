@@ -20,11 +20,13 @@ const RatingInfoModal = ({
   setOpenModal: (open: boolean) => void;
   handleEdit: (e: React.FormEvent) => void;
   handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   rating: {
     rate: string | null;
     fee: string | null;
+    provider_rate: string | null;
+    sell_rate: string | null;
     is_active: boolean | undefined;
   };
   isSubmitting: boolean;
@@ -32,10 +34,18 @@ const RatingInfoModal = ({
   currency: string;
 }) => {
   const isAnyFilled =
-    rating.rate || rating.fee || rating.is_active !== undefined;
+    rating.rate ||
+    rating.sell_rate ||
+    rating.provider_rate ||
+    rating.fee ||
+    rating.is_active !== undefined;
 
   return (
-    <ModalWrapper open={openModal} onClose={setOpenModal} title="Rating Info ">
+    <ModalWrapper
+      open={openModal}
+      onClose={setOpenModal}
+      title="Virtual Card Rating Info "
+    >
       <div className="space-y-4">
         {isLoading ? (
           <div className="h-48 flex justify-center items-center">
@@ -58,6 +68,26 @@ const RatingInfoModal = ({
               />
             </div>
             <div className="space-y-2">
+              <Label title="Provider Rate" />
+              <Input
+                value={rating?.provider_rate || ""}
+                type="text"
+                name="provider_rate"
+                onChange={handleChange}
+                placeholder=""
+              />
+            </div>
+            <div className="space-y-2">
+              <Label title="Sell Rate" />
+              <Input
+                value={rating?.sell_rate || ""}
+                type="text"
+                name="sell_rate"
+                onChange={handleChange}
+                placeholder=""
+              />
+            </div>
+            <div className="space-y-2">
               <Label title="Fee" />
               <Input
                 value={rating?.fee || ""}
@@ -74,8 +104,8 @@ const RatingInfoModal = ({
                   rating?.is_active === undefined
                     ? ""
                     : rating.is_active
-                    ? "active"
-                    : "inactive"
+                      ? "active"
+                      : "inactive"
                 }
                 name="is_active"
                 onChange={handleChange}

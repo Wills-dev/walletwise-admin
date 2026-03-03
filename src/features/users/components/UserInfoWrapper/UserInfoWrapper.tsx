@@ -66,23 +66,26 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
           currentAdminId={currentAdminId}
         />
       </div>
-      <StatementOfAccount userId={userId} />
+
       {canViewTransactions(userId, currentAdminId) ? (
-        <UserTransactionTable
-          isLoading={isLoading}
-          data={data?.transactions?.transactions}
-          totalPages={data?.transactions?.totalPages}
-          currentPage={currentPage}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          goToFirstPage={goToFirstPage}
-          goToLastPage={goToLastPage}
-          isFirstPage={isFirstPage}
-          isLastPage={isLastPage}
-          limit={limit}
-          setCurrentPage={setCurrentPage}
-          setLimit={setLimit}
-        />
+        <>
+          <StatementOfAccount userId={userId} />
+          <UserTransactionTable
+            isLoading={isLoading}
+            data={data?.transactions?.transactions}
+            totalPages={data?.transactions?.totalPages}
+            currentPage={currentPage}
+            prevPage={prevPage}
+            nextPage={nextPage}
+            goToFirstPage={goToFirstPage}
+            goToLastPage={goToLastPage}
+            isFirstPage={isFirstPage}
+            isLastPage={isLastPage}
+            limit={limit}
+            setCurrentPage={setCurrentPage}
+            setLimit={setLimit}
+          />
+        </>
       ) : (
         <RestrictionEmptyState />
       )}

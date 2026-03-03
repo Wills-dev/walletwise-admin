@@ -159,10 +159,6 @@ export const services = [
     link: "/services/cable",
   },
   {
-    name: "Card creation",
-    link: "/services/card-creation",
-  },
-  {
     name: "data",
     link: "/services/data",
   },
