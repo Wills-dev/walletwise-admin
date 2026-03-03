@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getGifcardRatings } from "../api/giftcard";
 import { useTableState } from "@/lib/hooks/useTableState";
+import { getVirtualCardRatings } from "../api/virtualCard";
 
-export const useGetGiftcardRatings = () => {
+export const useGetVirtualCardRatings = () => {
   const {
     currentPage,
     limit,
@@ -25,9 +25,9 @@ export const useGetGiftcardRatings = () => {
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["giftcard rating", submittedQuery, limit, currentPage],
+    queryKey: ["virtual card rating", submittedQuery, limit, currentPage],
     queryFn: () =>
-      getGifcardRatings({
+      getVirtualCardRatings({
         currentPage,
         limit,
         search: submittedQuery,

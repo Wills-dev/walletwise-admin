@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getGifcardRatingInfo } from "../api/giftcard";
 
-export const useGetRatingInfo = (id: number) => {
+import { getVirtualCardRatingInfo } from "../api/virtualCard";
+
+export const useGetVirtualCardRatingInfo = (id: number) => {
   const { data, isLoading } = useQuery({
-    queryKey: ["gifcard rating info", id],
+    queryKey: ["virtual card rating info", id],
     queryFn: () =>
-      getGifcardRatingInfo({
+      getVirtualCardRatingInfo({
         id,
       }),
     enabled: true,

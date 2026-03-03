@@ -7,7 +7,7 @@ import { AnimatePresence } from "framer-motion";
 
 import ServiceLayout from "@/components/templates/ServiceLayout/ServiceLayout";
 import GiftcardRedemptionWrapper from "../GiftcardRedemptionWrapper/GiftcardRedemptionWrapper";
-// import GiftcardRatingWrapper from "../GiftcardRatingWrapper/GiftcardRatingWrapper";
+
 import GiftCardProductWrapper from "../GiftCardProductWrapper/GiftCardProductWrapper";
 import GiftcardCategoryWrapper from "../GiftcardCategoryWrapper/GiftcardCategoryWrapper";
 
@@ -37,15 +37,6 @@ const GiftCardWrapper = () => {
         </AnimatePresence>
       ),
     },
-    // {
-    //   value: "giftcard-rating",
-    //   label: "Giftcard rating",
-    //   content: (
-    //     <AnimatePresence>
-    //       <GiftcardRatingWrapper />
-    //     </AnimatePresence>
-    //   ),
-    // },
     {
       value: "giftcard-products",
       label: "Giftcard products",

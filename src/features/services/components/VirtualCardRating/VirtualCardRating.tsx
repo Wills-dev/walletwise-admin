@@ -5,12 +5,12 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { Column } from "./Column";
 import { ratingGiftSortOptions } from "@/lib/constants";
-import { useGetGiftcardRatings } from "../../hooks/useGetGiftcardRatings";
+import { useGetVirtualCardRatings } from "../../hooks/useGetVirtualCardRatings";
 
 import TableLoader from "@/components/atoms/skeleton/TableLoader";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 
-const GiftcardRatingWrapper = () => {
+const VirtualCardRating = () => {
   const {
     setLimit,
     nextPage,
@@ -30,7 +30,7 @@ const GiftcardRatingWrapper = () => {
     refetch,
     handleSortChange,
     setCurrentPage,
-  } = useGetGiftcardRatings();
+  } = useGetVirtualCardRatings();
 
   const typedColumns = Column as ColumnDef<unknown>[];
 
@@ -71,4 +71,4 @@ const GiftcardRatingWrapper = () => {
   );
 };
 
-export default GiftcardRatingWrapper;
+export default VirtualCardRating;

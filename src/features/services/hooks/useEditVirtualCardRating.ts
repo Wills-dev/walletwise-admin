@@ -4,57 +4,59 @@ import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { ApiErrorResponse } from "@/lib/types";
-import { editGifcardRatingInfo } from "../api/giftcard";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 import { formatInputTextNumberWithCommas } from "@/lib/helpers/formatInputTextNumberWithCommas";
 import { removeCommas } from "@/lib/helpers/removeCommas";
-import { useGetRatingInfo } from "./useGetRatingInfo";
+import { useGetVirtualCardRatingInfo } from "./useGetVirtualCardRatingInfo";
+import { editVirtualCardRatingInfo } from "../api/virtualCard";
 
-export const useEditRating = (id: number) => {
-  const { ratingInfo, isLoading } = useGetRatingInfo(id);
+export const useEditVirtualCardRating = (id: number) => {
+  const { ratingInfo, isLoading } = useGetVirtualCardRatingInfo(id);
 
   const [openModal, setOpenModal] = useState(false);
   const [rating, setRating] = useState({
     rate: null,
     fee: null,
     is_active: undefined,
+    provider_rate: null,
+    sell_rate: null,
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setRating((prev) => ({
       ...prev,
-      [name]: ["rate", "fee"].includes(name)
+      [name]: ["rate", "fee", "provider_rate", "sell_rate"].includes(name)
         ? formatInputTextNumberWithCommas(value)
         : name === "is_active" && value === "active"
-        ? true
-        : name === "is_active" && value === "inactive"
-        ? false
-        : value,
+          ? true
+          : name === "is_active" && value === "inactive"
+            ? false
+            : value,
     }));
   };
 
   useEffect(() => {
     if (ratingInfo && !isLoading) {
-      const { rate, fee, is_active } = ratingInfo;
-      setRating({ rate, fee, is_active });
+      const { rate, fee, is_active, sell_rate, provider_rate } = ratingInfo;
+      setRating({ rate, fee, is_active, sell_rate, provider_rate });
     }
   }, [ratingInfo, isLoading]);
 
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: editGifcardRatingInfo,
+    mutationFn: editVirtualCardRatingInfo,
     onSuccess: () => {
       toast.success("Rating successfully updated.");
       setOpenModal(false);
       queryClient.invalidateQueries({
-        queryKey: ["giftcard rating"],
+        queryKey: ["virtual card rating"],
       });
       queryClient.invalidateQueries({
-        queryKey: ["giftcard rating info", id],
+        queryKey: ["virtual card rating info", id],
       });
     },
     onError: (error: ApiErrorResponse) => {
@@ -66,21 +68,32 @@ export const useEditRating = (id: number) => {
   const handleEdit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { rate, fee, is_active } = rating;
+    const { rate, fee, is_active, sell_rate, provider_rate } = rating;
     const payload: {
       id: number;
       rate?: number;
       fee?: number;
+      sell_rate?: number;
+      provider_rate?: number;
       is_active?: boolean;
     } = { id };
 
-    if (!rate && !fee && is_active === undefined) {
+    if (
+      !rate &&
+      !fee &&
+      !sell_rate &&
+      !provider_rate &&
+      is_active === undefined
+    ) {
       toast.error("Please provide at least one value to update.");
       return;
     }
 
     if (rate !== null) payload.rate = Number(removeCommas(rate));
     if (fee !== null) payload.fee = Number(removeCommas(fee));
+    if (provider_rate !== null)
+      payload.provider_rate = Number(removeCommas(provider_rate));
+    if (sell_rate !== null) payload.sell_rate = Number(removeCommas(sell_rate));
     if (is_active !== undefined) payload.is_active = is_active;
 
     mutate(payload);
