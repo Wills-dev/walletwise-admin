@@ -13,9 +13,21 @@ import { useGetRedeemGiftInfo } from "../../hooks/useGetRedeemGiftInfo";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { canAccess } from "@/lib/helpers/canAccess";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
+  const { user } = useSelector((state: RootState) => state.auth);
+
   const { data, isLoading } = useGetRedeemGiftInfo(serviceId);
+
+  const userPermissions = user?.permissions;
+  const requiredPermissions = [
+    "admin_management.read",
+    "admin_management.write",
+    "admin_management.create",
+  ];
 
   const giftBreadcrumb = [
     { label: `Redeem Giftcard`, href: `/services/gift-redeem` },
@@ -64,14 +76,18 @@ const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
                 </Alert>
               )}
               <Separator />
-              <ActionButtons data={data} giftcardId={serviceId} />
+
+              {canAccess(userPermissions, requiredPermissions) && (
+                <ActionButtons data={data} giftcardId={serviceId} />
+              )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <GiftCardSummaryCard data={data} />
                 <CardDetailsCard data={data} />
               </div>
-
-              <CardImageCard imageUrl={data?.image_url} />
+              {canAccess(userPermissions, requiredPermissions) && (
+                <CardImageCard imageUrl={data?.image_url} />
+              )}
             </div>
           )}
         </>
