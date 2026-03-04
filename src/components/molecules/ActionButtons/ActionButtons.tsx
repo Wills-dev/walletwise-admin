@@ -15,6 +15,8 @@ const ActionButtons = ({
   giftcardId: string;
 }) => {
   const {
+    open,
+    setOpen,
     openModal,
     setOpenModal,
     isOpenModal,
@@ -44,6 +46,16 @@ const ActionButtons = ({
                 update the status.
               </p>
               <div className="flex gap-3 flex-wrap">
+                {isPending && (
+                  <Button
+                    onClick={() => setOpen(true)}
+                    disabled={isSubmitting}
+                    className="gap-2 bg-yellow-600 hover:bg-yellow-700"
+                  >
+                    <CheckCircle2 className="w-4 h-4" />
+                    Process Card
+                  </Button>
+                )}
                 <Button
                   onClick={() => setIsOpenModal(true)}
                   disabled={isSubmitting}
@@ -69,6 +81,17 @@ const ActionButtons = ({
 
       <UpdateRedeemGiftcardModa
         isSubmitting={isSubmitting}
+        open={open}
+        setOpen={setOpen}
+        note={admin_notes}
+        setNote={setAdmin_notes}
+        handleSubmit={() => handleSubmit("processing")}
+        title="Update to processing"
+        description={`Notify user you're processing their gift card.`}
+        status="processing"
+      />
+      <UpdateRedeemGiftcardModa
+        isSubmitting={isSubmitting}
         open={isOpenModal}
         setOpen={setIsOpenModal}
         note={admin_notes}
@@ -76,6 +99,7 @@ const ActionButtons = ({
         handleSubmit={() => handleSubmit("success")}
         title="Redeem Gift Card"
         description={`  Are you sure you want to redeem this gift card? The user will be credited with ₦${data?.final_amount && numberWithCommas(Number(data?.final_amount))}. This action cannot be undone.`}
+        status="success"
       />
       <UpdateRedeemGiftcardModa
         isSubmitting={isSubmitting}
@@ -87,6 +111,7 @@ const ActionButtons = ({
         title="Decline Gift Card"
         description={`Are you sure you want to decline this gift card? The user will be
               notified of the rejection. This action cannot be undone.`}
+        status="failed"
       />
     </>
   );
