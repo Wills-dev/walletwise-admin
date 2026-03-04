@@ -104,7 +104,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.airtime", {
-    header: "Airtime ",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Airtime</span>
+        <span className="inline lg:hidden">AT</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const airtime = getValue();
       return (
@@ -118,7 +123,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.betting", {
-    header: "Betting ",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Betting</span>
+        <span className="inline lg:hidden">BET</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const betting = getValue();
       return (
@@ -132,7 +142,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.cable", {
-    header: "Cable ",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Cable</span>
+        <span className="inline lg:hidden">CAB</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const cable = getValue();
       return (
@@ -146,7 +161,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.card_creation", {
-    header: "Card Creation",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Card Creation</span>
+        <span className="inline lg:hidden">CC</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const card_creation = getValue();
       return (
@@ -160,7 +180,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.card_topup", {
-    header: "Card Top Up ",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Card Top Up</span>
+        <span className="inline lg:hidden">CTU</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const card_topup = getValue();
       return (
@@ -174,7 +199,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.card_withdrawal", {
-    header: "Card Withdrawal",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Card Withdrawal</span>
+        <span className="inline lg:hidden">CW</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const card_withdrawal = getValue();
       return (
@@ -188,7 +218,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.card_refund", {
-    header: "Card Refund",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Card Refund</span>
+        <span className="inline lg:hidden">CR</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const card_refund = getValue();
       return (
@@ -202,7 +237,11 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.data", {
-    header: "Data ",
+    header: () => (
+      <>
+        <span className="">Data</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const data = getValue();
       return (
@@ -216,7 +255,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.education", {
-    header: "Education",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Education</span>
+        <span className="inline lg:hidden">EDU</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const education = getValue();
       return (
@@ -230,7 +274,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.electricity", {
-    header: "Electricity",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Electricity</span>
+        <span className="inline lg:hidden">ELEC</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const electricity = getValue();
       return (
@@ -258,7 +307,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.giftcard", {
-    header: "Giftcard ",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Giftcard</span>
+        <span className="inline lg:hidden">GC</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const giftcard = getValue();
       return (
@@ -272,7 +326,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("services.giftcard_redeem", {
-    header: "Redeem Giftcard ",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Redeem Giftcard</span>
+        <span className="inline lg:hidden">RGC</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const giftcard_redeem = getValue();
       return (
@@ -287,7 +346,12 @@ export const Column = [
   }),
 
   columnHelper.accessor("services.transfer", {
-    header: "Transfer ",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">Transfer</span>
+        <span className="inline lg:hidden">TRF</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const transfer = getValue();
       return (
@@ -312,7 +376,12 @@ export const Column = [
     },
   }),
   columnHelper.accessor("totals.user_commission", {
-    header: "User commission",
+    header: () => (
+      <>
+        <span className="hidden lg:inline">User commission</span>
+        <span className="inline lg:hidden">Comm</span>
+      </>
+    ),
     cell: ({ getValue }) => {
       const userCommission = getValue();
       return (
