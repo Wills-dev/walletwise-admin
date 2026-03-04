@@ -59,15 +59,18 @@ export const updateRedeemGiftcardStatus = async ({
   admin_notes,
 }: {
   id: string;
-  status: "success" | "failed";
+  status: "success" | "failed" | "processing";
   admin_notes: string;
 }) => {
   try {
-    const payload: { status: "success" | "failed"; admin_notes?: string } = {
+    const payload: {
+      status: "success" | "failed" | "processing";
+      reason?: string;
+    } = {
       status,
     };
     if (typeof admin_notes === "string" && admin_notes.trim() !== "") {
-      payload.admin_notes = admin_notes;
+      payload.reason = admin_notes;
     }
 
     const { data } = await axiosInstance.patch(

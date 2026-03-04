@@ -79,7 +79,7 @@ export type GiftCardTransaction = {
   exchange_rate: string;
   fee: string;
   final_amount: string;
-  status: "pending" | "success" | "failed" | "reversed";
+  status: "pending" | "success" | "failed" | "reversed" | "processing";
   image_url: string | null;
   created_at: string;
   updated_at: string;

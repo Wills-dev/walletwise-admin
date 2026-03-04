@@ -12,6 +12,7 @@ const UpdateRedeemGiftcardModa = ({
   setNote,
   handleSubmit,
   isSubmitting,
+  status,
 }: {
   title: string;
   note: string;
@@ -21,6 +22,7 @@ const UpdateRedeemGiftcardModa = ({
   setOpen: (ope: boolean) => void;
   setNote: (note: string) => void;
   handleSubmit: () => void;
+  status: "failed" | "success" | "processing";
 }) => {
   return (
     <ModalWrapper
@@ -30,22 +32,24 @@ const UpdateRedeemGiftcardModa = ({
       description={description}
     >
       <div className="space-y-4">
-        <div className="">
-          <Label title="Note (optional)" />
-          <Textarea
-            rows={5}
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            placeholder=""
-          />
-        </div>
+        {status === "failed" && (
+          <div className="">
+            <Label title="Note (optional)" />
+            <Textarea
+              rows={5}
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder=""
+            />
+          </div>
+        )}
         <Button
           type="button"
           onClick={handleSubmit}
           loading={isSubmitting}
           disabled={isSubmitting}
         >
-          Submit
+          Proceed
         </Button>
       </div>
     </ModalWrapper>
