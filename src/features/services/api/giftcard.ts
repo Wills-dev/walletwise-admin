@@ -46,7 +46,7 @@ export const getGiftcardRedemption = async ({
 
 export const getRedeemGiftInfo = async ({ id }: { id: string }) => {
   try {
-    const { data } = await axiosInstance.get(`/gift-cards/${id}`);
+    const { data } = await axiosInstance.get(`/gift-cards/transaction/${id}`);
     return data?.data;
   } catch (error) {
     throw error;
