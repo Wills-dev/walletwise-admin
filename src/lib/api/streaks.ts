@@ -21,14 +21,13 @@ export const getStreaks = async ({
     // if (filter?.[2]) params.set("sort_order", filter[2]);
     if (selectedDateFilterValue) {
       if (selectedDateFilterValue.label === "custom") {
+        params.set("filterType", "customRange");
         params.set(
-          "start_date",
-          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
+          "filterValue",
+          `${format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd")},${format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd")}`,
         );
-        params.set(
-          "end_date",
-          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
-        );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
       }
     }
 

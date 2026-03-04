@@ -15,8 +15,6 @@ const ActionButtons = ({
   giftcardId: string;
 }) => {
   const {
-    open,
-    setOpen,
     openModal,
     setOpenModal,
     isOpenModal,
@@ -46,16 +44,6 @@ const ActionButtons = ({
                 update the status.
               </p>
               <div className="flex gap-3 flex-wrap">
-                {isPending && (
-                  <Button
-                    onClick={() => setOpen(true)}
-                    disabled={isSubmitting}
-                    className="gap-2 bg-yellow-600 hover:bg-yellow-700"
-                  >
-                    <CheckCircle2 className="w-4 h-4" />
-                    Process Card
-                  </Button>
-                )}
                 <Button
                   onClick={() => setIsOpenModal(true)}
                   disabled={isSubmitting}
@@ -79,17 +67,6 @@ const ActionButtons = ({
         </CardContent>
       </Card>
 
-      <UpdateRedeemGiftcardModa
-        isSubmitting={isSubmitting}
-        open={open}
-        setOpen={setOpen}
-        note={admin_notes}
-        setNote={setAdmin_notes}
-        handleSubmit={() => handleSubmit("processing")}
-        title="Update to processing"
-        description={`Notify user you're processing their gift card.`}
-        status="processing"
-      />
       <UpdateRedeemGiftcardModa
         isSubmitting={isSubmitting}
         open={isOpenModal}
