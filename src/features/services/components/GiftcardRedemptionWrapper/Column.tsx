@@ -193,7 +193,9 @@ export const Column = [
         <>
           <ColumnActionDropdown>
             <DropdownMenuItem>
-              <Link href={`/services/gift-redeem/info/${giftcard?.id}`}>
+              <Link
+                href={`/services/gift-redeem/info/${giftcard?.transaction_id}`}
+              >
                 View info
               </Link>
             </DropdownMenuItem>

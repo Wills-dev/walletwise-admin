@@ -8,7 +8,6 @@ import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 import { updateRedeemGiftcardStatus } from "../api/giftcard";
 
 export const useUpdateGiftcard = (id: string) => {
-  const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [admin_notes, setAdmin_notes] = useState("");
@@ -21,7 +20,6 @@ export const useUpdateGiftcard = (id: string) => {
       toast.success("Rating successfully updated.");
       setOpenModal(false);
       setIsOpenModal(false);
-      setOpen(false);
       setAdmin_notes("");
       queryClient.invalidateQueries({
         queryKey: ["redeem gift"],
@@ -49,7 +47,5 @@ export const useUpdateGiftcard = (id: string) => {
     setAdmin_notes,
     handleSubmit,
     isPending,
-    open,
-    setOpen,
   };
 };

@@ -190,13 +190,14 @@ export const Column = [
     id: "actions",
     cell: ({ row }: CellContext<WalletTransaction, unknown>) => {
       const transaction = row.original;
+      const redeemGiftcard = transaction.category === "gift-redeem";
 
       return (
         <>
           <ColumnActionDropdown>
             <DropdownMenuItem>
               <Link
-                href={`/services/${transaction?.category}/info/${transaction.id}`}
+                href={`/services/${transaction?.category}/info/${redeemGiftcard ? transaction.transaction_id : transaction.id}`}
               >
                 View info
               </Link>
