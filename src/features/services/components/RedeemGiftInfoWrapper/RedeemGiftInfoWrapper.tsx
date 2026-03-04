@@ -27,6 +27,9 @@ const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
     "admin_management.read",
     "admin_management.write",
     "admin_management.create",
+    "manager_management.read",
+    "manager_management.write",
+    "manager_management.create",
   ];
 
   const giftBreadcrumb = [

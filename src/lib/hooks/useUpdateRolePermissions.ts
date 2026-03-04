@@ -64,6 +64,7 @@ export const useUpdateRolePermissions = () => {
     selectedPermissions,
     handleToggle,
     handleSelectAll,
+    setSelectedPermissions,
     handleUpdatePermissions,
     isUpdating: isPending,
   };

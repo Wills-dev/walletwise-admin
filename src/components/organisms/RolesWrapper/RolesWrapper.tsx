@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Archive, Edit, Eye } from "lucide-react";
 
@@ -47,6 +47,7 @@ const RolesWrapper = () => {
     handleSelectAll,
     handleUpdatePermissions,
     isUpdating,
+    setSelectedPermissions,
   } = useUpdateRolePermissions();
 
   const {
@@ -62,6 +63,12 @@ const RolesWrapper = () => {
   const { roles, isLoading } = useGetAllAdminRoles();
 
   const sortedRoles = [...roles].reverse();
+
+  useEffect(() => {
+    const currentPermission =
+      rolePermissions?.permissions?.map(({ id }) => id) || [];
+    setSelectedPermissions(currentPermission);
+  }, [rolePermissions, setSelectedPermissions]);
 
   return (
     <div className="space-y-6">
