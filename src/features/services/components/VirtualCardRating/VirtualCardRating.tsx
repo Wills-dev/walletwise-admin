@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { ColumnDef } from "@tanstack/react-table";
+import { useSelector } from "react-redux";
 
 import { Column } from "./Column";
+import { RootState } from "@/store";
+import { canAccess } from "@/lib/helpers/canAccess";
 import { ratingGiftSortOptions } from "@/lib/constants";
 import { useGetVirtualCardRatings } from "../../hooks/useGetVirtualCardRatings";
 
@@ -11,6 +14,7 @@ import TableLoader from "@/components/atoms/skeleton/TableLoader";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 
 const VirtualCardRating = () => {
+  const { user } = useSelector((state: RootState) => state.auth);
   const {
     setLimit,
     nextPage,
@@ -32,7 +36,19 @@ const VirtualCardRating = () => {
     setCurrentPage,
   } = useGetVirtualCardRatings();
 
-  const typedColumns = Column as ColumnDef<unknown>[];
+  const userPermissions = user?.permissions;
+  const requiredPermissions = [
+    "admin_management.read",
+    "admin_management.write",
+    "admin_management.create",
+    "manager_management.read",
+    "manager_management.write",
+    "manager_management.create",
+  ];
+
+  const hasPermission = canAccess(userPermissions, requiredPermissions);
+
+  const typedColumns = Column(hasPermission) as ColumnDef<unknown>[];
 
   return (
     <motion.div

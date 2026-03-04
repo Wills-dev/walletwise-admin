@@ -17,7 +17,7 @@ interface ColumnProps<TData = unknown> {
   table: Table<TData>;
 }
 
-export const Column = [
+export const Column = (hasPermission: boolean) => [
   {
     id: "select",
     header: ({ table }: ColumnProps) => (
@@ -129,14 +129,18 @@ export const Column = [
     },
   }),
 
-  {
-    id: "actions",
-    cell: ({ row }: CellContext<VirtualCardRating, unknown>) => {
-      const rating = row.original;
+  ...(hasPermission
+    ? [
+        {
+          id: "actions",
+          cell: ({ row }: CellContext<VirtualCardRating, unknown>) => {
+            const rating = row.original;
 
-      return <RatingActionButtons id={rating.id} />;
-    },
-    enableSorting: false,
-    enableHiding: false,
-  },
+            return <RatingActionButtons id={rating.id} />;
+          },
+          enableSorting: false,
+          enableHiding: false,
+        },
+      ]
+    : []),
 ];
