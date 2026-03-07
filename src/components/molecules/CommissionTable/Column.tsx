@@ -10,6 +10,7 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 
 import { UserCommissionAnalytics } from "@/lib/types";
+import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
 
 const columnHelper = createColumnHelper<UserCommissionAnalytics>();
 
@@ -64,16 +65,7 @@ export const Column = [
     cell: ({ row }: CellContext<UserCommissionAnalytics, unknown>) => {
       const user = row.original;
 
-      return (
-        <div>
-          <Link
-            href={`/manage-user/info/${user.id}`}
-            className="hover:underline transition-all duration-300"
-          >
-            {user.full_name}
-          </Link>
-        </div>
-      );
+      return <UserTableLink name={user.full_name} id={user?.id} />;
     },
   }),
   columnHelper.accessor("user_tag", {
@@ -91,16 +83,7 @@ export const Column = [
     cell: ({ row }: CellContext<UserCommissionAnalytics, unknown>) => {
       const user = row.original;
 
-      return (
-        <div>
-          <Link
-            href={`/manage-user/info/${user.id}`}
-            className="hover:underline transition-all duration-300"
-          >
-            {user.user_tag}
-          </Link>
-        </div>
-      );
+      return <UserTableLink name={user?.user_tag} id={user?.id} />;
     },
   }),
   columnHelper.accessor("services.airtime", {
