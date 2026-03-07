@@ -12,6 +12,7 @@ import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/Co
 import { StreakAnalytics } from "@/lib/types";
 import { numberWithCommas } from "@/lib/helpers";
 import { formatDate } from "@/lib/helpers/dateFormats";
+import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
 
 const columnHelper = createColumnHelper<StreakAnalytics>();
 
@@ -66,16 +67,7 @@ export const Column = [
     cell: ({ row }: CellContext<StreakAnalytics, unknown>) => {
       const user = row.original;
 
-      return (
-        <div>
-          <Link
-            href={`/manage-user/info/${user.id}`}
-            className="hover:underline transition-all duration-300"
-          >
-            {user.fullName}
-          </Link>
-        </div>
-      );
+      return <UserTableLink name={user?.fullName} id={user?.id} />;
     },
   }),
   columnHelper.accessor("userTag", {
@@ -93,16 +85,7 @@ export const Column = [
     cell: ({ row }: CellContext<StreakAnalytics, unknown>) => {
       const user = row.original;
 
-      return (
-        <div>
-          <Link
-            href={`/manage-user/info/${user.id}`}
-            className="hover:underline transition-all duration-300"
-          >
-            {user.userTag}
-          </Link>
-        </div>
-      );
+      return <UserTableLink name={user?.userTag} id={user?.id} />;
     },
   }),
   columnHelper.accessor("currentStreak", {

@@ -12,6 +12,7 @@ import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
 import { formatDate } from "@/lib/helpers/dateFormats";
 import { WalletTransaction } from "@/lib/types";
+import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
 
 const columnHelper = createColumnHelper<WalletTransaction>();
 
@@ -133,14 +134,7 @@ export const Column = [
     cell: ({ row }) => {
       const user = row.original?.user;
 
-      return (
-        <Link
-          href={`/manage-user/info/${user?.id}`}
-          className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full"
-        >
-          {user?.user_tag}
-        </Link>
-      );
+      return <UserTableLink name={user?.user_tag} id={user?.id} />;
     },
   }),
   columnHelper.accessor("user.first_name", {
@@ -159,12 +153,10 @@ export const Column = [
       const user = row.original?.user;
 
       return (
-        <Link
-          href={`/manage-user/user-info/${user?.id}`}
-          className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full capitalize"
-        >
-          {user?.first_name} {user?.last_name}
-        </Link>
+        <UserTableLink
+          name={`${user?.first_name} ${user?.last_name}`}
+          id={user?.id}
+        />
       );
     },
   }),
