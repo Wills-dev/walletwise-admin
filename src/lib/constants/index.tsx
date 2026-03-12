@@ -175,6 +175,10 @@ export const services = [
     link: "/services/esim",
   },
   {
+    name: "events",
+    link: "/services/events",
+  },
+  {
     name: "giftcard",
     link: "/services/giftcard",
   },
