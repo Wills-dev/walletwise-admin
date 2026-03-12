@@ -65,6 +65,11 @@ export interface DataPlan {
   updated_at: string;
 }
 
+export type TicketType = {
+  price: number;
+  quantity: number;
+};
+
 export type GiftCardTransaction = {
   id: number;
   user_id: string;
@@ -84,6 +89,25 @@ export type GiftCardTransaction = {
   created_at: string;
   updated_at: string;
 };
+
+export interface EventsType {
+  id: number;
+  event_id: string;
+  title: string;
+  date: string;
+  time: string;
+  address: string;
+  description: string;
+  promo: string;
+  image_url: string;
+  total_attendees: string;
+  total_tickets_sold: string;
+  ticket_types: {
+    regular: TicketType;
+    vip: TicketType;
+    free: TicketType;
+  };
+}
 
 export type VirtualCardRating = {
   id: number;

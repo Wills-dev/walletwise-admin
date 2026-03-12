@@ -19,6 +19,16 @@ export function formatDate(dateString: string) {
   return new Intl.DateTimeFormat("en-US", options).format(date);
 }
 
+export function formatTime(dateString: string) {
+  const date = new Date(dateString);
+  const options: DateOptions = {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+}
+
 export const formatFilterDate = (date: Date): string => {
   return date.toLocaleDateString("en-US", {
     month: "short",
@@ -77,7 +87,7 @@ export const formatCreatedAt = (dateString: Date) => {
 
 export const getDateRange = (
   filterType: FilterOption,
-  today: Date = new Date()
+  today: Date = new Date(),
 ): DateRange => {
   const startOfToday = new Date(today.setHours(0, 0, 0, 0));
 
