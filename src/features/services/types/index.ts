@@ -90,6 +90,12 @@ export type GiftCardTransaction = {
   updated_at: string;
 };
 
+export type TicketTypes = {
+  regular?: TicketType;
+  vip?: TicketType;
+  free?: TicketType;
+};
+
 export interface EventsType {
   id: number;
   event_id: string;
@@ -102,11 +108,41 @@ export interface EventsType {
   image_url: string;
   total_attendees: string;
   total_tickets_sold: string;
-  ticket_types: {
-    regular: TicketType;
-    vip: TicketType;
-    free: TicketType;
-  };
+  ticket_types: TicketTypes;
+  created_at: string;
+}
+
+export type TicketPurchase = {
+  price: string;
+  purchasedAt: string;
+  ticketType: string;
+  validated: boolean;
+  validatedAt: null | string;
+  validatedBy: null | string;
+};
+
+export interface EventsAttendeesType {
+  id: number;
+  event_id: string;
+  confirmed_at: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  status: string;
+  ticket_id: string;
+  user_tag: string;
+  tickets_purchased: TicketPurchase;
+  user_id: string;
+}
+
+export interface EventAdminCardProps {
+  data: EventsType;
+  total_attendees: number;
+  onEdit?: () => void;
+  onDelete?: () => void;
+  onToggleVisibility?: () => void;
+  onViewStats?: () => void;
+  onViewAttendees?: () => void;
 }
 
 export type VirtualCardRating = {

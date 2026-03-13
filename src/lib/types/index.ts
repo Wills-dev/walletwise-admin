@@ -72,6 +72,7 @@ export interface fetchDataProps {
   verified?: string;
   search: string | null;
   status?: string;
+  eventId?: string;
 }
 
 export interface TabType {
