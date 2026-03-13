@@ -1,6 +1,9 @@
 "use client";
-import { useState } from "react";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useDeleteEvent } from "../../hooks/useDeleteEvent";
 import { useGetEventInfo } from "../../hooks/useGetEventInfo";
 
 import PageTitle from "@/components/atoms/PageTitle/PageTitle";
@@ -8,8 +11,8 @@ import AppBreadcrumb from "@/components/molecules/AppBreadcrumb/AppBreadcrumb";
 import AdminInfoLoader from "@/components/atoms/skeleton/AdminInfoLoader";
 import EventSummaryCard from "../EventSummaryCard/EventSummaryCard";
 import EventAdminCard from "../EventAdminCard/EventAdminCard";
-import { useRouter } from "next/navigation";
 import EventAttendeesTable from "../EventAttendeesTable/EventAttendeesTable";
+import ConfirmAction from "@/components/molecules/ConfirmAction/ConfirmAction";
 
 const EventInfoWrapper = ({ eventId }: { eventId: string }) => {
   const router = useRouter();
@@ -18,6 +21,8 @@ const EventInfoWrapper = ({ eventId }: { eventId: string }) => {
   const [showAttendees, setShowAttendees] = useState(false);
 
   const { data, isLoading } = useGetEventInfo(eventId);
+  const { isOpen, onCancel, isPending, setIsOpen, deleteEvent } =
+    useDeleteEvent();
 
   const toggleStats = () => {
     setShowStats((prev) => !prev);
@@ -53,6 +58,7 @@ const EventInfoWrapper = ({ eventId }: { eventId: string }) => {
             onEdit={onEditEvent}
             total_attendees={data?.stats?.total_attendees}
             onViewAttendees={toggleAttendees}
+            onDelete={() => setIsOpen(true)}
           />
           {showStats && (
             <EventSummaryCard
@@ -79,6 +85,15 @@ const EventInfoWrapper = ({ eventId }: { eventId: string }) => {
             />
           )}
           {showAttendees && <EventAttendeesTable eventId={eventId} />}
+          <ConfirmAction
+            isPending={isPending}
+            open={isOpen}
+            setOpen={setIsOpen}
+            onCancel={onCancel}
+            onConfirm={() => deleteEvent({ eventId })}
+            title="Delete event"
+            description="Are you sure you want to delete this event?"
+          />
         </>
       )}
     </div>
