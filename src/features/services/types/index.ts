@@ -96,6 +96,11 @@ export type TicketTypes = {
   free?: TicketType;
 };
 
+export type TicketFormTypes = {
+  Regular?: TicketType;
+  VIP?: TicketType;
+  Free?: TicketType;
+};
 export interface EventsType {
   id: number;
   event_id: string;
@@ -143,6 +148,28 @@ export interface EventAdminCardProps {
   onToggleVisibility?: () => void;
   onViewStats?: () => void;
   onViewAttendees?: () => void;
+}
+
+export interface CreateEventPayload {
+  title: string;
+  date: string;
+  time: string;
+  address: string;
+  description: string;
+  promo?: string;
+  image: File | null;
+  ticket_types: TicketFormTypes;
+}
+
+export interface EventFormValues {
+  title: string;
+  date: string;
+  time: string;
+  address: string;
+  description: string;
+  promo: string;
+  image: File | null;
+  ticket_types: TicketFormTypes;
 }
 
 export type VirtualCardRating = {
