@@ -37,7 +37,7 @@ export const Column = [
     enableSorting: false,
     enableHiding: false,
   },
-  columnHelper.accessor((row) => row.tickets_purchased.purchasedAt, {
+  columnHelper.accessor((row) => row?.tickets_purchased?.purchasedAt, {
     id: "purchased_date",
     header: ({ column }) => {
       return (
@@ -88,7 +88,7 @@ export const Column = [
       );
     },
   }),
-  columnHelper.accessor((row) => row.tickets_purchased.price, {
+  columnHelper.accessor((row) => row?.tickets_purchased?.price, {
     id: "ticket_price",
     header: ({ column }) => {
       return (
@@ -114,7 +114,7 @@ export const Column = [
       return <div className="font-medium">{formatted}</div>;
     },
   }),
-  columnHelper.accessor((row) => row.tickets_purchased.ticketType, {
+  columnHelper.accessor((row) => row?.tickets_purchased?.ticketType, {
     id: "ticket_ticketType",
     header: ({ column }) => {
       return (

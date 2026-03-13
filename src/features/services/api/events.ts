@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/axiosInstance";
 import { formatCreatedAt } from "@/lib/helpers/dateFormats";
 import { fetchDataProps } from "@/lib/types";
-import { TicketType } from "../types";
+import { CreateEventPayload } from "../types";
 
 export const getEvents = async ({
   currentPage,
@@ -59,33 +59,71 @@ export const getEventInfo = async ({ eventId }: { eventId: string }) => {
   }
 };
 
+export function buildEventFormData(payload: CreateEventPayload): FormData {
+  const form = new FormData();
+
+  form.append("title", payload.title);
+  form.append("date", payload.date);
+  form.append("time", payload.time);
+  form.append("address", payload.address);
+  form.append("description", payload.description);
+
+  if (payload.promo) form.append("promo", payload.promo);
+
+  if (payload.image) form.append("image", payload.image);
+
+  form.append("ticket_types", JSON.stringify(payload.ticket_types));
+
+  return form;
+}
+
 export const createEvent = async ({
-  title,
-  date,
-  time,
+  payload,
 }: {
-  title: string;
-  date: string;
-  time: string;
-  address: string;
-  description: string;
-  promo: string;
-  image_url?: File;
-  ticket_types: {
-    Regular: TicketType;
-    VIP: TicketType;
-    Free: TicketType;
-  };
+  payload: CreateEventPayload;
 }) => {
   try {
+    const formData = buildEventFormData(payload);
+
     const url = `/events`;
 
-    const { data } = await axiosInstance.post(url);
+    const { data } = await axiosInstance.post(url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return data;
   } catch (error) {
     throw error;
   }
 };
+
+export async function updateEvent({
+  eventId,
+  payload,
+}: {
+  eventId: string;
+  payload: Partial<CreateEventPayload>;
+}) {
+  const form = new FormData();
+
+  if (payload.title) form.append("title", payload.title);
+  if (payload.date) form.append("date", payload.date);
+  if (payload.time) form.append("time", payload.time);
+  if (payload.address) form.append("address", payload.address);
+  if (payload.description) form.append("description", payload.description);
+  if (payload.promo) form.append("promo", payload.promo);
+  if (payload.image) form.append("image", payload.image, payload.image.name);
+  if (payload.ticket_types)
+    form.append("ticket_types", JSON.stringify(payload.ticket_types));
+
+  const url = `/events/${eventId}`;
+  const { data } = await axiosInstance.patch(url, form, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  return data;
+}
 
 export const getEventAttendees = async ({
   currentPage,

@@ -13,6 +13,7 @@ import EventSummaryCard from "../EventSummaryCard/EventSummaryCard";
 import EventAdminCard from "../EventAdminCard/EventAdminCard";
 import EventAttendeesTable from "../EventAttendeesTable/EventAttendeesTable";
 import ConfirmAction from "@/components/molecules/ConfirmAction/ConfirmAction";
+import { eventBreadcrumb } from "../../constants/events";
 
 const EventInfoWrapper = ({ eventId }: { eventId: string }) => {
   const router = useRouter();
@@ -36,11 +37,6 @@ const EventInfoWrapper = ({ eventId }: { eventId: string }) => {
 
   const onEditEvent = () =>
     router.push(`/services/events/info/${eventId}/edit`);
-
-  const eventBreadcrumb = [
-    { label: `Event Management`, href: `/services/events` },
-    { label: "Event Info" },
-  ];
 
   return (
     <div className="space-y-4 max-w-6xl mx-auto">
