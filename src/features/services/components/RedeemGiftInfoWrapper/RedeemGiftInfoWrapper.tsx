@@ -38,7 +38,7 @@ const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
   ];
 
   const isRedeemed = data?.status === "redeemed";
-  const isDeclined = data?.status === "declined";
+  const isDeclined = data?.status === "failed";
 
   return (
     <div className="space-y-4">
@@ -73,15 +73,16 @@ const RedeemGiftInfoWrapper = ({ serviceId }: { serviceId: string }) => {
                 <Alert className="border-red-500/20 bg-red-500/5">
                   <XCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
                   <AlertDescription className="text-red-700 dark:text-red-300">
-                    This gift card has been declined and the user has been
-                    notified.
+                    {data?.reason
+                      ? data?.reason
+                      : "This gift card has been declined and the user has been notified."}
                   </AlertDescription>
                 </Alert>
               )}
               <Separator />
 
               {canAccess(userPermissions, requiredPermissions) && (
-                <ActionButtons data={data} giftcardId={serviceId} />
+                <ActionButtons data={data} />
               )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

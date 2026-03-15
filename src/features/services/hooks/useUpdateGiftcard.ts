@@ -7,7 +7,7 @@ import { ApiErrorResponse } from "@/lib/types";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 import { updateRedeemGiftcardStatus } from "../api/giftcard";
 
-export const useUpdateGiftcard = (id: string) => {
+export const useUpdateGiftcard = (id: number) => {
   const [openModal, setOpenModal] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [admin_notes, setAdmin_notes] = useState("");
@@ -16,8 +16,8 @@ export const useUpdateGiftcard = (id: string) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: updateRedeemGiftcardStatus,
-    onSuccess: () => {
-      toast.success("Rating successfully updated.");
+    onSuccess: (data) => {
+      toast.success("Giftcard status successfully updated.");
       setOpenModal(false);
       setIsOpenModal(false);
       setAdmin_notes("");
@@ -25,7 +25,7 @@ export const useUpdateGiftcard = (id: string) => {
         queryKey: ["redeem gift"],
       });
       queryClient.invalidateQueries({
-        queryKey: ["redeem gift info", id],
+        queryKey: ["redeem gift info", data?.redemption?.transaction_id],
       });
     },
     onError: (error: ApiErrorResponse) => {

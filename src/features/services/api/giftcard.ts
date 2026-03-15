@@ -58,7 +58,7 @@ export const updateRedeemGiftcardStatus = async ({
   status,
   admin_notes,
 }: {
-  id: string;
+  id: number;
   status: "success" | "failed" | "processing";
   admin_notes: string;
 }) => {

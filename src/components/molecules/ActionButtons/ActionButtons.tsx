@@ -7,13 +7,7 @@ import { useUpdateGiftcard } from "@/features/services/hooks/useUpdateGiftcard";
 import UpdateRedeemGiftcardModa from "../modals/UpdateRedeemGiftcardModa/UpdateRedeemGiftcardModa";
 import { numberWithCommas } from "@/lib/helpers";
 
-const ActionButtons = ({
-  data,
-  giftcardId,
-}: {
-  data: GiftCardTransaction;
-  giftcardId: string;
-}) => {
+const ActionButtons = ({ data }: { data: GiftCardTransaction }) => {
   const {
     openModal,
     setOpenModal,
@@ -23,7 +17,7 @@ const ActionButtons = ({
     setAdmin_notes,
     handleSubmit,
     isPending: isSubmitting,
-  } = useUpdateGiftcard(giftcardId);
+  } = useUpdateGiftcard(data?.id);
 
   const isPending = data?.status === "pending";
 
