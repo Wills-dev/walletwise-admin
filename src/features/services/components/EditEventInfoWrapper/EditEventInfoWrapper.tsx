@@ -26,8 +26,6 @@ const EditEventInfoWrapper = ({ eventId }: { eventId: string }) => {
     setImageUrl,
   } = useEditEventInfo(eventId);
 
-  console.log("form.date", form.date);
-
   return (
     <div className="space-y-6">
       {isLoading ? (
