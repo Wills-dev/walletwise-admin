@@ -6,24 +6,41 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 import ConfirmAction from "@/components/molecules/ConfirmAction/ConfirmAction";
+import UpdateDataPlanModal from "@/components/molecules/modals/UpdateDataPlanModal/UpdateDataPlanModal";
 
 const DataPlanActionCell = ({
-  is_custom,
   is_active,
   id,
+  name,
+  plan_code,
+  cost,
+  final_price,
+  isCustom,
 }: {
-  is_custom: boolean;
   is_active: boolean;
   id: number;
+  name: string;
+  plan_code: string;
+  cost: string;
+  final_price: string;
+  isCustom: boolean;
 }) => {
   const { isOpen, onCancel, isPending, setIsOpen, deleteDataPlan } =
     useDeleteDataPlan();
-  const { handleEdit, open, setOpen, isSubmitting, openModal, setOpenModal } =
-    useEditDataPlan(id);
+
+  const {
+    handleEdit,
+    open,
+    setOpen,
+    isSubmitting,
+    data,
+    setData,
+    handleChange,
+  } = useEditDataPlan(id);
 
   return (
     <>
-      {is_custom && (
+      {isCustom && (
         <ColumnActionDropdown>
           <DropdownMenuItem
             className="text-red-500"
@@ -35,27 +52,15 @@ const DataPlanActionCell = ({
             Delete plan
           </DropdownMenuItem>
 
-          {!is_active ? (
-            <DropdownMenuItem
-              className="text-green-500"
-              onClick={(e) => {
-                e.preventDefault();
-                setOpen(true);
-              }}
-            >
-              Activate plan
-            </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem
-              className="text-red-500"
-              onClick={(e) => {
-                e.preventDefault();
-                setOpenModal(true);
-              }}
-            >
-              Deactivate plan
-            </DropdownMenuItem>
-          )}
+          <DropdownMenuItem
+            onClick={(e) => {
+              e.preventDefault();
+              setOpen(true);
+            }}
+          >
+            Update plan
+          </DropdownMenuItem>
+
           <ConfirmAction
             isPending={isPending}
             open={isOpen}
@@ -65,23 +70,19 @@ const DataPlanActionCell = ({
             title="Delete data plan"
             description="Are you sure you want to delete data plan?"
           />
-          <ConfirmAction
-            isPending={isSubmitting}
-            open={open}
-            setOpen={setOpen}
-            onCancel={() => setOpen(false)}
-            onConfirm={() => handleEdit(true)}
-            title="Activate data plan"
-            description="Are you sure you want to activate data plan?"
-          />
-          <ConfirmAction
-            isPending={isSubmitting}
-            open={openModal}
-            setOpen={setOpenModal}
-            onCancel={() => setOpenModal(false)}
-            onConfirm={() => handleEdit(false)}
-            title="Deactivate data plan"
-            description="Are you sure you want to deactivate data plan?"
+          <UpdateDataPlanModal
+            openModal={open}
+            setOpenModal={setOpen}
+            isSubmitting={isSubmitting}
+            name={name}
+            plan_code={plan_code}
+            cost={cost}
+            final_price={final_price}
+            handleEdit={handleEdit}
+            is_active={is_active}
+            data={data}
+            setData={setData}
+            handleChange={handleChange}
           />
         </ColumnActionDropdown>
       )}

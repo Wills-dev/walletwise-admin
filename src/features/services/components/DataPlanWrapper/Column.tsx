@@ -177,7 +177,11 @@ export const Column = [
           <DataPlanActionCell
             id={plan?.id}
             is_active={plan?.is_active}
-            is_custom={plan?.is_custom}
+            name={plan.name}
+            plan_code={plan.plan_code}
+            cost={plan.cost}
+            final_price={plan.final_price}
+            isCustom={plan.is_custom}
           />
         </>
       );
