@@ -14,7 +14,7 @@ export const editBaseDataPlan = async ({
   final_price?: string;
 }) => {
   try {
-    const url = `/data-providers/plans/base/${id}`;
+    const url = `/data/plans/base/${id}`;
     const payload: {
       is_active?: boolean;
       cost?: number;
