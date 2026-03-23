@@ -7,43 +7,40 @@ import { ApiErrorResponse } from "@/lib/types";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 import { DataType } from "../types/data";
 import { formatInputTextNumberWithCommas } from "@/lib/helpers/formatInputTextNumberWithCommas";
+import { editBaseDataPlan } from "../api/dataPlan";
 import { removeCommas } from "@/lib/helpers/removeCommas";
-import { editCustomDataPlan } from "../api/dataPlan";
 
-export const useEditDataPlan = (id: number) => {
-  const [open, setOpen] = useState(false);
-  const [data, setData] = useState<DataType>({
-    name: "",
-    commission: "",
+export const useEditBaseDataPlan = (id: number) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [baseData, setBaseData] = useState<DataType>({
     cost: "",
     final_price: "",
+    commission: "",
     is_active: undefined,
   });
 
-  const handleChange = (
+  const handleBaseChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setData((prev) => ({
+    setBaseData((prev) => ({
       ...prev,
       [name]:
         name === "is_active" && value === "active"
           ? true
           : name === "is_active" && value === "inactive"
             ? false
-            : ["commission", "cost", "final_price"].includes(name)
-              ? formatInputTextNumberWithCommas(value)
-              : value,
+            : formatInputTextNumberWithCommas(value),
     }));
   };
 
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: editCustomDataPlan,
+    mutationFn: editBaseDataPlan,
     onSuccess: () => {
       toast.success("Data plan successfully updated.");
-      setOpen(false);
+      setOpenModal(false);
       queryClient.invalidateQueries({
         queryKey: ["data plans"],
       });
@@ -54,23 +51,16 @@ export const useEditDataPlan = (id: number) => {
     },
   });
 
-  const handleEdit = (e: FormEvent) => {
+  const handleBaseEdit = (e: FormEvent) => {
     e.preventDefault();
-    const { is_active, name, commission, final_price, cost } = data;
-    if (
-      is_active === undefined &&
-      !name &&
-      !commission &&
-      !cost &&
-      !final_price
-    ) {
+    const { is_active, commission, final_price, cost } = baseData;
+    if (is_active === undefined && !commission && !cost && !final_price) {
       toast.error("Please edit at least one field before submitting");
       return;
     }
     mutate({
       is_active,
       id,
-      name,
       commission: removeCommas(commission),
       final_price: removeCommas(final_price),
       cost: removeCommas(cost),
@@ -78,12 +68,12 @@ export const useEditDataPlan = (id: number) => {
   };
 
   return {
-    handleEdit,
-    open,
-    setOpen,
-    data,
-    setData,
-    handleChange,
-    isSubmitting: isPending,
+    handleBaseEdit,
+    openModal,
+    setOpenModal,
+    baseData,
+    setBaseData,
+    handleBaseChange,
+    isUpdating: isPending,
   };
 };

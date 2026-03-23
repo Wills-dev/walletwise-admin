@@ -16,19 +16,20 @@ const UpdateDataPlanModal = ({
   isSubmitting,
   handleEdit,
   name,
-  plan_code,
+  commission,
   cost,
   final_price,
   is_active,
   data,
   setData,
   handleChange,
+  isCustom,
 }: {
   openModal: boolean;
   setOpenModal: (open: boolean) => void;
   isSubmitting: boolean;
   name: string;
-  plan_code: string;
+  commission: string;
   cost: string;
   is_active: boolean | undefined;
   final_price: string;
@@ -38,22 +39,22 @@ const UpdateDataPlanModal = ({
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
+  isCustom: boolean;
 }) => {
   useEffect(() => {
     setData({
       name,
-      plan_code,
+      commission,
       cost,
       final_price,
       is_active,
     });
-  }, [name, plan_code, cost, final_price, setData, is_active]);
+  }, [name, commission, cost, final_price, setData, is_active]);
 
   const isAnyFilled =
-    data?.name &&
-    data?.plan_code &&
-    data?.cost &&
-    data?.final_price &&
+    !data?.name ||
+    !data?.cost ||
+    !data?.final_price ||
     data?.is_active !== undefined;
 
   return (
@@ -70,16 +71,7 @@ const UpdateDataPlanModal = ({
             type="text"
             name="name"
             onChange={handleChange}
-            placeholder=""
-          />
-        </div>
-        <div className="space-y-2">
-          <Label title="Plan Code" />
-          <Input
-            value={data?.plan_code || ""}
-            type="text"
-            name="plan_code"
-            onChange={handleChange}
+            disable={isCustom ? false : true}
             placeholder=""
           />
         </div>
@@ -89,6 +81,16 @@ const UpdateDataPlanModal = ({
             value={data?.cost || ""}
             type="text"
             name="cost"
+            onChange={handleChange}
+            placeholder=""
+          />
+        </div>
+        <div className="space-y-2">
+          <Label title="Commission" />
+          <Input
+            value={data?.commission || ""}
+            type="text"
+            name="commission"
             onChange={handleChange}
             placeholder=""
           />
