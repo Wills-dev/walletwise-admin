@@ -11,6 +11,7 @@ interface InputProps {
   placeholder?: string;
   showPassword?: "text" | "password";
   onTogglePassword?: () => void;
+  disable?: boolean;
 }
 
 const Input = ({
@@ -22,15 +23,16 @@ const Input = ({
   type,
   icon,
   name,
+  disable = false,
 }: InputProps) => {
   const paddingX =
     icon !== undefined && showPassword !== undefined
       ? "px-9"
       : icon !== undefined && showPassword === undefined
-      ? "pl-9 pr-1"
-      : icon === undefined && showPassword !== undefined
-      ? "pl-1 pr-9"
-      : "px-1";
+        ? "pl-9 pr-1"
+        : icon === undefined && showPassword !== undefined
+          ? "pl-1 pr-9"
+          : "px-1";
 
   return (
     <div className="relative flex items-center backdrop-blur-2xl bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 dark:text-gray-400 transition-all focus-within:border-[#5c24cc] dark:focus-within:border-purple-700 duration-300 sm:h-11 h-10 p-1">
@@ -41,6 +43,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         name={name}
+        disabled={disable}
         className={`w-full bg-inherit h-full placeholder-gray-400 dark:placeholder-gray-600 outline-none ${paddingX}`}
         placeholder={placeholder}
       />

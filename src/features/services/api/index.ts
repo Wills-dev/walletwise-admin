@@ -117,43 +117,6 @@ export const createCustomDataPlan = async ({
   }
 };
 
-export const editDataPlan = async ({
-  id,
-  is_active,
-  name,
-  plan_code,
-  cost,
-  final_price,
-}: {
-  id: number;
-  is_active?: boolean;
-  name?: string;
-  plan_code?: string;
-  cost?: string;
-  final_price?: string;
-}) => {
-  try {
-    const url = `/data-providers/plans/custom/${id}`;
-    const payload: {
-      is_active?: boolean;
-      name?: string;
-      plan_code?: string;
-      cost?: string;
-      final_price?: string;
-    } = {};
-    if (name) payload.name = name;
-    if (cost) payload.cost = cost;
-    if (plan_code) payload.plan_code = plan_code;
-    if (final_price) payload.final_price = final_price;
-    if (is_active) payload.is_active = is_active;
-
-    const { data } = await axiosInstance.patch(url, payload);
-    return data?.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
 export const deleteDataPlan = async ({ id }: { id: number }) => {
   try {
     const url = `/data-providers/plans/custom/${id}`;
