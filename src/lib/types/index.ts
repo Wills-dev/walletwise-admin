@@ -142,6 +142,7 @@ export interface TransactionType {
   full_name: string;
   id: string;
   userID: string;
+  user_id: string;
   category: string;
 }
 

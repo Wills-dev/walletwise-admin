@@ -228,12 +228,12 @@ export const Column = (hasPermission: boolean, service: string) => [
         <>
           <ColumnActionDropdown>
             <DropdownMenuItem>
-              <Link href={`/services/${service}/info/${transaction.id}`}>
+              <Link href={`/services/${service}/info/${transaction?.id}`}>
                 View info
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href={`/manage-user/info/${transaction.userID}`}>
+              <Link href={`/manage-user/info/${transaction.user_id}`}>
                 View user
               </Link>
             </DropdownMenuItem>

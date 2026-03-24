@@ -3,50 +3,80 @@
 import PageTitle from "@/components/atoms/PageTitle/PageTitle";
 import TransactionHistory from "@/components/molecules/TransactionHistory/TransactionHistory";
 import TransactionSummary from "@/components/molecules/TransactionSummary/TransactionSummary";
-import { useGetAllTransactions } from "@/lib/hooks/useGetAllTransactions";
+import { DateFilterValue } from "@/lib/types";
+import { FormEvent } from "react";
 
-const AllTransactions = () => {
-  const {
-    setLimit,
-    nextPage,
-    prevPage,
-    goToFirstPage,
-    goToLastPage,
-    isFirstPage,
-    isLastPage,
-    search,
-    handleSearchChange,
-    data,
-    isLoading,
-    handleSearch,
-    handleClear,
-    currentPage,
-    limit,
-    refetch,
-    handleSortChange,
-    setSelectedDateFilterValue,
-    setExcludeTransfer,
-    setCurrentPage,
-  } = useGetAllTransactions();
+interface AllTransactionsProps<TData = unknown> {
+  isLoading: boolean;
+  transactions: TData[];
+  total_transactions: number;
+  total_transactions_exclude_transfer: number;
+  setExcludeTransfer: (exclude: boolean) => void;
+  totalPages: number;
+  currentPage: number;
+  prevPage: () => void;
+  nextPage: (totalPages: number) => void;
+  goToLastPage: (totalPages: number) => void;
+  goToFirstPage: () => void;
+  isFirstPage: () => boolean;
+  isLastPage: (totalPages: number) => boolean;
+  limit: number;
+  setLimit: (limit: number) => void;
+  setSelectedDateFilterValue: (value: DateFilterValue) => void;
+  refetch: () => void;
+  handleSortChange: (values: { [key: number]: string }) => void;
+  search: string | number;
+  handleChange: (search: string) => void;
+  handleClear: () => void;
+  onSubmit: (e: FormEvent) => void;
+  setCurrentPage: (page: number) => void;
+  title: string;
+}
 
+const AllTransactions = ({
+  transactions,
+  total_transactions,
+  total_transactions_exclude_transfer,
+  isLoading,
+  setExcludeTransfer,
+  totalPages,
+  currentPage,
+  prevPage,
+  nextPage,
+  goToLastPage,
+  goToFirstPage,
+  isFirstPage,
+  isLastPage,
+  limit,
+  setLimit,
+  setSelectedDateFilterValue,
+  refetch,
+  handleSortChange,
+  search,
+  handleChange,
+  handleClear,
+  onSubmit,
+  setCurrentPage,
+  title,
+}: AllTransactionsProps) => {
   return (
     <div className="space-y-6">
       <PageTitle
-        title="All Transactions"
+        title={title}
         description="Track and manage all transaction details"
       />
       <TransactionSummary
         totalTransactionsExcludeTransfer={
-          data?.summary?.total_transactions_exclude_transfer | 0
+          total_transactions_exclude_transfer | 0
         }
         setExcludeTransfer={setExcludeTransfer}
         isLoading={isLoading}
-        totalTransactions={data?.summary?.total_transactions | 0}
+        totalTransactions={total_transactions | 0}
       />
       <TransactionHistory
-        data={data?.transactions}
+        data={transactions}
         isLoading={isLoading}
-        totalPages={data?.pagination?.total_pages}
+        totalPages={totalPages}
         currentPage={currentPage}
         prevPage={prevPage}
         nextPage={nextPage}
@@ -59,9 +89,9 @@ const AllTransactions = () => {
         handleSortChange={handleSortChange}
         refetch={refetch}
         search={search}
-        handleChange={handleSearchChange}
+        handleChange={handleChange}
         handleClear={handleClear}
-        onSubmit={handleSearch}
+        onSubmit={onSubmit}
         setCurrentPage={setCurrentPage}
         setSelectedDateFilterValue={setSelectedDateFilterValue}
       />

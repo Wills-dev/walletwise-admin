@@ -10,6 +10,7 @@ export const getAllTransactions = async ({
   filter,
   selectedDateFilterValue,
   exclude,
+  service,
 }: fetchDataProps) => {
   try {
     const params = new URLSearchParams();
@@ -21,16 +22,20 @@ export const getAllTransactions = async ({
     if (filter?.[0]) params.set("sortOrder", filter[0]);
     if (filter?.[1]) params.set("status", filter[1]);
     if (exclude) params.set("excludeTransfers", exclude.toString());
+    if (service === "commission-transactions")
+      params.set("category", "commission");
     if (selectedDateFilterValue) {
       if (selectedDateFilterValue.label === "custom") {
         params.set(
           "startDate",
-          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
         );
         params.set(
           "endDate",
-          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
         );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
       }
     }
 
@@ -63,11 +68,11 @@ export const getUsertagTransactions = async ({
       if (selectedDateFilterValue.label === "custom") {
         params.set(
           "startDate",
-          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
         );
         params.set(
           "endDate",
-          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
         );
       }
     }

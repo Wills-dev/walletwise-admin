@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
-import AllTransactions from "@/components/organisms/AllTransactions/AllTransactions";
 import DashboardLayout from "@/components/templates/DashboardLayout/DashboardLayout";
 import MainLoader from "@/components/atoms/MainLoader/MainLoader";
+import TransactionsWrapper from "@/components/organisms/TransactionsWrapper/TransactionsWrapper";
 
 import { ProtectedPage } from "@/components/ProtectedPage";
 
@@ -21,7 +21,7 @@ const AllTransactionsPage = () => {
         requireAll={false}
       >
         <DashboardLayout title="Transactions">
-          <AllTransactions />{" "}
+          <TransactionsWrapper />
         </DashboardLayout>
       </ProtectedPage>
     </Suspense>
