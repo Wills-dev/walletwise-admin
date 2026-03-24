@@ -5,13 +5,12 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { Column } from "./Column";
 import { HistoryProps } from "@/lib/types";
+import { transferTab } from "@/lib/constants/dateFilter";
 import { useAdminPermission } from "@/lib/hooks/useAdminPermission";
 
 import ServiceCardWrapper from "../ServiceCardWrapper/ServiceCardWrapper";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
-import TableLoader from "@/components/atoms/skeleton/TableLoader";
 import DynamicTabs from "@/components/molecules/DynamicTabs/DynamicTabs";
-import { transferTab } from "@/lib/constants/dateFilter";
 
 const ServiceHistory = ({
   statusCount,
@@ -80,33 +79,30 @@ const ServiceHistory = ({
             onClick={handleSwitchTransferType}
           />
         )}
-        {isLoading ? (
-          <TableLoader />
-        ) : (
-          <TableWrapper
-            setSelectedDateFilterValue={setSelectedDateFilterValue}
-            columns={typedColumns}
-            data={data || []}
-            totalPages={totalPages}
-            currentPage={currentPage}
-            prevPage={prevPage}
-            nextPage={nextPage}
-            goToFirstPage={goToFirstPage}
-            goToLastPage={goToLastPage}
-            isFirstPage={isFirstPage}
-            isLastPage={isLastPage}
-            limit={limit}
-            setLimit={setLimit}
-            handleSortChange={handleSortChange}
-            refetch={refetch}
-            search={search}
-            handleChange={handleChange}
-            handleClear={handleClear}
-            onSubmit={onSubmit}
-            sortOptions={sortOptions}
-            setCurrentPage={setCurrentPage}
-          />
-        )}
+        <TableWrapper
+          setSelectedDateFilterValue={setSelectedDateFilterValue}
+          columns={typedColumns}
+          data={data || []}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          prevPage={prevPage}
+          nextPage={nextPage}
+          goToFirstPage={goToFirstPage}
+          goToLastPage={goToLastPage}
+          isFirstPage={isFirstPage}
+          isLastPage={isLastPage}
+          limit={limit}
+          setLimit={setLimit}
+          handleSortChange={handleSortChange}
+          refetch={refetch}
+          search={search}
+          handleChange={handleChange}
+          handleClear={handleClear}
+          onSubmit={onSubmit}
+          sortOptions={sortOptions}
+          setCurrentPage={setCurrentPage}
+          isLoading={isLoading}
+        />
       </div>
     </motion.div>
   );

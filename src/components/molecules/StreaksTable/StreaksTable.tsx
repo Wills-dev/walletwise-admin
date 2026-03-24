@@ -5,10 +5,9 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { Column } from "./Column";
 import { CommissionTableProps } from "@/lib/types";
-
-import TableLoader from "@/components/atoms/skeleton/TableLoader";
-import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 import { streakSortOptions } from "@/lib/constants";
+
+import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 
 const StreaksTable = ({
   isLoading,
@@ -42,33 +41,30 @@ const StreaksTable = ({
       transition={{ duration: 0.6, ease: "easeInOut" }}
       className="space-y-6"
     >
-      {isLoading ? (
-        <TableLoader />
-      ) : (
-        <TableWrapper
-          setSelectedDateFilterValue={setSelectedDateFilterValue}
-          columns={typedColumns}
-          data={data || []}
-          totalPages={totalPages}
-          currentPage={currentPage}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          goToFirstPage={goToFirstPage}
-          goToLastPage={goToLastPage}
-          isFirstPage={isFirstPage}
-          isLastPage={isLastPage}
-          limit={limit}
-          setLimit={setLimit}
-          handleSortChange={handleSortChange}
-          refetch={refetch}
-          search={search}
-          handleChange={handleChange}
-          handleClear={handleClear}
-          onSubmit={onSubmit}
-          sortOptions={streakSortOptions}
-          setCurrentPage={setCurrentPage}
-        />
-      )}
+      <TableWrapper
+        setSelectedDateFilterValue={setSelectedDateFilterValue}
+        columns={typedColumns}
+        data={data || []}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        goToFirstPage={goToFirstPage}
+        goToLastPage={goToLastPage}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        limit={limit}
+        setLimit={setLimit}
+        handleSortChange={handleSortChange}
+        refetch={refetch}
+        search={search}
+        handleChange={handleChange}
+        handleClear={handleClear}
+        onSubmit={onSubmit}
+        sortOptions={streakSortOptions}
+        setCurrentPage={setCurrentPage}
+        isLoading={isLoading}
+      />
     </motion.div>
   );
 };

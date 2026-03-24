@@ -6,7 +6,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Column } from "./Column";
 import { DateFilterValue } from "@/lib/types";
 
-import TableLoader from "@/components/atoms/skeleton/TableLoader";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 
 interface EarningsTableProps<TData = unknown> {
@@ -51,26 +50,23 @@ const EarningsTable = ({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
-      {isLoading ? (
-        <TableLoader />
-      ) : (
-        <TableWrapper
-          setSelectedDateFilterValue={setSelectedDateFilterValue}
-          columns={typedColumns}
-          data={data || []}
-          totalPages={totalPages}
-          currentPage={currentPage}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          goToFirstPage={goToFirstPage}
-          goToLastPage={goToLastPage}
-          isFirstPage={isFirstPage}
-          isLastPage={isLastPage}
-          limit={limit}
-          setLimit={setLimit}
-          setCurrentPage={setCurrentPage}
-        />
-      )}
+      <TableWrapper
+        setSelectedDateFilterValue={setSelectedDateFilterValue}
+        columns={typedColumns}
+        data={data || []}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        goToFirstPage={goToFirstPage}
+        goToLastPage={goToLastPage}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        limit={limit}
+        setLimit={setLimit}
+        setCurrentPage={setCurrentPage}
+        isLoading={isLoading}
+      />
     </motion.div>
   );
 };

@@ -11,6 +11,7 @@ import { DateFilterValue, DateRange, FilterOption } from "@/lib/types";
 import DropdownMenu from "@/components/molecules/DropdownMenu/DropdownMenu";
 import DoubleCalendarPanel from "@/components/molecules/DoubleCalendarPanel/DoubleCalendarPanel";
 import { toast } from "sonner";
+import { menuItems } from "@/lib/constants/dateFilter";
 
 interface DateFilterProps {
   onDateChange?: (value: DateFilterValue) => void;
@@ -61,7 +62,27 @@ const DateFilterComponent = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // const handleFilterSelect = (filter: FilterOption) => {
+
+  //   if (filter === "custom") {
+  //     setSelectedFilter(filter);
+  //     setShowCalendar(true);
+  //     setIsOpen(false);
+  //     setCustomStart(null);
+  //     setCustomEnd(null);
+  //   } else {
+  //     const range = getDateRange(filter);
+  //     setSelectedFilter(filter);
+  //     setDateRange(range);
+  //     setIsOpen(false);
+  //     setShowCalendar(false);
+  //     onDateChange?.({ label: filter, dateRange: range });
+  //   }
+  // };
+
   const handleFilterSelect = (filter: FilterOption) => {
+    if (filter === selectedFilter) return; // 🛑 prevent unnecessary update
+
     if (filter === "custom") {
       setSelectedFilter(filter);
       setShowCalendar(true);
@@ -70,10 +91,25 @@ const DateFilterComponent = ({
       setCustomEnd(null);
     } else {
       const range = getDateRange(filter);
-      setSelectedFilter(filter);
-      setDateRange(range);
+
+      setSelectedFilter((prev) => {
+        if (prev === filter) return prev;
+        return filter;
+      });
+
+      setDateRange((prev) => {
+        if (
+          prev.start.getTime() === range.start.getTime() &&
+          prev.end.getTime() === range.end.getTime()
+        ) {
+          return prev; // 🛑 no update
+        }
+        return range;
+      });
+
       setIsOpen(false);
       setShowCalendar(false);
+
       onDateChange?.({ label: filter, dateRange: range });
     }
   };
@@ -102,7 +138,11 @@ const DateFilterComponent = ({
           }
         }
 
-        setCustomEnd(date);
+        // setCustomEnd(date);
+        setCustomEnd((prev) => {
+          if (prev?.getTime() === date.getTime()) return prev;
+          return date;
+        });
         const range = { start: customStart, end: date };
         setDateRange(range);
         setSelectedFilter("custom");
@@ -113,10 +153,14 @@ const DateFilterComponent = ({
   };
 
   const getDisplayText = () => {
-    if (selectedFilter === "custom" && (!customStart || !customEnd)) {
-      return "Custom range";
+    if (selectedFilter === "custom") {
+      if (!customStart || !customEnd) return "Custom range";
+      return formatDateRange(dateRange.start, dateRange.end);
     }
-    return formatDateRange(dateRange.start, dateRange.end);
+
+    const selected = menuItems.find((item) => item.value === selectedFilter);
+
+    return selected?.label || "Select date";
   };
 
   return (

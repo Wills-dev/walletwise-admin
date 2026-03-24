@@ -29,7 +29,14 @@ export const useGetGiftCardRedemption = () => {
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["redeem gift", submittedQuery, limit, currentPage, status],
+    queryKey: [
+      "redeem gift",
+      submittedQuery,
+      limit,
+      currentPage,
+      status,
+      selectedDateFilterValue,
+    ],
     queryFn: () =>
       getGiftcardRedemption({
         currentPage,

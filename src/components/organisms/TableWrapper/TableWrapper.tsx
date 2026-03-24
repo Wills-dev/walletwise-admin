@@ -21,6 +21,7 @@ import TableHeaderWrap from "@/components/molecules/TableHeaderWrap/TableHeaderW
 import TableBodyWrap from "@/components/molecules/TableBodyWrap/TableBodyWrap";
 import PaginationComponent from "@/components/molecules/PaginationComponent/PaginationComponent";
 import TableResourceToolbar from "@/components/molecules/TableResourceToolbar/TableResourceToolbar";
+import TableLoader from "@/components/atoms/skeleton/TableLoader";
 
 const TableWrapper = ({
   columns,
@@ -44,6 +45,7 @@ const TableWrapper = ({
   onSubmit,
   sortOptions,
   setCurrentPage,
+  isLoading,
 }: TableWrapperProps) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -90,25 +92,31 @@ const TableWrapper = ({
           rowSelection={rowSelection}
         />
       </div>
-      <div className="shadow">
-        <Table className="dark:bg-gray-800 no-scrollbar">
-          <TableHeaderWrap table={table} />
-          <TableBodyWrap table={table} columns={columns} />
-        </Table>
-      </div>
-      <PaginationComponent
-        totalPages={totalPages}
-        currentPage={currentPage}
-        prevPage={prevPage}
-        nextPage={nextPage}
-        goToLastPage={goToLastPage}
-        goToFirstPage={goToFirstPage}
-        isFirstPage={isFirstPage}
-        isLastPage={isLastPage}
-        limit={limit}
-        setLimit={setLimit}
-        setCurrentPage={setCurrentPage}
-      />
+      {isLoading ? (
+        <TableLoader />
+      ) : (
+        <>
+          <div className="shadow">
+            <Table className="dark:bg-gray-800 no-scrollbar">
+              <TableHeaderWrap table={table} />
+              <TableBodyWrap table={table} columns={columns} />
+            </Table>
+          </div>
+          <PaginationComponent
+            totalPages={totalPages}
+            currentPage={currentPage}
+            prevPage={prevPage}
+            nextPage={nextPage}
+            goToLastPage={goToLastPage}
+            goToFirstPage={goToFirstPage}
+            isFirstPage={isFirstPage}
+            isLastPage={isLastPage}
+            limit={limit}
+            setLimit={setLimit}
+            setCurrentPage={setCurrentPage}
+          />
+        </>
+      )}
     </div>
   );
 };

@@ -58,6 +58,7 @@ export interface TableWrapperProps<TData = unknown> {
   onSubmit?: (e: FormEvent) => void;
   sortOptions?: SortOption[];
   setCurrentPage?: (page: number) => void;
+  isLoading?: boolean;
 }
 
 export interface optionsType {
