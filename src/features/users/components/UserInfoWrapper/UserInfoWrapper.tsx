@@ -19,6 +19,7 @@ import { RootState } from "@/store";
 import RestrictionEmptyState from "@/components/atoms/RestrictionEmptyState/RestrictionEmptyState";
 import UserDisputeSection from "../UserDisputeSection/UserDisputeSection";
 import { StatementOfAccount } from "@/components/molecules/StatementOfAccount/StatementOfAccount";
+import UserCardTransactions from "../UserCardTransactions/UserCardTransactions";
 
 const UserInfoWrapper = ({ userId }: { userId: string }) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -89,8 +90,23 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
       ) : (
         <RestrictionEmptyState />
       )}
+      <UserCardTransactions
+        totalPages={1}
+        currentPage={currentPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        goToFirstPage={goToFirstPage}
+        goToLastPage={goToLastPage}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        limit={limit}
+        setLimit={setLimit}
+        isLoading={isLoading}
+        cardTransactions={data?.cards?.transactions}
+        setCurrentPage={setCurrentPage}
+      />
       <UserReferralSection
-        totalPages={data?.transactions?.totalPages}
+        totalPages={1}
         currentPage={currentPage}
         prevPage={prevPage}
         nextPage={nextPage}
