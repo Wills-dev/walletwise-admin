@@ -26,6 +26,8 @@ export const useGetAllTransactions = () => {
     selectedDateFilterValue,
     setSelectedDateFilterValue,
     setCurrentPage,
+    tab,
+    handleSwithTab,
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
@@ -36,6 +38,7 @@ export const useGetAllTransactions = () => {
       currentPage,
       selectedDateFilterValue,
       excludeTransfer,
+      tab,
     ],
     queryFn: () =>
       getAllTransactions({
@@ -45,6 +48,7 @@ export const useGetAllTransactions = () => {
         filter,
         selectedDateFilterValue,
         exclude: excludeTransfer,
+        service: tab,
       }),
     enabled: true,
     staleTime: 5 * 60 * 1000,
@@ -77,5 +81,7 @@ export const useGetAllTransactions = () => {
     excludeTransfer,
     setExcludeTransfer,
     setCurrentPage,
+    tab,
+    handleSwithTab,
   };
 };

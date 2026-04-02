@@ -2,6 +2,7 @@ import { axiosInstance } from "@/lib/axiosInstance";
 import { fetchDataProps } from "@/lib/types";
 import { CreateDataPlanType } from "../types";
 import { removeCommas } from "@/lib/helpers/removeCommas";
+import { format } from "date-fns";
 
 export const getServiceTransaction = async ({
   currentPage,
@@ -24,7 +25,20 @@ export const getServiceTransaction = async ({
     if (filter?.[0]) params.set("dateOrder", filter[0]);
     if (filter?.[1]) params.set("amountOrder", filter[1]);
     if (status) params.set("status", status);
-
+    if (selectedDateFilterValue) {
+      if (selectedDateFilterValue.label === "custom") {
+        params.set(
+          "startDate",
+          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
+        );
+        params.set(
+          "endDate",
+          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
+        );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
+      }
+    }
     const url = `/transactions/category/${service}?${params.toString()}`;
 
     const { data } = await axiosInstance.get(url);
