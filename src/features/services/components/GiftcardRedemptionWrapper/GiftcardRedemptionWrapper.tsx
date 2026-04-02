@@ -7,7 +7,6 @@ import { Column } from "./Column";
 import { redeemGiftSortOptions } from "@/lib/constants";
 import { useGetGiftCardRedemption } from "../../hooks/useGetGiftCardRedemption";
 
-import TableLoader from "@/components/atoms/skeleton/TableLoader";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 
 const GiftcardRedemptionWrapper = () => {
@@ -43,33 +42,30 @@ const GiftcardRedemptionWrapper = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
-      {isLoading ? (
-        <TableLoader />
-      ) : (
-        <TableWrapper
-          columns={typedColumns}
-          data={data?.records || []}
-          totalPages={data?.pagination?.totalPages || 1}
-          currentPage={currentPage}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          goToFirstPage={goToFirstPage}
-          goToLastPage={goToLastPage}
-          isFirstPage={isFirstPage}
-          isLastPage={isLastPage}
-          limit={limit}
-          setLimit={setLimit}
-          search={search}
-          handleChange={handleSearchChange}
-          handleClear={handleClear}
-          onSubmit={handleSearch}
-          handleSortChange={handleSortChange}
-          refetch={refetch}
-          sortOptions={redeemGiftSortOptions}
-          setSelectedDateFilterValue={setSelectedDateFilterValue}
-          setCurrentPage={setCurrentPage}
-        />
-      )}
+      <TableWrapper
+        columns={typedColumns}
+        data={data?.records || []}
+        totalPages={data?.pagination?.totalPages || 1}
+        currentPage={currentPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        goToFirstPage={goToFirstPage}
+        goToLastPage={goToLastPage}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        limit={limit}
+        setLimit={setLimit}
+        search={search}
+        handleChange={handleSearchChange}
+        handleClear={handleClear}
+        onSubmit={handleSearch}
+        handleSortChange={handleSortChange}
+        refetch={refetch}
+        sortOptions={redeemGiftSortOptions}
+        setSelectedDateFilterValue={setSelectedDateFilterValue}
+        setCurrentPage={setCurrentPage}
+        isLoading={isLoading}
+      />
     </motion.div>
   );
 };
