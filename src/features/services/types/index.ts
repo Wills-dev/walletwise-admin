@@ -5,6 +5,18 @@ export interface TransactionDetails {
   bankName?: string;
   recepientAcc?: string;
   [key: string]: string | undefined;
+  fee?: string;
+  brand?: string;
+  card_id?: string;
+  currency?: string;
+  card_name?: string;
+  commission?: string;
+  exchange_rate?: string;
+  provider_rate?: string;
+  quote_trans_id?: string;
+  amount_credited?: string;
+  amount_requested?: string;
+  amount_usd?: string;
 }
 
 export interface ServiceData {

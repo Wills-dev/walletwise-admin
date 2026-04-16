@@ -2,10 +2,14 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { ServiceData } from "@/features/services/types";
-import { DollarSign, TrendingUp, Wallet } from "lucide-react";
+import { ExpandIcon, TrendingUp, Wallet } from "lucide-react";
 
 const TransactionSummaryCard = ({ data }: { data: ServiceData }) => {
   const totalAmount = parseFloat(data?.amount);
+  const dollarAmount =
+    Number(data?.details?.amount_requested) ||
+    Number(data?.details?.amount_usd);
+  const exchnageRate = Number(data?.details?.exchange_rate);
   // const feeAmount = parseFloat(data?.fee);
   // const totalWithFee = totalAmount + feeAmount;
 
@@ -13,7 +17,6 @@ const TransactionSummaryCard = ({ data }: { data: ServiceData }) => {
     <Card className="border-border/50 shadow-sm dark:bg-gray-800">
       <CardHeader className="pb-3">
         <CardTitle className="text-lg flex items-center gap-2">
-          <DollarSign className="w-5 h-5" />
           Transaction Summary
         </CardTitle>
       </CardHeader>
@@ -21,12 +24,23 @@ const TransactionSummaryCard = ({ data }: { data: ServiceData }) => {
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-sm text-muted-foreground">Amount</span>
-            <span className="text-2xl font-bold text-foreground">
-              ₦
-              {totalAmount.toLocaleString("en-NG", {
-                minimumFractionDigits: 2,
-              })}
-            </span>
+            <div className="flex flex-col">
+              {" "}
+              <span className="text-2xl font-bold text-foreground">
+                ₦
+                {totalAmount.toLocaleString("en-NG", {
+                  minimumFractionDigits: 2,
+                })}
+              </span>
+              {dollarAmount && (
+                <span className="text-2xl font-bold text-foreground">
+                  $
+                  {dollarAmount.toLocaleString("en-NG", {
+                    minimumFractionDigits: 2,
+                  })}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* {feeAmount > 0 && (
@@ -69,6 +83,20 @@ const TransactionSummaryCard = ({ data }: { data: ServiceData }) => {
               })}
             </span>
           </div>
+          {exchnageRate && (
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-muted-foreground flex items-center gap-1.5">
+                <ExpandIcon className="w-4 h-4" />
+                Exhange rate
+              </span>
+              <span className="text-foreground font-bold">
+                ₦
+                {exchnageRate.toLocaleString("en-NG", {
+                  minimumFractionDigits: 2,
+                })}
+              </span>
+            </div>
+          )}
         </div>
 
         {parseFloat(data?.commission) > 0 && (

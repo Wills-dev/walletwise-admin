@@ -118,6 +118,7 @@ export const Column = (hasPermission: boolean, service: string) => [
       return <div className=" font-medium">{formatted}</div>;
     },
   }),
+
   ...(hasPermission
     ? [
         columnHelper.accessor("company_commission", {
