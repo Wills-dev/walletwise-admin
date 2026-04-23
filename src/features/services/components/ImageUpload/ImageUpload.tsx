@@ -33,7 +33,7 @@ const ImageUpload = ({ image, setImage, imageUrl, setImageUrl }: Props) => {
 
   return (
     <div className="space-y-3">
-      {imageUrl?.trim() === "" && !preview ? (
+      {!image && !preview ? (
         <div
           onClick={() => inputRef.current?.click()}
           className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 cursor-pointer hover:border-gray-400 transition"
