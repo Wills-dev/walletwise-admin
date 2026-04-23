@@ -123,7 +123,7 @@ export const getUserInfo = async ({
   try {
     const { data } = await axiosInstance.get(
       `/users/${userId}/details?page=${currentPage}&limit=${limit}&sessionPage=1&sessionLimit=${limit}
-        `
+        `,
     );
     return data?.data;
   } catch (error) {
@@ -183,6 +183,35 @@ export const getUserDistribution = async () => {
   try {
     const { data } = await axiosInstance.get(`/users/state-distribution`);
     return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const flagUser = async ({
+  email,
+  is_suspicious,
+  reason,
+}: {
+  email: string;
+  is_suspicious: boolean;
+  reason?: string;
+}) => {
+  try {
+    const payload: {
+      is_suspicious: boolean;
+      reason?: string;
+    } = {
+      is_suspicious,
+    };
+
+    if (reason && reason.trim() !== "") {
+      payload.reason = reason;
+    }
+
+    const url = `/users/${email}/flag`;
+    const { data } = await axiosInstance.patch(url, payload);
+    return data;
   } catch (error) {
     throw error;
   }
