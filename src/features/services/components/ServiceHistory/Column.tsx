@@ -186,7 +186,7 @@ export const Column = (hasPermission: boolean, service: string) => [
 
       return (
         <Link
-          href={`/manage-user/info/${transaction?.userID}`}
+          href={`/manage-user/info/${transaction?.user_id}`}
           className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full"
         >
           {transaction?.user_tag}
@@ -211,7 +211,7 @@ export const Column = (hasPermission: boolean, service: string) => [
 
       return (
         <Link
-          href={`/manage-user/info/${transaction?.userID}`}
+          href={`/manage-user/info/${transaction?.user_id}`}
           className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full"
         >
           {transaction?.full_name}

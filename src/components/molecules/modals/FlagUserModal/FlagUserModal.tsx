@@ -18,7 +18,7 @@ const FlagUserModal = ({
   open: boolean;
   setOpen: (open: boolean) => void;
   handleSubmit: (e: FormEvent) => void;
-  flagUserAcc: { is_suspicious: boolean; reason: string };
+  flagUserAcc: { is_suspicious: string; reason: string };
   isUpdating: boolean;
   handleChange: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>,
@@ -35,11 +35,10 @@ const FlagUserModal = ({
         <div className="space-y-2">
           <Label title="Status" />
           <Select
-            value={flagUserAcc.is_suspicious ? "flag" : "unflag"}
+            value={flagUserAcc.is_suspicious}
             name="is_suspicious"
             onChange={handleChange}
             options={[
-              { value: "", label: "Select Status" },
               { value: "flag", label: "Flag" },
               { value: "unflag", label: "Unflag" },
             ]}

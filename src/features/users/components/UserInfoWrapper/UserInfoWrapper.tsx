@@ -20,6 +20,7 @@ import RestrictionEmptyState from "@/components/atoms/RestrictionEmptyState/Rest
 import UserDisputeSection from "../UserDisputeSection/UserDisputeSection";
 import { StatementOfAccount } from "@/components/molecules/StatementOfAccount/StatementOfAccount";
 import UserCardTransactions from "../UserCardTransactions/UserCardTransactions";
+import FlagUserAlert from "@/components/molecules/FlagUserAlert/FlagUserAlert";
 
 const UserInfoWrapper = ({ userId }: { userId: string }) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -40,6 +41,8 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
 
   const currentAdminId = user?.id || "";
 
+  console.log("data", data);
+
   return (
     <div className="space-y-4">
       <PageTitle
@@ -51,6 +54,11 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
         <UserInfoLoader />
       ) : (
         <>
+          <FlagUserAlert
+            email={data?.user?.email}
+            isSuspicious={data?.user_status?.is_suspicious}
+            reason={data?.user_status?.reason}
+          />
           <UserProfileCard user={data?.user} kycId={data?.kyc?.kyc_id} />
         </>
       )}
