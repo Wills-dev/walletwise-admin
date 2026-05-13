@@ -35,6 +35,14 @@ const TicketRow = ({ type, data }: TicketRowProps) => {
         <span
           className={`text-[13px] font-semibold min-w-[60px] text-right ${cfg.price}`}
         >
+          Discount: ₦
+          {data?.discountPrice
+            ? numberWithCommas(Number(data?.discountPrice))
+            : 0}
+        </span>
+        <span
+          className={`text-[13px] font-semibold min-w-[60px] text-right ${cfg.price}`}
+        >
           ₦{data?.price && numberWithCommas(Number(data?.price))}
         </span>
       </div>

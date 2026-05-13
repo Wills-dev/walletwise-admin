@@ -43,8 +43,15 @@ export const useEditEventInfo = (eventId: string) => {
   };
 
   const handleTicketChange = (
-    type: "Regular" | "VIP" | "Free",
-    field: "price" | "quantity",
+    type:
+      | "Regular"
+      | "VIP"
+      | "Free"
+      | "Table"
+      | "Table6"
+      | "Table8"
+      | "Table10",
+    field: "price" | "quantity" | "discountPrice",
     value: number,
   ) => {
     setForm((prev) => ({
@@ -70,16 +77,42 @@ export const useEditEventInfo = (eventId: string) => {
       promo: data?.event?.promo || "",
       ticket_types: {
         Regular: {
-          price: data?.event?.ticket_types.regular?.price || 0,
-          quantity: data?.event?.ticket_types.regular?.quantity || 0,
+          price: data?.event?.ticket_types?.Regular?.price || 0,
+          quantity: data?.event?.ticket_types?.Regular?.quantity || 0,
+          discountPrice: data?.event?.ticket_types?.Regular?.discountPrice || 0,
         },
         VIP: {
-          price: data?.event?.ticket_types.vip?.price || 0,
-          quantity: data?.event?.ticket_types.vip?.price || 0,
+          price: data?.event?.ticket_types?.vip?.price || 0,
+          quantity: data?.event?.ticket_types?.vip?.quantity || 0,
+          discountPrice: data?.event?.ticket_types?.vip?.discountPrice || 0,
         },
         Free: {
-          price: data?.event?.ticket_types.free?.price || 0,
-          quantity: data?.event?.ticket_types.free?.price || 0,
+          price: data?.event?.ticket_types?.free?.price || 0,
+          quantity: data?.event?.ticket_types?.free?.quantity || 0,
+          discountPrice: data?.event?.ticket_types?.free?.discountPrice || 0,
+        },
+        Table: {
+          price: data?.event?.ticket_types?.Table?.price || 0,
+          quantity: data?.event?.ticket_types?.Table?.quantity || 0,
+          discountPrice: data?.event?.ticket_types?.Table?.discountPrice || 0,
+        },
+        Table6: {
+          price: data?.event?.ticket_types["Table (6)"]?.price || 0,
+          quantity: data?.event?.ticket_types["Table (6)"]?.quantity || 0,
+          discountPrice:
+            data?.event?.ticket_types["Table (6)"]?.discountPrice || 0,
+        },
+        Table8: {
+          price: data?.event?.ticket_types["Table (8)"]?.price || 0,
+          quantity: data?.event?.ticket_types["Table (8)"]?.quantity || 0,
+          discountPrice:
+            data?.event?.ticket_types["Table (8)"]?.discountPrice || 0,
+        },
+        Table10: {
+          price: data?.event?.ticket_types["Table (10)"]?.price || 0,
+          quantity: data?.event?.ticket_types["Table (10)"]?.quantity || 0,
+          discountPrice:
+            data?.event?.ticket_types["Table (10)"]?.discountPrice || 0,
         },
       },
     });

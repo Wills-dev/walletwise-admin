@@ -9,6 +9,7 @@ import { EventsType } from "../../types";
 import { numberWithCommas } from "@/lib/helpers";
 
 import EventActionCell from "../EventActionCell/EventActionCell";
+import Link from "next/link";
 
 const columnHelper = createColumnHelper<EventsType>();
 
@@ -86,6 +87,191 @@ export const Column = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
+    },
+    cell: ({ row }) => {
+      const event = row.original;
+
+      return (
+        <Link
+          href={`/services/events/info/${event?.event_id}`}
+          className="hover:text-purple-600 hover:underline transition-all duration-300 text-center w-full capitalize"
+        >
+          {event?.title}
+        </Link>
+      );
+    },
+  }),
+
+  columnHelper.accessor((row) => row.ticket_types["Table (10)"]?.price, {
+    id: "Table (10)_price",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table 10 Price
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const amount = getValue<number>();
+
+      const formatted = amount
+        ? new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "NGN",
+          }).format(amount)
+        : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor((row) => row.ticket_types["Table (10)"]?.quantity, {
+    id: "Table (10)_quantity",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table (10) Quantity
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const quantity = getValue<number>();
+
+      const formatted = quantity ? numberWithCommas(quantity) : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor((row) => row.ticket_types["Table (8)"]?.price, {
+    id: "Table (8)_price",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table (8) Price
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const amount = getValue<number>();
+
+      const formatted = amount
+        ? new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "NGN",
+          }).format(amount)
+        : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor((row) => row.ticket_types["Table (8)"]?.quantity, {
+    id: "Table (8)_quantity",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table (8) Quantity
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const quantity = getValue<number>();
+
+      const formatted = quantity ? numberWithCommas(quantity) : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor((row) => row.ticket_types["Table (6)"]?.price, {
+    id: "Table (6)_price",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table (6) Price
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const amount = getValue<number>();
+
+      const formatted = amount
+        ? new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "NGN",
+          }).format(amount)
+        : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor((row) => row.ticket_types["Table (6)"]?.quantity, {
+    id: "Table (6)_quantity",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table (6) Quantity
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const quantity = getValue<number>();
+
+      const formatted = quantity ? numberWithCommas(quantity) : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor((row) => row.ticket_types?.Table?.price, {
+    id: "table_price",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table Price
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const amount = getValue<number>();
+
+      const formatted = amount
+        ? new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "NGN",
+          }).format(amount)
+        : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  }),
+  columnHelper.accessor((row) => row.ticket_types?.Table?.quantity, {
+    id: "Table_quantity",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Table Quantity
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ getValue }) => {
+      const quantity = getValue<number>();
+
+      const formatted = quantity ? numberWithCommas(quantity) : "N/A";
+
+      return <div className="font-medium">{formatted}</div>;
     },
   }),
 

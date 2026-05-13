@@ -39,8 +39,15 @@ export const useCreateEvent = () => {
   };
 
   const handleTicketChange = (
-    type: "Regular" | "VIP" | "Free",
-    field: "price" | "quantity",
+    type:
+      | "Regular"
+      | "VIP"
+      | "Free"
+      | "Table"
+      | "Table6"
+      | "Table8"
+      | "Table10",
+    field: "price" | "quantity" | "discountPrice",
     value: number,
   ) => {
     setForm((prev) => ({

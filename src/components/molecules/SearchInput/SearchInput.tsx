@@ -14,10 +14,15 @@ const SearchInput = ({
   handleClear,
   onSubmit,
 }: SearchInputProps) => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onSubmit(e);
+  };
+
   return (
     <form
       className="max-w-sm w-full relative px-2 h-8 rounded-full focus-within:border-purple-500 border border-gray-300 dark:border-gray-700 flex items-center gap-2 transition-all duration-300"
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <button type="submit">
         <Search className="w-6 h-6 text-gray-300 dark:text-gray-700" />
