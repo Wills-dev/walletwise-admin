@@ -80,6 +80,7 @@ export interface DataPlan {
 export type TicketType = {
   price: number;
   quantity: number;
+  discountPrice: number;
 };
 
 export type GiftCardTransaction = {
@@ -106,12 +107,20 @@ export type TicketTypes = {
   regular?: TicketType;
   vip?: TicketType;
   free?: TicketType;
+  "Table (10)"?: TicketType;
+  "Table (8)"?: TicketType;
+  "Table (6)"?: TicketType;
+  Table?: TicketType;
 };
 
 export type TicketFormTypes = {
   Regular?: TicketType;
   VIP?: TicketType;
   Free?: TicketType;
+  Table?: TicketType;
+  Table6?: TicketType;
+  Table8?: TicketType;
+  Table10?: TicketType;
 };
 export interface EventsType {
   id: number;

@@ -102,7 +102,7 @@ const EditEventInfoWrapper = ({ eventId }: { eventId: string }) => {
                 <Input
                   type="text"
                   name=""
-                  value={form?.ticket_types?.Free?.quantity || ""}
+                  value={form?.ticket_types?.Free?.quantity || "0"}
                   onChange={(e) =>
                     handleTicketChange(
                       "Free",
@@ -143,6 +143,21 @@ const EditEventInfoWrapper = ({ eventId }: { eventId: string }) => {
                     }
                   />
                 </div>
+                <div className="space-y-2">
+                  <Label title="Discount price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Regular?.discountPrice || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Regular",
+                        "discountPrice",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-2">
@@ -166,6 +181,209 @@ const EditEventInfoWrapper = ({ eventId }: { eventId: string }) => {
                       handleTicketChange(
                         "VIP",
                         "quantity",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Discount price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.VIP?.discountPrice || "0"}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "VIP",
+                        "discountPrice",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-2">
+                  <Label title="Table price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table?.price || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table",
+                        "price",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Quanity" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table?.quantity || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table",
+                        "quantity",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Discount price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table?.discountPrice || "0"}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table",
+                        "discountPrice",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-2">
+                  <Label title="Table 6 price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table6?.price || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table6",
+                        "price",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Quanity" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table6?.quantity || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table6",
+                        "quantity",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Discount price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table6?.discountPrice || "0"}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table6",
+                        "discountPrice",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-2">
+                  <Label title="Table 8 price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table8?.price || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table8",
+                        "price",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Quanity" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table8?.quantity || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table8",
+                        "quantity",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Discount price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table8?.discountPrice || "0"}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table8",
+                        "discountPrice",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-2">
+                  <Label title="Table 10 price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table10?.price || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table10",
+                        "price",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Quanity" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table10?.quantity || ""}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table10",
+                        "quantity",
+                        Number(e.target.value),
+                      )
+                    }
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label title="Discount price" />
+                  <Input
+                    type="text"
+                    name=""
+                    value={form?.ticket_types?.Table10?.discountPrice || "0"}
+                    onChange={(e) =>
+                      handleTicketChange(
+                        "Table10",
+                        "discountPrice",
                         Number(e.target.value),
                       )
                     }
