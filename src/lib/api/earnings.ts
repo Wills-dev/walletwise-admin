@@ -16,16 +16,20 @@ export const getEarnings = async ({
     params.set("limit", limit.toString());
 
     if (service) params.set("category", service);
+    console.log("service", service);
+    console.log("selectedDateFilterValue", selectedDateFilterValue);
     if (selectedDateFilterValue) {
       if (selectedDateFilterValue.label === "custom") {
         params.set(
           "start_date",
-          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
         );
         params.set(
           "end_date",
-          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
         );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
       }
     }
 

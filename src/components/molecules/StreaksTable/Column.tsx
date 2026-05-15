@@ -11,7 +11,7 @@ import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/Co
 
 import { StreakAnalytics } from "@/lib/types";
 import { numberWithCommas } from "@/lib/helpers";
-import { formatDate } from "@/lib/helpers/dateFormats";
+import { convertDateFormat } from "@/lib/helpers/dateFormats";
 import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
 
 const columnHelper = createColumnHelper<StreakAnalytics>();
@@ -151,7 +151,9 @@ export const Column = [
     },
     cell: ({ row }) => {
       const lastCheckinDate: string = row.getValue("lastCheckinDate");
-      const formatted = lastCheckinDate ? formatDate(lastCheckinDate) : "";
+      const formatted = lastCheckinDate
+        ? convertDateFormat(lastCheckinDate)
+        : "";
       return <div className="">{formatted}</div>;
     },
   }),

@@ -74,6 +74,8 @@ export const getUsertagTransactions = async ({
           "endDate",
           format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
         );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
       }
     }
 

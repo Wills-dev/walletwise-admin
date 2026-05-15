@@ -24,12 +24,14 @@ export const getCommisionsEarned = async ({
       if (selectedDateFilterValue.label === "custom") {
         params.set(
           "start_date",
-          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
         );
         params.set(
           "end_date",
-          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd")
+          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
         );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
       }
     }
 
