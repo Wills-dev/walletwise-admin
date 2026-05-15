@@ -11,6 +11,7 @@ import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/Co
 
 import { ReferralUser } from "@/lib/types";
 import { formatDate } from "@/lib/helpers/dateFormats";
+import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
 
 const columnHelper = createColumnHelper<ReferralUser>();
 
@@ -75,23 +76,18 @@ export const Column = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          First Name
+          Full Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-  }),
-
-  columnHelper.accessor("last_name", {
-    header: ({ column }) => {
+    cell: ({ row }) => {
+      const user = row.original;
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Last Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <UserTableLink
+          name={`${user?.first_name} ${user?.last_name}`}
+          id={user?.id}
+        />
       );
     },
   }),
@@ -107,6 +103,10 @@ export const Column = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
+    },
+    cell: ({ row }) => {
+      const user = row.original;
+      return <UserTableLink name={user?.user_tag} id={user?.id} />;
     },
   }),
 
