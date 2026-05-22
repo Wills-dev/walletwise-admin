@@ -12,6 +12,7 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import ColumnActionDropdown from "../ColumnActionDropdown/ColumnActionDropdown";
 import { formatDate } from "@/lib/helpers/dateFormats";
+import NoWrapCell from "@/components/atoms/NoWrapCell/NoWrapCell";
 
 const columnHelper = createColumnHelper<KYCTableData>();
 
@@ -44,6 +45,10 @@ export const Column = [
   },
   columnHelper.accessor("id", {
     header: "ID",
+    cell: ({ row }) => {
+      const id: string = row.getValue("id");
+      return <NoWrapCell value={id} />;
+    },
   }),
   columnHelper.accessor("userID", {
     header: "Email",

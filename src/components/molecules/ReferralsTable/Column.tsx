@@ -10,8 +10,8 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 
 import { ReferralUser } from "@/lib/types";
-import { formatDate } from "@/lib/helpers/dateFormats";
 import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper<ReferralUser>();
 
@@ -65,8 +65,7 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("created_at");
-      const formatted = date ? formatDate(date) : "";
-      return <div className="">{formatted}</div>;
+      return <TableDate date={date} showWithTime />;
     },
   }),
   columnHelper.accessor("first_name", {

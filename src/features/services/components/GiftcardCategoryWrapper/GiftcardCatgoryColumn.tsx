@@ -6,10 +6,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
-import { formatDate } from "@/lib/helpers/dateFormats";
 import { GiftCardCategory } from "../../types";
 
 import CategoryActionButton from "../CategoryActionButton/CategoryActionButton";
+import TableDate from "@/components/atoms/TableDate/TableDate";
+import NoWrapCell from "@/components/atoms/NoWrapCell/NoWrapCell";
 
 const columnHelper = createColumnHelper<GiftCardCategory>();
 
@@ -54,8 +55,7 @@ export const GiftcardCategoryColumn = [
     },
     cell: ({ row }) => {
       const created_at: string = row.getValue("created_at");
-      const formatted = created_at ? formatDate(created_at) : "";
-      return <div className="whitespace-nowrap">{formatted}</div>;
+      return <TableDate date={created_at} />;
     },
   }),
   columnHelper.accessor("id", {
@@ -69,6 +69,10 @@ export const GiftcardCategoryColumn = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
+    },
+    cell: ({ row }) => {
+      const id: string = row.getValue("id");
+      return <NoWrapCell value={id} />;
     },
   }),
   columnHelper.accessor("product_id", {

@@ -8,7 +8,7 @@ import AdminActionCell from "../AdminActionCell/AdminActionCell";
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
 import { AdminType } from "../../types";
-import { convertDateFormat, formatDate } from "@/lib/helpers/dateFormats";
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper();
 
@@ -53,8 +53,7 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("created_at");
-      const formatted = date ? convertDateFormat(date) : "";
-      return <div className="">{formatted}</div>;
+      return <TableDate date={date} />;
     },
   }),
   columnHelper.accessor("last_login", {
@@ -71,8 +70,7 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("last_login");
-      const formatted = date ? formatDate(date) : "";
-      return <div className="">{formatted}</div>;
+      return <TableDate date={date} showWithTime />;
     },
   }),
   columnHelper.accessor("first_name", {

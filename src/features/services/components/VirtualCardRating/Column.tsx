@@ -7,9 +7,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import RatingActionButtons from "../RatingActionButtons/RatingActionButtons";
 
-import { formatDate } from "@/lib/helpers/dateFormats";
 import { VirtualCardRating } from "../../types";
 import { numberWithCommas } from "@/lib/helpers";
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper<VirtualCardRating>();
 
@@ -54,8 +54,8 @@ export const Column = (hasPermission: boolean) => [
     },
     cell: ({ row }) => {
       const created_at: string = row.getValue("created_at");
-      const formatted = created_at ? formatDate(created_at) : "";
-      return <div className="whitespace-nowrap">{formatted}</div>;
+
+      return <TableDate date={created_at} />;
     },
   }),
   columnHelper.accessor("currency", {

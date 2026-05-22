@@ -6,13 +6,12 @@ import { CellContext, createColumnHelper, Table } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
-
-import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
-
 import { StreakAnalytics } from "@/lib/types";
 import { numberWithCommas } from "@/lib/helpers";
-import { convertDateFormat } from "@/lib/helpers/dateFormats";
+
+import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper<StreakAnalytics>();
 
@@ -151,10 +150,8 @@ export const Column = [
     },
     cell: ({ row }) => {
       const lastCheckinDate: string = row.getValue("lastCheckinDate");
-      const formatted = lastCheckinDate
-        ? convertDateFormat(lastCheckinDate)
-        : "";
-      return <div className="">{formatted}</div>;
+
+      return <TableDate date={lastCheckinDate} />;
     },
   }),
 
