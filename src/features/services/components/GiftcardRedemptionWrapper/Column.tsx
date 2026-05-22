@@ -8,10 +8,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
-import { formatDate } from "@/lib/helpers/dateFormats";
 import { GiftCardTransaction } from "../../types";
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import TableDate from "@/components/atoms/TableDate/TableDate";
+import NoWrapCell from "@/components/atoms/NoWrapCell/NoWrapCell";
 
 const columnHelper = createColumnHelper<GiftCardTransaction>();
 
@@ -56,12 +57,15 @@ export const Column = [
     },
     cell: ({ row }) => {
       const created_at: string = row.getValue("created_at");
-      const formatted = created_at ? formatDate(created_at) : "";
-      return <div className="whitespace-nowrap">{formatted}</div>;
+      return <TableDate date={created_at} showWithTime />;
     },
   }),
   columnHelper.accessor("transaction_id", {
     header: "Transaction ID",
+    cell: ({ row }) => {
+      const id: string = row.getValue("transaction_id");
+      return <NoWrapCell value={id} />;
+    },
   }),
 
   columnHelper.accessor("token", {

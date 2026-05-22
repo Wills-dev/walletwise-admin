@@ -10,8 +10,8 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 
-import { formatDate } from "@/lib/helpers/dateFormats";
 import { TicketType } from "../../types";
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper<TicketType>();
 
@@ -56,8 +56,7 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("created_at");
-      const formatted = date ? formatDate(date) : "";
-      return <div className="">{formatted}</div>;
+      return <TableDate date={date} showWithTime />;
     },
   }),
   columnHelper.accessor("dispute_id", {

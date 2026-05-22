@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { ArrowUpDown } from "lucide-react";
 import { CellContext, createColumnHelper, Table } from "@tanstack/react-table";
+import { TransactionType } from "@/lib/types";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -9,9 +10,8 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
-
-import { formatDate } from "@/lib/helpers/dateFormats";
-import { TransactionType } from "@/lib/types";
+import TableDate from "@/components/atoms/TableDate/TableDate";
+import NoWrapCell from "@/components/atoms/NoWrapCell/NoWrapCell";
 
 const columnHelper = createColumnHelper();
 
@@ -56,12 +56,15 @@ export const Column = (hasPermission: boolean, service: string) => [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("date");
-      const formatted = date ? formatDate(date) : "";
-      return <div className="">{formatted}</div>;
+      return <TableDate date={date} showWithTime />;
     },
   }),
   columnHelper.accessor("transaction_id", {
     header: "Transaction ID",
+    cell: ({ row }) => {
+      const id: string = row.getValue("transaction_id");
+      return <NoWrapCell value={id} />;
+    },
   }),
   columnHelper.accessor("asset_id", {
     header: ({ column }) => {

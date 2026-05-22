@@ -9,10 +9,10 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
-
-import { formatDate } from "@/lib/helpers/dateFormats";
-import { WalletTransaction } from "@/lib/types";
 import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
+import TableDate from "@/components/atoms/TableDate/TableDate";
+
+import { WalletTransaction } from "@/lib/types";
 
 const columnHelper = createColumnHelper<WalletTransaction>();
 
@@ -57,8 +57,8 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("date");
-      const formatted = date ? formatDate(date) : "";
-      return <div className="">{formatted}</div>;
+
+      return <TableDate date={date} showWithTime />;
     },
   }),
   columnHelper.accessor("transaction_id", {

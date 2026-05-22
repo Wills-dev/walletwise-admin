@@ -3,9 +3,9 @@ import { CellContext, createColumnHelper, Table } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-
-import { formatDate } from "@/lib/helpers/dateFormats";
 import { EarningTableData, TransactionType } from "@/lib/types";
+
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper<EarningTableData>();
 
@@ -50,8 +50,8 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("date");
-      const formatted = date ? formatDate(date) : "";
-      return <div className="">{formatted}</div>;
+
+      return <TableDate date={date} />;
     },
   }),
   columnHelper.accessor("category", {

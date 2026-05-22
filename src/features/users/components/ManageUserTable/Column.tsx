@@ -11,7 +11,7 @@ import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 
 import { AdminType } from "../../types";
-import { convertDateFormat } from "@/lib/helpers/dateFormats";
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper();
 
@@ -56,8 +56,7 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("created_at");
-      const formatted = date ? convertDateFormat(date) : "";
-      return <div className="">{formatted}</div>;
+      return <TableDate date={date} />;
     },
   }),
   columnHelper.accessor("first_name", {
@@ -134,8 +133,8 @@ export const Column = [
         status === "unknown"
           ? "inactive"
           : status === "inactive"
-          ? "suspended"
-          : status;
+            ? "suspended"
+            : status;
       return <StatusBubble status={newStatus} />;
     },
   }),

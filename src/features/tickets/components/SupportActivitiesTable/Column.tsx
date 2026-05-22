@@ -11,8 +11,8 @@ import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/ColumnActionDropdown";
 
 import { SupportActivityLog } from "../../types";
-import { formatDate } from "@/lib/helpers/dateFormats";
 import { formatString } from "@/lib/helpers/formatString";
+import TableDate from "@/components/atoms/TableDate/TableDate";
 
 const columnHelper = createColumnHelper<SupportActivityLog>();
 
@@ -57,8 +57,7 @@ export const Column = [
     },
     cell: ({ row }) => {
       const date: string = row.getValue("created_at");
-      const formatted = date ? formatDate(date) : "";
-      return <div className="">{formatted}</div>;
+      return <TableDate date={date} showWithTime />;
     },
   }),
   columnHelper.accessor("admin_first_name", {

@@ -41,8 +41,6 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
 
   const currentAdminId = user?.id || "";
 
-  console.log("data", data);
-
   return (
     <div className="space-y-4">
       <PageTitle
