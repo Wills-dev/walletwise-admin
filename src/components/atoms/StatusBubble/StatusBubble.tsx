@@ -21,11 +21,15 @@ const StatusBubble = ({ status }: { status: string }) => {
     failed: "text-red-400 bg-red-500/10 border border-red-500/20",
     debit: "text-red-400 bg-red-500/10 border border-red-500/20",
     confirmed: "text-blue-400 bg-blue-500/10 border border-blue-500/20",
+    "Personalized accounts":
+      "text-green-400 bg-green-500/10 border border-green-500/20",
+    "Virtual accounts":
+      "text-blue-400 bg-blue-500/10 border border-blue-500/20",
   };
 
   return (
     <div
-      className={`rounded-full px-3 py-1 text-center w-32 text-sm ${
+      className={`rounded-full px-3 py-1 text-center w-fit min-w-32 whitespace-nowrap text-sm ${
         statusStyles[status] || "text-red-400 bg-red-50"
       }`}
     >

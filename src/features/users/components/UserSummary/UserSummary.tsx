@@ -29,10 +29,10 @@ const UserSummary = ({
         value={totalUsers}
         onClick={() => handleStatusChange("")}
         icon={<Users />}
-        color="blue"
+        color="yellow"
       />
       <StatisticCard
-        title="Active users"
+        title="Personalized Accounts"
         value={activeUsers || 0}
         onClick={() => handleStatusChange("active")}
         icon={<UserCheck />}
@@ -40,11 +40,11 @@ const UserSummary = ({
       />
 
       <StatisticCard
-        title="Inactive users"
+        title="Virtual Accounts"
         value={unknownUsers || 0}
         onClick={() => handleStatusChange("unknown")}
         icon={<UserMinus />}
-        color="yellow"
+        color="blue"
       />
       <StatisticCard
         title="Suspended users"

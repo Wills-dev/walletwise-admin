@@ -131,10 +131,12 @@ export const Column = [
       const status = row.getValue("account_status") as string;
       const newStatus =
         status === "unknown"
-          ? "inactive"
+          ? "Virtual accounts"
           : status === "inactive"
             ? "suspended"
-            : status;
+            : status === "active"
+              ? "Personalized accounts"
+              : status;
       return <StatusBubble status={newStatus} />;
     },
   }),
