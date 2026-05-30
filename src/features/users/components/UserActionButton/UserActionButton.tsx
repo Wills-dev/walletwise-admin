@@ -11,11 +11,11 @@ import { useReactivateUser } from "../../hooks/useReactivateUser";
 const UserActionButton = ({
   userId,
   email,
-  status,
+  is_blacklisted,
 }: {
   userId: string;
   email: string;
-  status: string;
+  is_blacklisted: boolean;
 }) => {
   const {
     isOpen,
@@ -39,7 +39,7 @@ const UserActionButton = ({
   };
 
   const toggleStatusUpdate = () => {
-    if (status === "inactive") {
+    if (is_blacklisted) {
       setOpen(true);
     } else {
       setIsOpen(true);
@@ -51,7 +51,7 @@ const UserActionButton = ({
       {
         <Button onClick={toggleStatusUpdate}>
           {" "}
-          {status === "inactive" ? "Activate Account" : "Suspend Account"}
+          {is_blacklisted ? "Activate Account" : "Suspend Account"}
         </Button>
       }
       <UpdateUserStatusModal
