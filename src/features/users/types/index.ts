@@ -28,6 +28,7 @@ export interface UserType {
   user_tag: string;
   created_at: string;
   account_status: "active" | "unknown" | "inactive";
+  is_blacklisted: boolean;
 }
 
 export interface WalletType {

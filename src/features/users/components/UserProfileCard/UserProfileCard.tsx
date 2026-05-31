@@ -15,6 +15,18 @@ const UserProfileCard = ({
   user: UserType;
   kycId?: string;
 }) => {
+  const isBlacklisted = user?.is_blacklisted;
+  const status = user?.account_status;
+  const newStatus = isBlacklisted
+    ? "suspended"
+    : status === "unknown"
+      ? "Virtual accounts"
+      : status === "inactive"
+        ? "suspended"
+        : status === "active"
+          ? "Personalized accounts"
+          : status;
+
   return (
     <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm">
       <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -38,7 +50,7 @@ const UserProfileCard = ({
                 @{user?.user_tag}
               </p>
             </div>
-            <StatusBadge status={user?.account_status} />
+            <StatusBadge status={newStatus} />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -56,7 +68,7 @@ const UserProfileCard = ({
       <UserActionButton
         email={user?.email}
         userId={user?.id}
-        status={user?.account_status}
+        is_blacklisted={user?.is_blacklisted}
       />
     </div>
   );

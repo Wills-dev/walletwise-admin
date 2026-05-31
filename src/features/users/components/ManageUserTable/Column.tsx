@@ -129,14 +129,18 @@ export const Column = [
     },
     cell: ({ row }) => {
       const status = row.getValue("account_status") as string;
-      const newStatus =
-        status === "unknown"
+      const isBlacklisted = row.getValue("is_blacklisted") as string;
+
+      const newStatus = isBlacklisted
+        ? "suspended"
+        : status === "unknown"
           ? "Virtual accounts"
           : status === "inactive"
             ? "suspended"
             : status === "active"
               ? "Personalized accounts"
               : status;
+
       return <StatusBubble status={newStatus} />;
     },
   }),
