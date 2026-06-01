@@ -41,7 +41,7 @@ const ManageUserWrapper = () => {
         activeUsers={data?.userStats?.activeUsers}
         totalUsers={data?.userStats?.totalUsers}
         unknownUsers={data?.userStats?.unknownUsers}
-        inactiveUsers={data?.userStats?.inactiveUsers}
+        inactiveUsers={data?.userStats?.suspendedUsers}
         deletedUsers={data?.userStats?.deletedUsers}
       />
       <ManageUserTable

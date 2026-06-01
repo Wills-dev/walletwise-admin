@@ -49,7 +49,7 @@ const UserSummary = ({
       <StatisticCard
         title="Suspended users"
         value={inactiveUsers || 0}
-        onClick={() => handleStatusChange("inactive")}
+        onClick={() => handleStatusChange("suspended")}
         icon={<UserX />}
         color="red"
       />
