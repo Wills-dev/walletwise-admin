@@ -20,11 +20,11 @@ const UserProfileCard = ({
   const newStatus = isBlacklisted
     ? "suspended"
     : status === "unknown"
-      ? "Virtual accounts"
+      ? "Virtual account"
       : status === "inactive"
         ? "suspended"
         : status === "active"
-          ? "Personalized accounts"
+          ? "Personalized account"
           : status;
 
   return (
