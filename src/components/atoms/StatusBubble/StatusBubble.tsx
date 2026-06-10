@@ -21,10 +21,9 @@ const StatusBubble = ({ status }: { status: string }) => {
     failed: "text-red-400 bg-red-500/10 border border-red-500/20",
     debit: "text-red-400 bg-red-500/10 border border-red-500/20",
     confirmed: "text-blue-400 bg-blue-500/10 border border-blue-500/20",
-    "Personalized accounts":
+    "Personalized account":
       "text-green-400 bg-green-500/10 border border-green-500/20",
-    "Virtual accounts":
-      "text-blue-400 bg-blue-500/10 border border-blue-500/20",
+    "Virtual account": "text-blue-400 bg-blue-500/10 border border-blue-500/20",
   };
 
   return (
