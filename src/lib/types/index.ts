@@ -96,6 +96,8 @@ export interface SummaryProps {
   totalTransactions: number;
   totalUserCommission: number;
   isLoading: boolean;
+  totalAmountUsd?: number;
+  totalCommissionUsd?: number;
   onClick: (value: string) => void;
 }
 
@@ -105,6 +107,8 @@ export interface HistoryProps<TData = unknown> {
   totalCompanyCommission: number;
   totalTransactions: number;
   totalUserCommission: number;
+  totalAmountUsd?: number;
+  totalCommissionUsd?: number;
   isLoading: boolean;
   onClick: (value: string) => void;
   data: TData[];
