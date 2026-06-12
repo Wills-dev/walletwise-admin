@@ -69,17 +69,6 @@ const CardInfoWrapper = ({ card }: { card: Card }) => {
           />
         </div>
       </div>
-      <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
-        <h2 className="mb-5 text-lg font-semibold text-gray-900 dark:text-white">
-          Timeline
-        </h2>
-
-        <div className="space-y-5">
-          <InfoRow label="Created At" value="11 Jun 2026, 10:29 AM" />
-
-          <InfoRow label="Updated At" value="11 Jun 2026, 10:29 AM" />
-        </div>
-      </div>
     </div>
   );
 };
