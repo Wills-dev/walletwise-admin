@@ -10,7 +10,9 @@ import { virtualcardBreadcrumb } from "@/features/users/constants";
 import VirtualCardInfoSummary from "../VirtualCardInfoSummary/VirtualCardInfoSummary";
 import TableWrapper from "@/components/organisms/TableWrapper/TableWrapper";
 import { Column } from "./Column";
+import { useAdminPermission } from "@/lib/hooks/useAdminPermission";
 import { virtualCardInfoSortOptions } from "@/lib/constants/dateFilter";
+import CardInfoWrapper from "../CardInfoWrapper/CardInfoWrapper";
 
 const VirtualCardsInfoWrapper = ({ id }: { id: string }) => {
   const {
@@ -36,9 +38,9 @@ const VirtualCardsInfoWrapper = ({ id }: { id: string }) => {
     setCurrentPage,
   } = useVirtualCardsInfo(id);
 
-  const typedColumns = Column as ColumnDef<unknown>[];
+  const { hasPermission } = useAdminPermission();
 
-  console.log("data", data?.card);
+  const typedColumns = Column(hasPermission) as ColumnDef<unknown>[];
 
   return (
     <div className="space-y-4">
@@ -46,7 +48,9 @@ const VirtualCardsInfoWrapper = ({ id }: { id: string }) => {
         title="Virtual card details"
         description="Comprehensive card information and activity"
       />
+
       <AppBreadcrumb items={virtualcardBreadcrumb} />
+      <CardInfoWrapper card={data?.card} />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -64,7 +68,7 @@ const VirtualCardsInfoWrapper = ({ id }: { id: string }) => {
         <TableWrapper
           setSelectedDateFilterValue={setSelectedDateFilterValue}
           columns={typedColumns}
-          data={data?.card || []}
+          data={data?.transactions || []}
           totalPages={data?.totalPages || 1}
           currentPage={currentPage}
           prevPage={prevPage}
