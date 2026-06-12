@@ -136,19 +136,45 @@ export interface HistoryProps<TData = unknown> {
   setCurrentPage: (page: number) => void;
 }
 
+export interface TransactionDetail {
+  brand: string;
+  ref_id: string;
+  card_id: string;
+  currency: string;
+  trans_id: string;
+  billerRef: string;
+  card_name: string;
+  amount_ngn: string;
+  amount_usd: string;
+  new_balance: string;
+  prev_balance: string;
+  exchange_rate: number;
+  provider_rate: number;
+  quote_trans_id: string;
+}
+
 export interface TransactionType {
-  date: string;
-  transaction_id: string;
-  amount: number;
-  company_commission: number;
-  user_commission: number;
-  status: string;
-  user_tag: string;
-  full_name: string;
-  id: string;
+  id: number;
   userID: string;
-  user_id: string;
+  status: string;
+  type: string;
+  asset_id: string;
   category: string;
+  amount: string;
+  fee: string;
+  commission: string;
+  date: string;
+  product_name: string;
+  transaction_id: string;
+  details: TransactionDetail;
+  balance: string;
+  company_commission: string;
+  user_commission: string;
+  user_id: string;
+  user_tag: string;
+  first_name: string;
+  last_name: string;
+  full_name: string;
 }
 
 export type FilterOption =

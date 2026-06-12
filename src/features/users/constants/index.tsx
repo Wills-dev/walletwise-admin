@@ -10,6 +10,11 @@ export const userBreadcrumb = [
   { label: "User Info" },
 ];
 
+export const virtualcardBreadcrumb = [
+  { label: "Virtual cards", href: "/services/virtual-card" },
+  { label: "Virtual card Info" },
+];
+
 export const genderRole = [
   { label: "Male", value: "male" },
   { label: "Female", value: "female" },

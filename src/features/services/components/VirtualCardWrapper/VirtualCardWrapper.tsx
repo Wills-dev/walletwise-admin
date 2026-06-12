@@ -5,11 +5,17 @@ import ServiceLayout from "@/components/templates/ServiceLayout/ServiceLayout";
 import VirtualCardRating from "../VirtualCardRating/VirtualCardRating";
 
 import { useTableState } from "@/lib/hooks/useTableState";
+import VirtualCards from "../VirtualCards/VirtualCards";
 
 const VirtualCardWrapper = () => {
   const { virtualTab, handleSwitchVirtualTab } = useTableState();
 
   const tabs = [
+    {
+      value: "cards",
+      label: "Virtual Cards",
+      content: <VirtualCards />,
+    },
     {
       value: "card-creation",
       label: "Card Creation",
