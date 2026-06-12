@@ -1,6 +1,8 @@
 import { axiosInstance } from "@/lib/axiosInstance";
 import { fetchDataProps } from "@/lib/types";
 
+import { format } from "date-fns";
+
 export const getVirtualCardRatings = async ({
   // currentPage,
   // limit,
@@ -69,6 +71,89 @@ export const editVirtualCardRatingInfo = async ({
     if (is_active !== undefined) payload.is_active = is_active;
 
     const { data } = await axiosInstance.patch(`/rates/${id}`, payload);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getVirtualCards = async ({
+  currentPage,
+  limit,
+  search,
+  status,
+  filter,
+  selectedDateFilterValue,
+}: fetchDataProps) => {
+  try {
+    const params = new URLSearchParams();
+
+    params.set("page", currentPage.toString());
+    params.set("limit", limit.toString());
+
+    if (search) params.set("search", search);
+    if (filter?.[0]) params.set("brand", filter[0]);
+    if (filter?.[1]) params.set("status", filter[1]);
+    if (status) params.set("status", status);
+    if (selectedDateFilterValue) {
+      if (selectedDateFilterValue.label === "custom") {
+        params.set(
+          "startDate",
+          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
+        );
+        params.set(
+          "endDate",
+          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
+        );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
+      }
+    }
+    const url = `/virtual-cards?${params.toString()}`;
+
+    const { data } = await axiosInstance.get(url);
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getVirtualCardsInfo = async ({
+  currentPage,
+  limit,
+  search,
+  status,
+  filter,
+  eventId: cardId,
+  selectedDateFilterValue,
+}: fetchDataProps) => {
+  try {
+    const params = new URLSearchParams();
+
+    params.set("page", currentPage.toString());
+    params.set("limit", limit.toString());
+
+    if (search) params.set("search", search);
+    if (filter?.[0]) params.set("category", filter[0]);
+    if (filter?.[1]) params.set("status", filter[1]);
+    if (status) params.set("status", status);
+    if (selectedDateFilterValue) {
+      if (selectedDateFilterValue.label === "custom") {
+        params.set(
+          "startDate",
+          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
+        );
+        params.set(
+          "endDate",
+          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
+        );
+      } else {
+        params.set("filterType", selectedDateFilterValue.label);
+      }
+    }
+    const url = `/virtual-cards/${cardId}/transactions?${params.toString()}`;
+
+    const { data } = await axiosInstance.get(url);
     return data?.data;
   } catch (error) {
     throw error;

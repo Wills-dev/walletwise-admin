@@ -43,6 +43,8 @@ const ServiceHistory = ({
   handleSwitchTransferType,
   transferType,
   setCurrentPage,
+  totalAmountUsd,
+  totalCommissionUsd,
 }: HistoryProps) => {
   const { hasPermission } = useAdminPermission();
   const showTransferTab =
@@ -60,9 +62,11 @@ const ServiceHistory = ({
       <div className="">
         <ServiceCardWrapper
           totalRevenue={totalRevenue}
+          totalUserCommission={totalUserCommission}
           totalTransactions={totalTransactions}
           totalCommission={totalCompanyCommission}
-          totalUserCommission={totalUserCommission}
+          totalAmountUsd={totalAmountUsd}
+          totalCommissionUsd={totalCommissionUsd}
           success={statusCount?.success}
           reversed={statusCount?.reversed}
           pending={statusCount?.pending}

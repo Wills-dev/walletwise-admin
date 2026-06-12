@@ -33,6 +33,19 @@ export const sortOptions = [
   { label: "Sort by", values: ["highest", "lowest"] },
 ];
 
+export const virtualCardSortOptions = [
+  { label: "Brand", values: ["VISA", "MASTERCARD"] },
+  { label: "Status", values: ["active,", "frozen", "terminated"] },
+];
+
+export const virtualCardInfoSortOptions = [
+  {
+    label: "Category",
+    values: ["card-creation", "card-topup", "card-refund", "card-withdrawal"],
+  },
+  { label: "Status", values: ["success,", "failed", "pending", "reversed"] },
+];
+
 export const transferTab = [
   {
     value: "",

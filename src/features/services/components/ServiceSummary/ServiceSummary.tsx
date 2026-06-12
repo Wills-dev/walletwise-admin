@@ -14,6 +14,8 @@ const ServiceSummary = ({
   totalUserCommission,
   isLoading,
   onClick,
+  totalAmountUsd,
+  totalCommissionUsd,
 }: SummaryProps) => {
   return (
     <motion.div
@@ -28,6 +30,8 @@ const ServiceSummary = ({
         totalTransactions={totalTransactions}
         totalCommission={totalCompanyCommission}
         totalUserCommission={totalUserCommission}
+        totalAmountUsd={totalAmountUsd}
+        totalCommissionUsd={totalCommissionUsd}
         success={statusCount?.success}
         reversed={statusCount?.reversed}
         pending={statusCount?.pending}

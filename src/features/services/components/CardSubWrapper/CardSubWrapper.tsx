@@ -50,6 +50,8 @@ const CardSubWrapper = ({ service }: { service: string }) => {
             totalTransactions={data?.total_count}
             totalCompanyCommission={data?.total_company_commission}
             totalUserCommission={data?.total_user_commission}
+            totalAmountUsd={data?.total_amount_usd}
+            totalCommissionUsd={data?.total_commission_usd}
             isLoading={isLoading}
             onClick={handleStatusChange}
           />
@@ -90,6 +92,8 @@ const CardSubWrapper = ({ service }: { service: string }) => {
             sortOptions={sortOptions}
             service={service}
             setCurrentPage={setCurrentPage}
+            totalAmountUsd={data?.total_amount_usd}
+            totalCommissionUsd={data?.total_commission_usd}
           />
         </AnimatePresence>
       ),

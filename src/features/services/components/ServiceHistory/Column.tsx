@@ -121,6 +121,29 @@ export const Column = (hasPermission: boolean, service: string) => [
       return <div className=" font-medium">{formatted}</div>;
     },
   }),
+  ...(hasPermission
+    ? [
+        columnHelper.accessor("details.amount_usd", {
+          header: () => <div className="">USD Transaction</div>,
+          cell: ({ row }) => {
+            const transaction = row.original as TransactionType;
+
+            if (transaction.asset_id !== "virtual-card") return "-";
+
+            const amount = parseFloat(transaction.details?.amount_usd ?? "0");
+
+            return (
+              <div className="font-medium">
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(amount)}
+              </div>
+            );
+          },
+        }),
+      ]
+    : []),
 
   ...(hasPermission
     ? [
