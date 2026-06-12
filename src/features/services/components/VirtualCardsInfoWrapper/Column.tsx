@@ -8,15 +8,15 @@ import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import TableDate from "@/components/atoms/TableDate/TableDate";
 import NoWrapCell from "@/components/atoms/NoWrapCell/NoWrapCell";
 
-import { Card } from "../../types/virtualCards";
+import { VirtualCardTransaction } from "../../types/virtualCards";
 
-const columnHelper = createColumnHelper<Card>();
+const columnHelper = createColumnHelper<VirtualCardTransaction>();
 
 interface ColumnProps<TData = unknown> {
   table: Table<TData>;
 }
 
-export const Column = [
+export const Column = (hasPermission: boolean) => [
   {
     id: "select",
     header: ({ table }: ColumnProps) => (
@@ -28,40 +28,51 @@ export const Column = [
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
       />
     ),
-    cell: ({ row }: CellContext<Card, unknown>) => (
+    cell: ({ row }: CellContext<VirtualCardTransaction, unknown>) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
       />
     ),
-    enableSorting: false,
-    enableHiding: false,
   },
 
-  columnHelper.accessor("card_name", {
-    header: "Card Name",
-    cell: ({ row }) => <NoWrapCell value={row.getValue("card_name")} />,
-  }),
-
-  columnHelper.accessor("card_number", {
-    header: "Card Number",
-    cell: ({ row }) => <NoWrapCell value={row.getValue("card_number")} />,
-  }),
-
-  columnHelper.accessor("brand", {
+  columnHelper.accessor("date", {
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Brand
+        Date
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
+    cell: ({ row }) => <TableDate date={row.getValue("date")} showWithTime />,
   }),
 
-  columnHelper.accessor("currency", {
-    header: "Currency",
+  columnHelper.accessor("transaction_id", {
+    header: "Transaction ID",
+    cell: ({ row }) => <NoWrapCell value={row.getValue("transaction_id")} />,
+  }),
+
+  columnHelper.accessor("details.card_name", {
+    id: "card_name",
+    header: "Card Name",
+    cell: ({ row }) => {
+      const name = row.original as VirtualCardTransaction;
+
+      return (
+        <div className="whitespace-nowrap">{name?.details?.card_name}</div>
+      );
+    },
+  }),
+
+  columnHelper.accessor("details.brand", {
+    id: "brand",
+    header: "Brand",
+  }),
+
+  columnHelper.accessor("product_name", {
+    header: "Product",
   }),
 
   columnHelper.accessor("type", {
@@ -69,35 +80,96 @@ export const Column = [
     cell: ({ row }) => <StatusBubble status={row.getValue("type")} />,
   }),
 
-  columnHelper.accessor("expiry", {
-    header: "Expiry",
+  columnHelper.accessor("amount", {
+    header: "Amount (₦)",
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("amount"));
+
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "NGN",
+      }).format(amount);
+    },
   }),
 
-  columnHelper.accessor("card_status", {
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Status
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => <StatusBubble status={row.getValue("card_status")} />,
+  columnHelper.accessor("details.amount_usd", {
+    id: "amount_usd",
+    header: "Amount (USD)",
+    cell: ({ row }) => {
+      const amount = parseFloat(row.original.details.amount_usd ?? "0");
+
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount);
+    },
   }),
 
-  columnHelper.accessor("created_at", {
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Created At
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => (
-      <TableDate date={row.getValue("created_at")} showWithTime />
-    ),
+  columnHelper.accessor("fee", {
+    header: "Fee",
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("fee"));
+
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "NGN",
+      }).format(amount);
+    },
   }),
+
+  ...(hasPermission
+    ? [
+        columnHelper.accessor("company_commission", {
+          header: "Commission",
+          cell: ({ row }) => {
+            const amount = parseFloat(row.getValue("company_commission"));
+
+            return new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "NGN",
+            }).format(amount);
+          },
+        }),
+      ]
+    : []),
+
+  columnHelper.accessor("status", {
+    header: "Status",
+    cell: ({ row }) => <StatusBubble status={row.getValue("status")} />,
+  }),
+
+  columnHelper.accessor("balance", {
+    header: "Balance",
+    cell: ({ row }) => {
+      const balance = parseFloat(row.getValue("balance"));
+
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "NGN",
+      }).format(balance);
+    },
+  }),
+
+  // {
+  //   id: "actions",
+  //   cell: ({ row }: CellContext<VirtualCardTransaction, unknown>) => {
+  //     const transaction = row.original;
+
+  //     return (
+  //       <ColumnActionDropdown>
+  //         <DropdownMenuItem>
+  //           <Link href={`/virtual-cards/info/${transaction.details.card_id}`}>
+  //             View Card
+  //           </Link>
+  //         </DropdownMenuItem>
+
+  //         <DropdownMenuItem>
+  //           <Link href={`/transactions/${transaction.transaction_id}`}>
+  //             View Transaction
+  //           </Link>
+  //         </DropdownMenuItem>
+  //       </ColumnActionDropdown>
+  //     );
+  //   },
+  // },
 ];
