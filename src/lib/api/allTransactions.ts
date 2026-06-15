@@ -26,13 +26,10 @@ export const getAllTransactions = async ({
       params.set("category", "commission");
     if (selectedDateFilterValue) {
       if (selectedDateFilterValue.label === "custom") {
+        params.set("filterType", "customRange");
         params.set(
-          "startDate",
-          format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd"),
-        );
-        params.set(
-          "endDate",
-          format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd"),
+          "filterValue",
+          `${format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd")},${format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd")}`,
         );
       } else {
         params.set("filterType", selectedDateFilterValue.label);
