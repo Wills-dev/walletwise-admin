@@ -12,8 +12,9 @@ import ColumnActionDropdown from "@/components/molecules/ColumnActionDropdown/Co
 import StatusBubble from "@/components/atoms/StatusBubble/StatusBubble";
 import TableDate from "@/components/atoms/TableDate/TableDate";
 import NoWrapCell from "@/components/atoms/NoWrapCell/NoWrapCell";
+import StatusPulse from "@/components/atoms/StatusPulse/StatusPulse";
 
-const columnHelper = createColumnHelper();
+const columnHelper = createColumnHelper<TransactionType>();
 
 interface ColumnProps<TData = unknown> {
   table: Table<TData>;
@@ -63,7 +64,14 @@ export const Column = (hasPermission: boolean, service: string) => [
     header: "Transaction ID",
     cell: ({ row }) => {
       const id: string = row.getValue("transaction_id");
-      return <NoWrapCell value={id} />;
+      const userFlagged = row.original?.user_flagged;
+
+      return (
+        <div className="flex items-center gap-2">
+          <NoWrapCell value={id} />
+          {userFlagged && <StatusPulse size="sm" variant="red" />}
+        </div>
+      );
     },
   }),
   columnHelper.accessor("asset_id", {

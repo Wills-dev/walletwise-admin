@@ -27,7 +27,7 @@ export const useGetUsers = () => {
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["users", submittedQuery, limit, currentPage, status],
+    queryKey: ["users", submittedQuery, limit, currentPage, status, filter],
     queryFn: () =>
       getUsers({
         currentPage,

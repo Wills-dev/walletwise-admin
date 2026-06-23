@@ -25,7 +25,13 @@ export const useGetVirtualCardRatings = () => {
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["virtual card rating", submittedQuery, limit, currentPage],
+    queryKey: [
+      "virtual card rating",
+      submittedQuery,
+      limit,
+      currentPage,
+      filter,
+    ],
     queryFn: () =>
       getVirtualCardRatings({
         currentPage,

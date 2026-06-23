@@ -25,7 +25,13 @@ export const useGetGiftcardCategory = () => {
   } = useTableState();
 
   const { data, isPending, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["giftcard categories", submittedQuery, limit, currentPage],
+    queryKey: [
+      "giftcard categories",
+      submittedQuery,
+      limit,
+      currentPage,
+      filter,
+    ],
     queryFn: () =>
       getGifcardCategories({
         currentPage,

@@ -1,61 +1,53 @@
 import Button from "@/components/atoms/Button/Button";
 import Label from "@/components/atoms/Label/Label";
 import ModalWrapper from "@/components/atoms/ModalWrapper/ModalWrapper";
-import Select from "@/components/atoms/Select/Select";
 import Textarea from "@/components/atoms/TextArea/Textarea";
-
-import React, { FormEvent } from "react";
 
 const FlagUserModal = ({
   open,
   setOpen,
   handleSubmit,
-  flagUserAcc,
+  reason,
   isUpdating,
-  handleChange,
+  setReason,
   isFlagged,
 }: {
   open: boolean;
   setOpen: (open: boolean) => void;
-  handleSubmit: (e: FormEvent) => void;
-  flagUserAcc: { is_suspicious: string; reason: string };
+  handleSubmit: () => void;
+  reason: string;
   isUpdating: boolean;
-  handleChange: (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>,
-  ) => void;
+  setReason: (e: string) => void;
   isFlagged: boolean;
 }) => {
+  const isReasonFilled = !isFlagged && reason.trim() === "";
+
   return (
     <ModalWrapper
       open={open}
       onClose={setOpen}
       title={isFlagged ? "Unflag user acccount" : "Flag user account"}
     >
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="space-y-2">
-          <Label title="Status" />
-          <Select
-            value={flagUserAcc.is_suspicious}
-            name="is_suspicious"
-            onChange={handleChange}
-            options={[
-              { value: "flag", label: "Flag" },
-              { value: "unflag", label: "Unflag" },
-            ]}
+          <Label
+            title={`${!isFlagged ? "Please tell us why user is being flagged." : "Reason (optional)"}`}
           />
-        </div>
-        <div className="space-y-2">
-          <Label title="Reason" />
           <Textarea
             rows={5}
-            value={flagUserAcc.reason}
+            value={reason}
             name="reason"
-            onChange={handleChange}
+            onChange={(e) => setReason(e.target.value)}
           />
         </div>
         <div className="">
-          <Button type="submit" loading={isUpdating}>
-            Update
+          <Button
+            type="button"
+            loading={isUpdating}
+            disabled={isReasonFilled}
+            onClick={handleSubmit}
+          >
+            Proceed
           </Button>
         </div>
       </form>

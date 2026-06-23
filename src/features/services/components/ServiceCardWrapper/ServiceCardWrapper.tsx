@@ -60,6 +60,8 @@ const ServiceCardWrapper = ({
                 currency="₦"
                 color="orange"
                 value={totalRevenue}
+                secondCurrency="$"
+                secondValue={totalAmountUsd || 0}
                 icon={<Banknote className="w-6 h-6" />}
                 onClick={() => onClick("")}
               />
@@ -68,29 +70,11 @@ const ServiceCardWrapper = ({
                 currency="₦"
                 color="blue"
                 value={totalCommission}
+                secondCurrency="$"
+                secondValue={totalCommissionUsd || 0}
                 icon={<PoundSterling className="w-6 h-6" />}
                 onClick={() => onClick("")}
               />
-              {totalAmountUsd !== undefined && (
-                <StatisticCard
-                  title="Total USD Revenue"
-                  currency="$"
-                  color="orange"
-                  value={totalAmountUsd || 0}
-                  icon={<Banknote className="w-6 h-6" />}
-                  onClick={() => onClick("")}
-                />
-              )}
-              {totalCommissionUsd !== undefined && (
-                <StatisticCard
-                  title="Total USD Commission"
-                  currency="$"
-                  color="blue"
-                  value={totalCommissionUsd || 0}
-                  icon={<Banknote className="w-6 h-6" />}
-                  onClick={() => onClick("")}
-                />
-              )}
               <StatisticCard
                 title="Total User Commission"
                 currency="₦"

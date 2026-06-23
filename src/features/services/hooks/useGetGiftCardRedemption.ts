@@ -36,6 +36,7 @@ export const useGetGiftCardRedemption = () => {
       currentPage,
       status,
       selectedDateFilterValue,
+      filter,
     ],
     queryFn: () =>
       getGiftcardRedemption({

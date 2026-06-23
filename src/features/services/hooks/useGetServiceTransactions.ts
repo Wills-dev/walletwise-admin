@@ -43,6 +43,7 @@ export const useGetServiceTransactions = (service: string) => {
       status,
       transferType,
       selectedDateFilterValue,
+      filter,
     ],
     queryFn: () =>
       getServiceTransaction({

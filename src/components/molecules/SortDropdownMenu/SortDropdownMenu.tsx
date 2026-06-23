@@ -1,4 +1,5 @@
 import { SelectedValues, SortOption } from "@/lib/types";
+
 import SortOptionGroup from "../SortOptionGroup/SortOptionGroup";
 
 interface DropdownMenuProps {

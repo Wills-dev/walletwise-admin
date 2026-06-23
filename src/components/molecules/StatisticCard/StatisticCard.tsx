@@ -12,6 +12,8 @@ interface StatisticCardProps {
   percentage?: number;
   percentageType?: "positive" | "negative";
   period?: string;
+  secondValue?: number;
+  secondCurrency?: string;
 }
 
 const StatisticCard = ({
@@ -24,6 +26,8 @@ const StatisticCard = ({
   percentage,
   percentageType,
   period,
+  secondCurrency,
+  secondValue,
 }: StatisticCardProps) => {
   const colorClasses = {
     green: "bg-green-50 text-green-600 border-green-100",
@@ -54,10 +58,17 @@ const StatisticCard = ({
           </div>
         )}
       </div>
-      <h1 className="text-2xl font-bold dark:text-gray-200">
-        {currency && currency}
-        {value && numberWithCommas(value)}
-      </h1>
+      <div className="space-y-2">
+        <h1 className="text-2xl font-bold dark:text-gray-200">
+          {currency && currency}
+          {value && numberWithCommas(value)}
+        </h1>
+        <h6 className="text-sm font-bold text-gray-600 dark:text-gray-300">
+          {secondCurrency && secondCurrency}
+          {secondValue && numberWithCommas(secondValue)}
+        </h6>
+      </div>
+
       {percentage !== undefined && (
         <div className="flex items-center gap-2">
           <span

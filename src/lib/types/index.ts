@@ -175,6 +175,7 @@ export interface TransactionType {
   first_name: string;
   last_name: string;
   full_name: string;
+  user_flagged: boolean;
 }
 
 export type FilterOption =
@@ -330,6 +331,7 @@ export type WalletTransaction = {
   date: string;
   details: TransactionDetails;
   user: TransactionUser;
+  user_flagged: boolean;
 };
 
 export interface Notification {

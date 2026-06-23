@@ -27,7 +27,6 @@ const SortDropdown = ({
       [optionIndex]: value,
     };
     setSelectedValues(newSelectedValues);
-    onSortChange?.(newSelectedValues);
   };
 
   const clearSelection = (e: MouseEvent<HTMLSpanElement>): void => {
@@ -53,6 +52,12 @@ const SortDropdown = ({
   const displayText = getDisplayText(selectedValues, sortOptions, placeholder);
   const hasSelectedValues = hasAnySelectedValues(selectedValues);
 
+  const handleSubmit = () => {
+    onSortChange?.(selectedValues);
+    if (onFilter !== undefined) onFilter();
+    setIsOpen(false);
+  };
+
   return (
     <div
       className={`relative flex items-center max-md:hidden text-left ${className}`}
@@ -63,7 +68,7 @@ const SortDropdown = ({
         onClick={() => setIsOpen(!isOpen)}
       >
         <Filter className="w-4 h-4" />
-        <span className="truncate max-w-[200px] text-sm">{displayText}</span>
+        <span className="truncate max-w-50 text-sm">{displayText}</span>
         <div className="flex items-center ml-2">
           {hasSelectedValues && <ClearButton onClick={clearSelection} />}
           <ChevronDown
@@ -79,7 +84,7 @@ const SortDropdown = ({
           sortOptions={sortOptions}
           selectedValues={selectedValues}
           onSelect={handleOptionClick}
-          onFilter={onFilter}
+          onFilter={handleSubmit}
           hasSelectedValues={hasSelectedValues}
         />
       )}
