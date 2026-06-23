@@ -32,6 +32,7 @@ export const useGetCommissions = () => {
       limit,
       currentPage,
       selectedDateFilterValue,
+      filter,
     ],
     queryFn: () =>
       getCommisionsEarned({

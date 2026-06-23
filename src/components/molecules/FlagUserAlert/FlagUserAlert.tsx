@@ -1,7 +1,5 @@
 "use client";
 
-import { FormEvent } from "react";
-
 import { CheckCircle2, StopCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
@@ -11,26 +9,22 @@ import FlagUserModal from "../modals/FlagUserModal/FlagUserModal";
 import { Button } from "@/components/ui/button";
 
 const FlagUserAlert = ({
+  userId,
   email,
   isSuspicious,
-  reason,
+  flagReason,
 }: {
   email: string;
+  userId: string;
   isSuspicious: boolean;
-  reason?: string;
+  flagReason?: string;
 }) => {
-  const {
-    isOpen,
-    setIsOpen,
-    flagUserAccount,
-    flagUserAcct,
-    handleChange,
-    isUpdating,
-  } = useFlagUser(email);
+  const { isOpen, setIsOpen, flagUserAccount, reason, setReason, isUpdating } =
+    useFlagUser(userId);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    flagUserAccount(email);
+  const handleSubmit = () => {
+    const suspendState = isSuspicious ? false : true;
+    flagUserAccount(email, suspendState);
   };
 
   return (
@@ -52,8 +46,8 @@ const FlagUserAlert = ({
             <AlertTitle>
               {isSuspicious ? "Want to unflag user?" : "Want to flag user?"}
             </AlertTitle>
-            {isSuspicious && reason && (
-              <AlertDescription className="">{reason}</AlertDescription>
+            {isSuspicious && flagReason && (
+              <AlertDescription className="">{flagReason}</AlertDescription>
             )}
           </div>
           <Button
@@ -68,8 +62,8 @@ const FlagUserAlert = ({
       <FlagUserModal
         open={isOpen}
         setOpen={setIsOpen}
-        handleChange={handleChange}
-        flagUserAcc={flagUserAcct}
+        setReason={setReason}
+        reason={reason}
         handleSubmit={handleSubmit}
         isFlagged={isSuspicious}
         isUpdating={isUpdating}

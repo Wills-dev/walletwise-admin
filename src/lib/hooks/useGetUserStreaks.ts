@@ -33,6 +33,7 @@ export const useGetUserStreaks = () => {
       limit,
       currentPage,
       selectedDateFilterValue,
+      filter,
     ],
     queryFn: () =>
       getStreaks({

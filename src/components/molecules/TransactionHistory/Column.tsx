@@ -13,6 +13,7 @@ import UserTableLink from "@/components/atoms/UserTableLink/UserTableLink";
 import TableDate from "@/components/atoms/TableDate/TableDate";
 
 import { WalletTransaction } from "@/lib/types";
+import StatusPulse from "@/components/atoms/StatusPulse/StatusPulse";
 
 const columnHelper = createColumnHelper<WalletTransaction>();
 
@@ -63,6 +64,17 @@ export const Column = [
   }),
   columnHelper.accessor("transaction_id", {
     header: "Transaction ID",
+    cell: ({ row }) => {
+      const id = row.getValue("transaction_id") as string;
+      const userFlagged = row.original?.user_flagged;
+
+      return (
+        <div className="flex items-center gap-2">
+          <span>{id}</span>
+          {userFlagged && <StatusPulse size="sm" variant="red" />}
+        </div>
+      );
+    },
   }),
   columnHelper.accessor("type", {
     header: ({ column }) => {

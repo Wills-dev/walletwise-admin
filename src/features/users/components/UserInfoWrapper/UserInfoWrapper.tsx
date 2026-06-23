@@ -53,9 +53,10 @@ const UserInfoWrapper = ({ userId }: { userId: string }) => {
       ) : (
         <>
           <FlagUserAlert
+            userId={userId}
             email={data?.user?.email}
-            isSuspicious={data?.user_status?.is_suspicious}
-            reason={data?.user_status?.reason}
+            isSuspicious={data?.user?.user_flagged}
+            flagReason={data?.user_status?.reason}
           />
           <UserProfileCard user={data?.user} kycId={data?.kyc?.kyc_id} />
         </>

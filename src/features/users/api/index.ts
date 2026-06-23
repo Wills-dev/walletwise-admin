@@ -199,10 +199,10 @@ export const flagUser = async ({
 }) => {
   try {
     const payload: {
-      is_suspicious: boolean;
+      user_flagged: boolean;
       reason?: string;
     } = {
-      is_suspicious,
+      user_flagged: is_suspicious,
     };
 
     if (reason && reason.trim() !== "") {

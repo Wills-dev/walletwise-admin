@@ -33,6 +33,7 @@ export const useGetUserTagTransactions = () => {
       limit,
       currentPage,
       selectedDateFilterValue,
+      filter,
     ],
     queryFn: () =>
       getUsertagTransactions({

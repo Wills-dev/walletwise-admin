@@ -39,6 +39,7 @@ export const useGetAllTransactions = () => {
       selectedDateFilterValue,
       excludeTransfer,
       tab,
+      filter,
     ],
     queryFn: () =>
       getAllTransactions({

@@ -37,6 +37,7 @@ export const useGetVirtualCards = () => {
       currentPage,
       status,
       selectedDateFilterValue,
+      filter,
     ],
     queryFn: () =>
       getVirtualCards({

@@ -9,21 +9,7 @@ import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 
 export const useFlagUser = (userId: string) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [flagUserAcct, setFlagUser] = useState({
-    is_suspicious: "",
-    reason: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-
-    setFlagUser((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const [reason, setReason] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -48,13 +34,12 @@ export const useFlagUser = (userId: string) => {
     },
   });
 
-  const flagUserAccount = (email: string) => {
-    const { is_suspicious, reason } = flagUserAcct;
-    if (is_suspicious === "flag" && reason.trim() === "") {
+  const flagUserAccount = (email: string, flagUser: boolean) => {
+    if (flagUser && reason.trim() === "") {
       toast.error("Please provide reason for flagging user account");
     }
     mutate({
-      is_suspicious: is_suspicious === "flag" ? true : false,
+      is_suspicious: flagUser,
       reason,
       email,
     });
@@ -65,8 +50,8 @@ export const useFlagUser = (userId: string) => {
     onCancel,
     setIsOpen,
     flagUserAccount,
-    flagUserAcct,
-    handleChange,
+    reason,
+    setReason,
     isUpdating: isPending,
   };
 };

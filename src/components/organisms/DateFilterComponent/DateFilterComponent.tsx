@@ -62,27 +62,7 @@ const DateFilterComponent = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // const handleFilterSelect = (filter: FilterOption) => {
-
-  //   if (filter === "custom") {
-  //     setSelectedFilter(filter);
-  //     setShowCalendar(true);
-  //     setIsOpen(false);
-  //     setCustomStart(null);
-  //     setCustomEnd(null);
-  //   } else {
-  //     const range = getDateRange(filter);
-  //     setSelectedFilter(filter);
-  //     setDateRange(range);
-  //     setIsOpen(false);
-  //     setShowCalendar(false);
-  //     onDateChange?.({ label: filter, dateRange: range });
-  //   }
-  // };
-
   const handleFilterSelect = (filter: FilterOption) => {
-    if (filter === selectedFilter) return; // 🛑 prevent unnecessary update
-
     if (filter === "custom") {
       setSelectedFilter(filter);
       setShowCalendar(true);
@@ -90,6 +70,7 @@ const DateFilterComponent = ({
       setCustomStart(null);
       setCustomEnd(null);
     } else {
+      if (filter === selectedFilter) return; // 🛑 prevent unnecessary update
       const range = getDateRange(filter);
 
       setSelectedFilter((prev) => {
