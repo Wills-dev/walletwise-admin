@@ -22,6 +22,7 @@ import {
   Gift,
   Send,
   GiftIcon,
+  Save,
 } from "lucide-react";
 
 export const links = [
@@ -186,16 +187,20 @@ export const services = [
     name: "redeem gift",
     link: "/services/gift-redeem",
   },
+  {
+    name: "savings",
+    link: "/services/savings",
+  },
   { name: "transfer", link: "/services/transfer" },
   {
     name: "virtual card",
     link: "/services/virtual-card",
   },
-  { name: "book flight", link: "/services/book-flight" },
-  {
-    name: "hotel reservation",
-    link: "/services/hotel-reservations",
-  },
+  // { name: "book flight", link: "/services/book-flight" },
+  // {
+  //   name: "hotel reservation",
+  //   link: "/services/hotel-reservations",
+  // },
 ];
 
 export const servicesData = [
@@ -254,6 +259,13 @@ export const servicesData = [
     color: "rgba(59, 130, 246, 0.8)",
     bgColor: "rgb(239 246 255)",
     icon: Phone,
+  },
+  {
+    label: "Savings",
+    value: "savings",
+    color: "rgba(34, 197, 94, 0.8)",
+    bgColor: "rgb(240 253 244)",
+    icon: Save,
   },
   {
     label: "Transfer",
