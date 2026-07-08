@@ -45,11 +45,11 @@ const VirtualCards = () => {
     >
       <VirtualCardSummary
         loading={isPending}
-        totalCards={data?.summary.total_cards}
-        totalVisa={data?.summary.total_cards_by_brand.VISA}
-        totalMasterCards={data?.summary.total_cards_by_brand.MASTERCARD}
-        totalTopup={data?.summary.total_topups}
-        totalRefund={data?.summary.total_refunds}
+        totalCards={data?.summary?.total_cards}
+        totalVisa={data?.summary?.total_cards_by_brand.VISA}
+        totalMasterCards={data?.summary?.total_cards_by_brand.MASTERCARD}
+        totalTopup={data?.summary?.total_topups}
+        totalRefund={data?.summary?.total_refunds}
       />
       <TableWrapper
         setSelectedDateFilterValue={setSelectedDateFilterValue}

@@ -28,6 +28,11 @@ export const menuItems: { label: string; value: FilterOption }[] = [
   { label: "Custom range", value: "custom" },
 ];
 
+export const savingsSortOptions = [
+  { label: "Plans", values: ["flex", "goal", "lock", "ajo"] },
+  { label: "Status", values: ["active", "inactive", "completed"] },
+];
+
 export const sortOptions = [
   { label: "Order", values: ["newest", "oldest"] },
   { label: "Sort by", values: ["highest", "lowest"] },

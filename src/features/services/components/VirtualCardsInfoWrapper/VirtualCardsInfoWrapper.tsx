@@ -60,7 +60,7 @@ const VirtualCardsInfoWrapper = ({ id }: { id: string }) => {
       >
         <VirtualCardInfoSummary
           loading={isPending}
-          totalRefund={data?.summary.refund_count}
+          totalRefund={data?.summary?.refund_count}
           totalTopup={data?.summary?.topup_count}
           totalTrans={data?.summary?.total_transactions}
           totalWithdrawal={data?.summary?.withdrawal_count}
