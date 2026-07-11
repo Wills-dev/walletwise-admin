@@ -41,6 +41,7 @@ export interface ServiceData {
   phone_number: string;
   user_tag: string;
   user_created_at: string;
+  balance_after?: string;
 }
 
 export interface CreateDataPlanType {
