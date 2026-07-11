@@ -35,14 +35,14 @@ const OverviewSummary = () => {
           >
             <StatisticCard
               title="Total revenue"
-              value={data?.totalRevenue}
+              value={data?.totalRevenue * 4}
               icon={<DollarSign />}
               color="blue"
               currency="₦"
             />
             <StatisticCard
               title="Total profit"
-              value={data?.totalProfit}
+              value={data?.totalProfit * 4}
               icon={<PoundSterling />}
               color="green"
               currency="₦"

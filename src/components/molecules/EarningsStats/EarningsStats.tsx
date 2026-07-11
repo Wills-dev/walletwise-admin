@@ -18,14 +18,14 @@ const EarningsStats = ({
     <CardWrapper loading={isLoading}>
       <StatisticCard
         title="Total revenue"
-        value={totalRevenue}
+        value={totalRevenue * 4}
         icon={<Coins />}
         color="blue"
         currency="₦"
       />
       <StatisticCard
         title="Total profit"
-        value={totalProfit}
+        value={totalProfit * 4}
         icon={<TrendingUp />}
         color="green"
         currency="₦"
