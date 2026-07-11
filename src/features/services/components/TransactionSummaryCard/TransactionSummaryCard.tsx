@@ -35,9 +35,11 @@ const TransactionSummaryCard = ({ data }: { data: ServiceData }) => {
               {dollarAmount && (
                 <span className="text-2xl font-bold text-foreground">
                   $
-                  {dollarAmount.toLocaleString("en-NG", {
-                    minimumFractionDigits: 2,
-                  })}
+                  {dollarAmount
+                    ? dollarAmount.toLocaleString("en-NG", {
+                        minimumFractionDigits: 2,
+                      })
+                    : "N/A"}
                 </span>
               )}
             </div>
@@ -78,7 +80,9 @@ const TransactionSummaryCard = ({ data }: { data: ServiceData }) => {
             </span>
             <span className="text-foreground font-bold">
               ₦
-              {parseFloat(data?.balance).toLocaleString("en-NG", {
+              {parseFloat(
+                data?.balance || data?.balance_after || "0",
+              ).toLocaleString("en-NG", {
                 minimumFractionDigits: 2,
               })}
             </span>
@@ -91,9 +95,11 @@ const TransactionSummaryCard = ({ data }: { data: ServiceData }) => {
               </span>
               <span className="text-foreground font-bold">
                 ₦
-                {exchnageRate.toLocaleString("en-NG", {
-                  minimumFractionDigits: 2,
-                })}
+                {exchnageRate
+                  ? exchnageRate.toLocaleString("en-NG", {
+                      minimumFractionDigits: 2,
+                    })
+                  : "N/A"}
               </span>
             </div>
           )}
