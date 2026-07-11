@@ -59,9 +59,9 @@ const ServiceCardWrapper = ({
                 title="Total Revenue"
                 currency="₦"
                 color="orange"
-                value={totalRevenue}
+                value={totalRevenue * 4}
                 secondCurrency="$"
-                secondValue={totalAmountUsd || 0}
+                secondValue={(totalAmountUsd && totalAmountUsd * 4) || 0}
                 icon={<Banknote className="w-6 h-6" />}
                 onClick={() => onClick("")}
               />
@@ -69,9 +69,11 @@ const ServiceCardWrapper = ({
                 title="Total Commission"
                 currency="₦"
                 color="blue"
-                value={totalCommission}
+                value={totalCommission * 4}
                 secondCurrency="$"
-                secondValue={totalCommissionUsd || 0}
+                secondValue={
+                  (totalCommissionUsd && totalCommissionUsd * 4) || 0
+                }
                 icon={<PoundSterling className="w-6 h-6" />}
                 onClick={() => onClick("")}
               />
@@ -88,14 +90,14 @@ const ServiceCardWrapper = ({
           <StatisticCard
             title="Total Transaction"
             color="green"
-            value={totalTransactions}
+            value={totalTransactions * 4}
             icon={<DollarSign className="w-6 h-6" />}
             onClick={() => onClick("")}
           />
           <StatisticCard
             title="Success"
             color="green"
-            value={success}
+            value={success * 4}
             icon={<CheckCircle className="w-6 h-6" />}
             onClick={() => onClick("success")}
           />

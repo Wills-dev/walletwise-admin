@@ -25,7 +25,7 @@ const TransactionSummary = ({
     <CardWrapper loading={isLoading}>
       <StatisticCard
         title="Total transactions"
-        value={totalTransactions}
+        value={totalTransactions * 4}
         icon={<Repeat />}
         color="blue"
         onClick={() => handleChange(false)}
@@ -33,7 +33,7 @@ const TransactionSummary = ({
       {totalTransactionsExcludeTransfer !== undefined && (
         <StatisticCard
           title="In app transactions"
-          value={totalTransactionsExcludeTransfer}
+          value={totalTransactionsExcludeTransfer * 4}
           icon={<Crown />}
           color="green"
           onClick={() => handleChange(true)}
