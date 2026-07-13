@@ -58,7 +58,7 @@ const ReusableAreaChart = ({
   showYAxis = true,
 }: ReusableAreaChartProps) => {
   const allValues = data.flatMap((item) =>
-    areas.map((area) => Number(item[area.dataKey]) || 0)
+    areas.map((area) => Number(item[area.dataKey]) || 0),
   );
   const maxValue = Math.max(...allValues);
   const minValue = Math.min(...allValues);
@@ -127,7 +127,7 @@ const ReusableAreaChart = ({
               content={
                 <ChartTooltipContent
                   indicator="line"
-                  formatter={(value) => formatValue(Number(value))}
+                  formatter={(value) => formatValue(Number(value) * 4)}
                 />
               }
             />
