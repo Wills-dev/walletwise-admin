@@ -73,6 +73,7 @@ const ServiceHistory = ({
           failed={statusCount?.failed}
           loading={isLoading}
           onClick={onClick}
+          service={service}
         />
       </div>
       <div className="space-y-2 pt-6">
