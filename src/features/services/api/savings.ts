@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/lib/axiosInstance";
-import { formatCreatedAt } from "@/lib/helpers/dateFormats";
 import { fetchDataProps } from "@/lib/types";
+import { format } from "date-fns";
 
 export const getSavings = async ({
   currentPage,
@@ -23,10 +23,8 @@ export const getSavings = async ({
 
     if (selectedDateFilterValue) {
       if (selectedDateFilterValue.label === "custom") {
-        query.filterType = "custom";
-        query.filterValue = `${formatCreatedAt(
-          selectedDateFilterValue.dateRange.start,
-        )},${formatCreatedAt(selectedDateFilterValue.dateRange.end)}`;
+        query.filterType = "customRange";
+        query.filterValue = `${format(selectedDateFilterValue.dateRange.start, "yyyy-MM-dd")},${format(selectedDateFilterValue.dateRange.end, "yyyy-MM-dd")}`;
       } else {
         query.filterType = selectedDateFilterValue.label;
       }

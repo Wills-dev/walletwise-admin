@@ -53,6 +53,7 @@ const DataWrapper = () => {
             totalUserCommission={data?.total_user_commission}
             isLoading={isLoading}
             onClick={handleStatusChange}
+            service={"data"}
           />
         </AnimatePresence>
       ),

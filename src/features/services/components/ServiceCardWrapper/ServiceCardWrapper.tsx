@@ -29,6 +29,7 @@ interface ServiceCardWrapperProps {
   failed: number;
   loading: boolean;
   onClick: (status: string) => void;
+  service: string;
 }
 
 const ServiceCardWrapper = ({
@@ -44,8 +45,11 @@ const ServiceCardWrapper = ({
   failed,
   onClick,
   loading,
+  service,
 }: ServiceCardWrapperProps) => {
   const { hasPermission } = useAdminPermission();
+
+  const isTransfer = service === "transfer";
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -59,7 +63,7 @@ const ServiceCardWrapper = ({
                 title="Total Revenue"
                 currency="₦"
                 color="orange"
-                value={totalRevenue * 4}
+                value={isTransfer ? totalRevenue : totalRevenue * 4}
                 secondCurrency="$"
                 secondValue={(totalAmountUsd && totalAmountUsd * 4) || 0}
                 icon={<Banknote className="w-6 h-6" />}
@@ -69,7 +73,7 @@ const ServiceCardWrapper = ({
                 title="Total Commission"
                 currency="₦"
                 color="blue"
-                value={totalCommission * 4}
+                value={isTransfer ? totalCommission : totalCommission * 4}
                 secondCurrency="$"
                 secondValue={
                   (totalCommissionUsd && totalCommissionUsd * 4) || 0
@@ -90,14 +94,14 @@ const ServiceCardWrapper = ({
           <StatisticCard
             title="Total Transaction"
             color="green"
-            value={totalTransactions * 4}
+            value={isTransfer ? totalTransactions : totalTransactions * 4}
             icon={<DollarSign className="w-6 h-6" />}
             onClick={() => onClick("")}
           />
           <StatisticCard
             title="Success"
             color="green"
-            value={success * 4}
+            value={isTransfer ? success : success * 4}
             icon={<CheckCircle className="w-6 h-6" />}
             onClick={() => onClick("success")}
           />

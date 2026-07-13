@@ -54,6 +54,7 @@ const CardSubWrapper = ({ service }: { service: string }) => {
             totalCommissionUsd={data?.total_commission_usd}
             isLoading={isLoading}
             onClick={handleStatusChange}
+            service={service}
           />
         </AnimatePresence>
       ),

@@ -26,6 +26,10 @@ const TopServices = () => {
           <CardContent className="w-full px-0">
             {topServices?.map((service) => {
               const Icon = service?.icon;
+              const totalAmount = service.totalAmount || 0;
+
+              const formattedAmount =
+                service.label === "Transfer" ? totalAmount : totalAmount * 4;
               return (
                 <Link
                   href={`/services/${service?.value}`}
@@ -45,7 +49,7 @@ const TopServices = () => {
                     <p className="font-semibold capitalize">{service?.label}</p>
                   </div>
                   <p className="text-gray-400">
-                    {service?.totalAmount && formatNumber(service?.totalAmount)}
+                    {formattedAmount && formatNumber(formattedAmount)}
                   </p>
                 </Link>
               );

@@ -99,6 +99,7 @@ export interface SummaryProps {
   totalAmountUsd?: number;
   totalCommissionUsd?: number;
   onClick: (value: string) => void;
+  service: string;
 }
 
 export interface HistoryProps<TData = unknown> {

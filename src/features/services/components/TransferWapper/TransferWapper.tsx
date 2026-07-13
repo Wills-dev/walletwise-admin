@@ -54,6 +54,7 @@ const TransferWapper = () => {
             totalUserCommission={data?.total_user_commission}
             isLoading={isLoading}
             onClick={handleStatusChange}
+            service="transfer"
           />
         </AnimatePresence>
       ),

@@ -16,6 +16,7 @@ const ServiceSummary = ({
   onClick,
   totalAmountUsd,
   totalCommissionUsd,
+  service,
 }: SummaryProps) => {
   return (
     <motion.div
@@ -38,6 +39,7 @@ const ServiceSummary = ({
         failed={statusCount?.failed}
         loading={isLoading}
         onClick={onClick}
+        service={service}
       />
     </motion.div>
   );
