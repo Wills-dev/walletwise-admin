@@ -28,8 +28,11 @@ const EarningsWrapper = () => {
   const totalRevenue = data?.overall?.total_revenue || 0;
   const totalProfit = data?.overall?.total_profit || 0;
 
-  const formattedTotalRevenue = tab === "" ? totalRevenue : totalRevenue * 4;
-  const formattedTotalProfit = totalProfit * 4;
+  const formattedTotalRevenue = ["", "transfer"].includes(tab)
+    ? totalRevenue
+    : totalRevenue * 4 * 6;
+
+  const formattedTotalProfit = totalProfit * 4 * 6;
   const content = (
     <ServiceEarningsSummary
       data={data?.data || []}

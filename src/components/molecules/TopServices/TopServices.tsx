@@ -29,7 +29,9 @@ const TopServices = () => {
               const totalAmount = service.totalAmount || 0;
 
               const formattedAmount =
-                service.label === "Transfer" ? totalAmount : totalAmount * 4;
+                service.label === "Transfer"
+                  ? totalAmount
+                  : totalAmount * 4 * 6;
               return (
                 <Link
                   href={`/services/${service?.value}`}
