@@ -127,7 +127,7 @@ const ReusableAreaChart = ({
               content={
                 <ChartTooltipContent
                   indicator="line"
-                  formatter={(value) => formatValue(Number(value) * 4 * 6)}
+                  formatter={(value) => formatValue(Number(value))}
                 />
               }
             />

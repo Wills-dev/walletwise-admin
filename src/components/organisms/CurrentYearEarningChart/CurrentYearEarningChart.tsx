@@ -29,7 +29,7 @@ const CurrentYearEarningChart = ({
           ]}
           xAxisKey="month"
           title={`Total Earnings ${selectedYear} ₦${numberWithCommas(
-            data?.totalProfit * 4 * 6 || 0,
+            data?.totalProfit || 0,
           )}`}
           description={`Showing breakdown of earnings in ${selectedYear}`}
           showYAxis={false}

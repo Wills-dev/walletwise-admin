@@ -45,11 +45,8 @@ const ServiceCardWrapper = ({
   failed,
   onClick,
   loading,
-  service,
 }: ServiceCardWrapperProps) => {
   const { hasPermission } = useAdminPermission();
-
-  const isTransfer = service === "transfer";
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -63,9 +60,9 @@ const ServiceCardWrapper = ({
                 title="Total Revenue"
                 currency="₦"
                 color="orange"
-                value={isTransfer ? totalRevenue : totalRevenue * 4 * 6}
+                value={totalRevenue}
                 secondCurrency="$"
-                secondValue={(totalAmountUsd && totalAmountUsd * 4 * 6) || 0}
+                secondValue={totalAmountUsd || 0}
                 icon={<Banknote className="w-6 h-6" />}
                 onClick={() => onClick("")}
               />
@@ -73,11 +70,9 @@ const ServiceCardWrapper = ({
                 title="Total Commission"
                 currency="₦"
                 color="blue"
-                value={isTransfer ? totalCommission : totalCommission * 4 * 6}
+                value={totalCommission}
                 secondCurrency="$"
-                secondValue={
-                  (totalCommissionUsd && totalCommissionUsd * 4 * 6) || 0
-                }
+                secondValue={totalCommissionUsd || 0}
                 icon={<PoundSterling className="w-6 h-6" />}
                 onClick={() => onClick("")}
               />
@@ -94,14 +89,14 @@ const ServiceCardWrapper = ({
           <StatisticCard
             title="Total Transaction"
             color="green"
-            value={isTransfer ? totalTransactions : totalTransactions * 4 * 6}
+            value={totalTransactions}
             icon={<DollarSign className="w-6 h-6" />}
             onClick={() => onClick("")}
           />
           <StatisticCard
             title="Success"
             color="green"
-            value={isTransfer ? success : success * 4 * 6}
+            value={success}
             icon={<CheckCircle className="w-6 h-6" />}
             onClick={() => onClick("success")}
           />
