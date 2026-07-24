@@ -19,7 +19,7 @@ const TopServices = () => {
       {isLoading ? (
         <ChartLoader />
       ) : (
-        <Card className="sm:min-w-[300px] flex-1 w-full min-w-full dark:bg-gray-800">
+        <Card className="sm:min-w-75 flex-1 w-full min-w-full dark:bg-gray-800">
           <CardHeader>
             <CardTitle>Top 5 services</CardTitle>
           </CardHeader>
@@ -28,10 +28,6 @@ const TopServices = () => {
               const Icon = service?.icon;
               const totalAmount = service.totalAmount || 0;
 
-              const formattedAmount =
-                service.label === "Transfer"
-                  ? totalAmount
-                  : totalAmount * 4 * 6;
               return (
                 <Link
                   href={`/services/${service?.value}`}
@@ -51,7 +47,7 @@ const TopServices = () => {
                     <p className="font-semibold capitalize">{service?.label}</p>
                   </div>
                   <p className="text-gray-400">
-                    {formattedAmount && formatNumber(formattedAmount)}
+                    {totalAmount && formatNumber(totalAmount)}
                   </p>
                 </Link>
               );

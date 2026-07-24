@@ -42,7 +42,7 @@ const OverviewSummary = () => {
             />
             <StatisticCard
               title="Total profit"
-              value={data?.totalProfit * 4 * 6}
+              value={data?.totalProfit}
               icon={<PoundSterling />}
               color="green"
               currency="₦"
